@@ -1,6 +1,30 @@
 <app-header></app-header>
-<p>home works!</p>
-<lucide-icon [img]="FileIcon" class="my-icon"></lucide-icon>
-<h1 class="text-3xl font-bold underline font-robot">
-    Hello World!
-</h1>
+<main class="flex flex-col-reverse md:flex-row md:px-[64px] md:py-[112px] gap-x-[80px] font-robot">
+    <div class="px-[64px] pb-[112px] md:px-0 md:py-0">
+        <h1 class="font-bold text-4xl mt-[52px] lg:text-[56px] lg:leading-normal mb-[24px]">HomeChoice <br> Encuentra tu hogar ideal con nosotros</h1>
+        <p class="mb-[32px]">Conectamos personas con propiedades únicas para cada estilo de vida.</p>
+        <button routerLink="/properties" class="h-[30px] md:h-[48px] bg-de-york-400 px-[24px]">Explorar propiedades</button>
+    </div>
+    
+    <img class="md:w-1/2 h-[398px] md:h-[502px] object-cover object-center" src="/img/home.png" alt="">
+</main>
+
+<section class="font-robot text-[14px] md:text-base px-[64px] py-[50px] bg-de-york-600 text-center text-de-york-50">
+    <h2 class="font-bold text-[32px] md:text-[40px] text-de-york-950 mb-[45px]">Sobre Nosotros</h2>
+    <div class="flex flex-col md:flex-row justify-center gap-x-[48px] gap-y-[45px]">
+        <section class="md:w-[405px]">
+            <h3 class="font-bold text-2xl md:text-[32px] text-de-york-950 mb-[24px]">Misión</h3>
+            <p>Ayudar a cada cliente a encontrar la propiedad que mejor se adapte a sus necesidades, ofreciéndoles una experiencia personalizada y eficiente en su búsqueda del hogar ideal.</p>
+        </section>
+        
+        <section class="md:w-[405px]">
+            <h3 class="font-bold text-2xl md:text-[32px] text-de-york-950 mb-[24px]">Visión</h3>
+            <p>Ser la empresa inmobiliaria líder en el mercado, reconocida por su innovación, servicio excepcional y compromiso con ayudar a las personas a encontrar propiedades que cumplan sus sueños.</p>
+        </section>
+        
+        <section class="md:w-[405px]">
+            <h3 class="font-bold text-2xl md:text-[32px] text-de-york-950 mb-[24px]">Valores</h3>
+            <p>Integridad, compromiso con la satisfacción del cliente, innovación constante, y trabajo en equipo, siempre enfocados en generar confianza y resultados sólidos.</p>
+        </section>
+    </div>
+</section>

@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from "../../components/header/header.component";
-import { LucideAngularModule, FileIcon } from "lucide-angular";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent, LucideAngularModule],
+  imports: [HeaderComponent, RouterLink],
   templateUrl: './home.component.html'
 })
 export class HomeComponent {
-  readonly FileIcon = FileIcon;
+
 }
