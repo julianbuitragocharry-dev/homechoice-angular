@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { LucideAngularModule, User } from 'lucide-angular';
+import { LogIn, LucideAngularModule } from 'lucide-angular';
 
 @Component({
   selector: 'app-header',
@@ -9,5 +9,5 @@ import { LucideAngularModule, User } from 'lucide-angular';
   templateUrl: './header.component.html'
 })
 export class HeaderComponent {
-  readonly User = User;
+  readonly LogIn = LogIn;
 }

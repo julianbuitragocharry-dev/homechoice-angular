@@ -1,0 +1,26 @@
+<div class="font-roboto">
+    <img class="w-full" [src]="property.images[0]">
+    <div class="px-[14px]">
+        <p class="mt-[24px] font-semibold">
+            {{ property.status ? 'Disponible' : 'No disponible' }}
+        </p>
+        <h2 class="text-2xl font-bold mt-[16px]">
+            {{ property.name }}
+        </h2>
+        <p class="font-semibold mt-[16px]">
+            {{ property.area }} m²
+        </p>
+        <p>
+            ${{ property.price }} COP
+        </p>
+        <p class="mb-[24px]">
+            {{ property.concept }} - {{ property.type }}
+        </p>
+    </div>
+    <button
+    class="flex flex-row gap-[10px] border rounded-md px-[15px] py-[2px] h-[36px] md:h-[39px] items-center font-semibold w-full justify-center"
+    [routerLink]="['properties/', property.id]">
+        Ver Inmueble
+        <i-lucide [img]="Link" class="my-icon" [strokeWidth]="2.5"></i-lucide>
+    </button>
+</div>
