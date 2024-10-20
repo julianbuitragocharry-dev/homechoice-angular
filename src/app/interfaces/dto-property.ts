@@ -1,4 +1,4 @@
-export interface DtoProperties {
+export interface DtoProperty {
     id: number;
     name: string;
     area: number;

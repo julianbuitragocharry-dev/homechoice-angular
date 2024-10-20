@@ -1,5 +1,33 @@
 <app-header></app-header>
 
-<div class="mx-auto mt-[24px] md:mt-[48px] grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[40px] w-[90%]">
+<section class="font-roboto text-center my-[48px]">
+    <h1 class="text-[32px] md:text-5xl font-bold">
+        HomeChoice
+    </h1>
+    <p class="text-sm md:text-base">
+        Encuentra la casa de tus sueños y hazlo realidad
+    </p>
+</section>
+
+<!-- search -->
+<!-- <div class="w-[466px] ">
+    <form
+    action="">
+        <div class="flex items-center">
+            <input 
+            class="border rounded-l-md h-[36px] md:h-[39px]"
+            type="text">
+            <button
+            class="border-none rounded-r-md px-[15px] py-[2px] h-[36px] md:h-[39px] items-center font-semibold bg-blue-300" 
+            type="submit"><i-lucide [img]="Search" class="my-icon" [strokeWidth]="2.5"></i-lucide></button>
+        </div>
+    </form>
+</div>
+<i-lucide [img]="ChevronDown" class="my-icon" [strokeWidth]="2.5"></i-lucide> -->
+
+<!-- properties -->
+<div class="mx-auto my-[24px] md:my-[48px] grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[40px] w-[90%]">
     <app-card *ngFor="let property of properties" [property]="property"></app-card>
 </div>
+
+<!-- controls -->

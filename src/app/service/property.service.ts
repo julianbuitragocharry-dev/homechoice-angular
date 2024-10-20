@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DtoProperties } from '../interfaces/dto-properties';
+import { DtoProperty } from '../interfaces/dto-property';
 
 @Injectable({
   providedIn: 'root'
@@ -11,19 +11,19 @@ export class PropertyService {
 
   constructor(private http: HttpClient) {}
 
-  getPublicProperties(): Observable<DtoProperties[]> {
-    return this.http.get<DtoProperties[]>(this.apiUrl + 'public');
+  getPublicProperties(): Observable<DtoProperty[]> {
+    return this.http.get<DtoProperty[]>(this.apiUrl + 'public');
   }
 
-  getPropertiesByAgentId(agentId: number): Observable<DtoProperties[]> {
-    return this.http.get<DtoProperties[]>(this.apiUrl + 'agent/' + agentId);
+  getPropertiesByAgentId(agentId: number): Observable<DtoProperty[]> {
+    return this.http.get<DtoProperty[]>(this.apiUrl + 'agent/' + agentId);
   }
 
-  getPropertiesNulls(): Observable<DtoProperties[]> {
-    return this.http.get<DtoProperties[]>(this.apiUrl + 'nulls');
+  getPropertiesNulls(): Observable<DtoProperty[]> {
+    return this.http.get<DtoProperty[]>(this.apiUrl + 'nulls');
   }
 
-  getPropertyById(id: number): Observable<DtoProperties> {
-    return this.http.get<DtoProperties>(this.apiUrl + id);
+  getPropertyById(id: number): Observable<DtoProperty> {
+    return this.http.get<DtoProperty>(this.apiUrl + id);
   }
 }

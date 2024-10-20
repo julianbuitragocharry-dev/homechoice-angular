@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { DtoProperties } from '../../../interfaces/dto-properties';
 import { RouterLink } from '@angular/router';
 import { LucideAngularModule, Link } from 'lucide-angular';
+import { DtoProperty } from '../../../interfaces/dto-property';
 
 @Component({
   selector: 'app-card',
@@ -12,5 +12,5 @@ import { LucideAngularModule, Link } from 'lucide-angular';
 export class CardComponent {
   readonly Link = Link;
 
-  @Input() property !: DtoProperties;
+  @Input() property !: DtoProperty;
 }
