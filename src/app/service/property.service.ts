@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DtoProperty } from '../interfaces/dto-property';
+import { DtoProperty } from '../interfaces/property/dto-property';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +24,6 @@ export class PropertyService {
   }
 
   getPropertyById(id: number): Observable<DtoProperty> {
-    return this.http.get<DtoProperty>(this.apiUrl + id);
+    return this.http.get<DtoProperty>(this.apiUrl + 'public/' + id);
   }
 }

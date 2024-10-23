@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from "../../../shared/components/header/header.component";
 import { CardComponent } from "../../components/card/card.component";
 import { PropertyService } from '../../../service/property.service';
-import { DtoProperty } from '../../../interfaces/dto-property';
+import { DtoProperty } from '../../../interfaces/property/dto-property';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule, ChevronDown, Search } from 'lucide-angular';
 

@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LucideAngularModule, Link } from 'lucide-angular';
-import { DtoProperty } from '../../../interfaces/dto-property';
+import { DtoProperty } from '../../../interfaces/property/dto-property';
 
 @Component({
   selector: 'app-card',

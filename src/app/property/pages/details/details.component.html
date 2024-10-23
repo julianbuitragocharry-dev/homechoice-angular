@@ -1,1 +1,53 @@
-<p>details works!</p>
+<app-header></app-header>
+
+<div class="flex flex-col xl:flex-row font-roboto mt-[48px] px-[24px] pb-[24px] gap-[5%]">
+    <!-- info -->
+    <div class="xl:w-[44%]">
+        <!-- property -->
+        <div class="flex flex-col gap-[26px] px-[24px] pb-[24px]">
+            <h1 class="font-bold text-4xl md:text-[40px]">{{ property.name }}</h1>
+            
+            <div class="flex flex-wrap gap-[12px] md:gap-[48px] font-semibold text-sm">
+                <p>${{ property.price }} COP</p>
+                <p>{{ property.status ? 'Disponible' : 'No disponible' }}</p>
+                <p>{{ property.area }} m²</p>
+                <p>{{ property.concept }}</p>
+                <p>{{ property.type }}</p>
+            </div>
+    
+            <p class="text-sm md:text-base">{{ property.description }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Non reprehenderit similique sequi magnam sed deleniti qui aut impedit delectus ducimus? Expedita tempore veniam commodi nostrum quaerat ab autem optio eos? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex expedita, eaque sed eius veniam nobis placeat. Molestiae at libero mollitia earum, fugiat voluptas quam a dicta maxime. Laudantium, adipisci at.</p>
+
+            <p class="text-sm md:text-base"><b>Dirección:</b> {{ property.address }}</p>
+        </div>
+
+        <!-- agent -->
+        <div class="flex flex-col gap-[16px] p-[20px] border-t border-b">
+            <h2 class="font-bold text-base md:text-2xl">Agente</h2>
+            
+            <div class="text-sm md:text-base">
+                <p><b>Nombre:</b> {{ agent.name }}</p>
+                <p><b>Telefono:</b> {{ agent.phone }}</p>
+                <p><b>Correo:</b> {{ agent.email }}</p>
+            </div>
+
+            <button 
+            class="text-sm md:text-base bg-blue-300 hover:bg-blue-400 active:bg-blue-500 font-semibold rounded-md h-[36px] md:h-[39px] py-[2px] w-[106px]"
+            (click)="contactAgent()"
+            >Contactar</button>
+        </div>
+    </div>
+
+    // TODO: Add image gallery
+    <div class="flex-1 mt-[48px] xl:mt-0  xl:mb-0">
+        <img class="bg-cover bg-center w-full" [src]="property.images[0]" alt="image"/>
+    </div>
+</div>
+
+<!-- map -->
+<iframe 
+    class="p-[24px] w-[100%] h-[269px] md:h-[350px]" 
+    style="border:0" 
+    loading="lazy" 
+    allowfullscreen 
+    [src]="mapUrl">
+</iframe>
