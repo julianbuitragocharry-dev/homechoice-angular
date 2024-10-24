@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DtoProperty } from '../interfaces/property/dto-property';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PropertyService {
-  private apiUrl = 'http://localhost:8080/api/properties/';
+  private apiUrl = `${environment.apiBaseUrl}/properties/`;
 
   constructor(private http: HttpClient) {}
 
