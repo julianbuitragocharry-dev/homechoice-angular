@@ -1,0 +1,50 @@
+<div class="mt-[24px] w-full px-4 text-sm md:text-base font-roboto text-center">
+    <div class="overflow-x-auto">
+        <div class="min-w-[1000px]">
+            <table class="w-full table-auto ">
+                <thead class="bg-blue-800 text-blue-50">
+                    <tr>
+                        <th class="p-3 md:p-4" scope="col">ID</th>
+                        <th class="p-3 md:p-4" scope="col">Name</th>
+                        <th class="p-3 md:p-4" scope="col">Address</th>
+                        <th class="p-3 md:p-4" scope="col">Status</th>
+                        <th class="p-3 md:p-4" scope="col">Concept</th>
+                        <th class="p-3 md:p-4" scope="col">Type</th>
+                        <th class="p-3 md:p-4" scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let property of properties" class="hover:bg-blue-50">
+                        <td class="p-3 md:p-4">{{ property.id }}</td>
+                        <td class="p-3 md:p-4">{{ property.name }}</td>
+                        <td class="p-3 md:p-4">{{ property.address }}</td>
+                        <td class="p-3 md:p-4">
+                            <span [ngClass]="property.status ? 
+                                'bg-blue-100 text-blue-700 px-3 py-1 rounded-md' : 
+                                'bg-red-100 text-red-700 px-3 py-1 rounded-md'">
+                                {{ property.status ? 'Disponible' : 'No disponible' }}
+                            </span>
+                        </td>
+                        <td class="p-3 md:p-4">{{ property.concept }}</td>
+                        <td class="p-3 md:p-4">{{ property.type }}</td>
+                        <td class="p-3 md:p-4">
+                            <div class="flex gap-3 items-center justify-center">
+                                <button class="p-3 bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-md transition-colors" 
+                                        (click)="onEdit(property)">
+                                    <i-lucide [img]="Pencil" class="w-5 h-5" [strokeWidth]="2.5"></i-lucide>
+                                </button>
+                                <button class="p-3 bg-red-50 hover:bg-red-100 text-red-600 rounded-md transition-colors" 
+                                        (click)="onDelete(property)">
+                                    <i-lucide [img]="Trash2" class="w-5 h-5" [strokeWidth]="2.5"></i-lucide>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- pagination -->
