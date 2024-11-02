@@ -12,7 +12,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, ],
+  imports: [CommonModule, HeaderComponent],
   templateUrl: './details.component.html'
 })
 export class DetailsComponent implements OnInit {
@@ -64,7 +64,7 @@ export class DetailsComponent implements OnInit {
     const phone = this.agent.phone.replace(/\D/g, '');
     const message = `Estimado/a ${this.agent.name},
 
-    Espero que se encuentre bien. Me dirijo a usted para expresar mi interés en la **${this.property.name}**. ¿Sería posible agendar una cita para discutir más sobre esta propiedad y obtener más información?
+    Espero que se encuentre bien. Me dirijo a usted para expresar mi interés en la propiedad **${this.property.name}**. ¿Sería posible agendar una cita para discutir más sobre esta propiedad y obtener más información?
 
     Agradezco de antemano su atención y quedo a la espera de su respuesta.
 

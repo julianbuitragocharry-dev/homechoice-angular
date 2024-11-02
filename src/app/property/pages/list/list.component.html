@@ -5,12 +5,12 @@
                 <thead class="bg-blue-800 text-blue-50">
                     <tr>
                         <th class="p-3 md:p-4" scope="col">ID</th>
-                        <th class="p-3 md:p-4" scope="col">Name</th>
-                        <th class="p-3 md:p-4" scope="col">Address</th>
-                        <th class="p-3 md:p-4" scope="col">Status</th>
-                        <th class="p-3 md:p-4" scope="col">Concept</th>
-                        <th class="p-3 md:p-4" scope="col">Type</th>
-                        <th class="p-3 md:p-4" scope="col">Actions</th>
+                        <th class="p-3 md:p-4" scope="col">NOMBRE</th>
+                        <th class="p-3 md:p-4" scope="col">DIRECCION</th>
+                        <th class="p-3 md:p-4" scope="col">ESTADO</th>
+                        <th class="p-3 md:p-4" scope="col">CONCEPTO</th>
+                        <th class="p-3 md:p-4" scope="col">TIPO</th>
+                        <th class="p-3 md:p-4" scope="col">ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -19,7 +19,7 @@
                         <td class="p-3 md:p-4">{{ property.name }}</td>
                         <td class="p-3 md:p-4">{{ property.address }}</td>
                         <td class="p-3 md:p-4">
-                            <span [ngClass]="property.status ? 
+                            <span class="font-semibold" [ngClass]="property.status ? 
                                 'bg-blue-100 text-blue-700 px-3 py-1 rounded-md' : 
                                 'bg-red-100 text-red-700 px-3 py-1 rounded-md'">
                                 {{ property.status ? 'Disponible' : 'No disponible' }}
@@ -34,7 +34,7 @@
                                     <i-lucide [img]="Pencil" class="w-5 h-5" [strokeWidth]="2.5"></i-lucide>
                                 </button>
                                 <button class="p-3 bg-red-50 hover:bg-red-100 text-red-600 rounded-md transition-colors" 
-                                        (click)="onDelete(property)">
+                                        (click)="confirmDelete(property)">
                                     <i-lucide [img]="Trash2" class="w-5 h-5" [strokeWidth]="2.5"></i-lucide>
                                 </button>
                             </div>
@@ -46,5 +46,43 @@
     </div>
 </div>
 
+<!-- modal -->
+<div *ngIf="showDeleteModal" 
+     class="fixed inset-0 bg-blue-950/50 flex items-center justify-center z-50"
+     (click)="closeModal()">
+    
+    <!-- content -->
+    <div class="bg-blue-50 w-11/12 max-w-md rounded-lg shadow-lg" 
+         (click)="$event.stopPropagation()">
+        
+        <!-- header -->
+        <div class="p-4 border-b border-blue-200">
+            <h3 class="text-lg font-medium text-blue-900">
+                Confirmar eliminación
+            </h3>
+        </div>
+
+        <!-- body -->
+        <div class="p-4">
+            <p class="text-blue-800">
+                ¿Estás seguro de que deseas eliminar esta propiedad? Esta acción no se puede deshacer.
+            </p>
+        </div>
+
+        <!-- footer -->
+        <div class="p-4 border-t border-blue-200 flex justify-end space-x-3">
+            <button 
+                class="px-4 py-2 bg-blue-50 text-blue-700 rounded-md hover:bg-blue-100 transition-colors"
+                (click)="closeModal()">
+                Cancelar
+            </button>
+            <button 
+                class="px-4 py-2 bg-red-600 text-blue-50 rounded-md hover:bg-red-700 transition-colors"
+                (click)="deleteProperty()">
+                Eliminar
+            </button>
+        </div>
+    </div>
+</div>
 
 <!-- pagination -->

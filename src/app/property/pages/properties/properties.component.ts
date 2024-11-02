@@ -6,6 +6,7 @@ import { DtoProperty } from '../../../interfaces/property/dto-property';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule, ChevronDown, Search } from 'lucide-angular';
 
+
 @Component({
   selector: 'app-properties',
   standalone: true,
@@ -17,6 +18,9 @@ export class PropertiesComponent implements OnInit {
   readonly Search = Search;
 
   properties: DtoProperty[] = [];
+  page: number = 1;
+  size: number = 6;
+  
 
   constructor(private propertyService: PropertyService) { }
 

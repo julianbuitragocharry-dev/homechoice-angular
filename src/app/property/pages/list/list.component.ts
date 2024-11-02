@@ -14,6 +14,9 @@ export class ListComponent implements OnInit{
   readonly Pencil = Pencil;
   readonly Trash2 = Trash2;
 
+  showDeleteModal: boolean = false;
+  propertyToDelete: number | null = null;
+
   properties: DtoProperty[] = [];
 
   constructor(private propertyService: PropertyService) { }
@@ -33,7 +36,20 @@ export class ListComponent implements OnInit{
     console.log('Edit property:', property);
   }
 
-  onDelete(property: DtoProperty): void {
-    console.log('Delete property:', property);
-  } 
+  confirmDelete(property: DtoProperty): void {
+    this.propertyToDelete = property.id;
+    this.showDeleteModal = true;
+  }
+
+  closeModal(): void {
+    this.showDeleteModal = false;
+    this.propertyToDelete = null;
+  }
+  deleteProperty(): void {
+    if (this.propertyToDelete) {
+      console.log('Delete property ID:', this.propertyToDelete);
+      // Call service to delete property
+      this.closeModal();
+    }
+  }
 }
