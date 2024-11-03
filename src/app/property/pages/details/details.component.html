@@ -7,9 +7,15 @@
         <div class="flex flex-col gap-[26px] px-[24px] pb-[24px]">
             <h1 class="font-bold text-4xl md:text-[40px]">{{ property.name }}</h1>
             
-            <div class="flex flex-wrap gap-[12px] md:gap-[48px] font-semibold text-sm">
-                <p>${{ property.price }} COP</p>
-                <p>{{ property.status ? 'Disponible' : 'No disponible' }}</p>
+            <div class="flex flex-wrap gap-[12px] md:gap-[48px] font-semibold text-xs md:text-sm">
+                <p>
+                    <span 
+                        [ngClass]="property.status ? 'bg-blue-100 text-blue-700 px-3 py-1 rounded-md' : 
+                        'bg-red-100 text-red-700 px-3 py-1 rounded-md'">
+                        {{ property.status ? 'Disponible' : 'No disponible' }}
+                    </span>
+                </p>
+                <p>$ {{ property.price | currency: '':'':'1.0-0' }} COP</p>
                 <p>{{ property.area }} m²</p>
                 <p>{{ property.concept }}</p>
                 <p>{{ property.type }}</p>

@@ -14,10 +14,15 @@
 
 <!-- properties -->
 <div class="mx-auto my-[24px] md:my-[48px] grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[40px] w-[90%]">
-    <app-card *ngFor="let property of properties" [property]="property"></app-card>
+    <app-card *ngFor="let property of properties | paginate: { itemsPerPage: size, currentPage: page }" [property]="property"></app-card>
 </div>
 
 <!-- controls -->
-<div class="flex justify-center my-8">
-    
+<div class="grid place-items-center py-2 font-roboto">
+    <pagination-controls 
+        class="my-pagination"
+        (pageChange)="page = $event" 
+        previousLabel="Anterior" 
+        nextLabel="Siguiente">
+    </pagination-controls>
 </div>

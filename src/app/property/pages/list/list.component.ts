@@ -7,7 +7,7 @@ import { PropertyService } from '../../../service/property.service';
 @Component({
   selector: 'app-list-properties',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule],
+  imports: [CommonModule, LucideAngularModule ],
   templateUrl: './list.component.html'
 })
 export class ListComponent implements OnInit{
