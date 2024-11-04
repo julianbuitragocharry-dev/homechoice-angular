@@ -10,19 +10,66 @@
 </section>
 
 <!-- search -->
+<form [formGroup]="filterForm" (ngSubmit)="onSubmit()" class="w-[90%] mx-auto mb-8 font-roboto">
+    <div class="grid grid-cols-1 md:grid-cols-6 gap-2">
+      <!-- status -->
+      <div>
+        <select formControlName="status" class="w-full px-3 py-2 bg-white border border-blue-900 rounded-lg text-sm md:text-base">
+          <option [value]=""></option>
+          <option *ngFor="let item of statusList" [value]="item.value">
+            {{item.label}}
+          </option>
+        </select>
+      </div>
+      
+      <!-- concept -->
+      <div>
+        <select formControlName="concept" class="w-full px-3 py-2 bg-white border border-blue-900 rounded-lg text-sm md:text-base outline-none">
+          <option [value]=""></option>
+          <option *ngFor="let item of conceptList" [value]="item.concept">
+            {{item.concept}}
+          </option>
+        </select>
+      </div>
+      
+      <!-- type -->
+      <div>
+        <select formControlName="type" class="w-full px-3 py-2 bg-white border border-blue-900 rounded-lg text-sm md:text-base outline-none">
+          <option [value]=""></option>
+          <option *ngFor="let item of typeList" [value]="item.type">
+            {{item.type}}
+          </option>
+        </select>
+      </div>
+      
+      <!-- price -->
+      <div>
+        <input type="number" formControlName="minPrice" placeholder="Desde" class="w-full px-3 py-2 bg-white border border-blue-900 rounded-lg text-sm md:text-base outline-none" min="0"/>
+      </div>
+      
+      <!-- area -->
+      <div>
+        <input type="number" formControlName="minArea" placeholder="Área" min="0" class="w-full px-3 py-2 bg-white border border-blue-900 rounded-lg text-sm md:text-base outline-none"/>
+      </div>
 
+      <button type="submit" class="bg-blue-100 hover:bg-blue-200 rounded-md font-bold px-3 py-2">
+        Buscar
+      </button>
+    </div>
+</form>
 
 <!-- properties -->
 <div class="mx-auto my-[24px] md:my-[48px] grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[40px] w-[90%]">
-    <app-card *ngFor="let property of properties | paginate: { itemsPerPage: size, currentPage: page }" [property]="property"></app-card>
+    <app-card *ngFor="let property of properties | paginate: { itemsPerPage: sizeValue, currentPage: pageValue, totalItems: properties.length }" [property]="property"></app-card>
 </div>
 
 <!-- controls -->
 <div class="grid place-items-center py-2 font-roboto">
     <pagination-controls 
         class="my-pagination"
-        (pageChange)="page = $event" 
+        (pageChange)="pageValue = $event" 
         previousLabel="Anterior" 
-        nextLabel="Siguiente">
+        nextLabel="Siguiente"
+        [maxSize]="5">
     </pagination-controls>
 </div>

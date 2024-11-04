@@ -2,7 +2,7 @@
 
 <div class="flex flex-col xl:flex-row font-roboto mt-[48px] px-[24px] pb-[24px] gap-[5%]">
     <!-- info -->
-    <div class="xl:w-[44%]">
+    <div id="info" class="xl:w-[45%]">
         <!-- property -->
         <div class="flex flex-col gap-[26px] px-[24px] pb-[24px]">
             <h1 class="font-bold text-4xl md:text-[40px]">{{ property.name }}</h1>
@@ -21,7 +21,7 @@
                 <p>{{ property.type }}</p>
             </div>
     
-            <p class="text-sm md:text-base">{{ property.description }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Non reprehenderit similique sequi magnam sed deleniti qui aut impedit delectus ducimus? Expedita tempore veniam commodi nostrum quaerat ab autem optio eos? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex expedita, eaque sed eius veniam nobis placeat. Molestiae at libero mollitia earum, fugiat voluptas quam a dicta maxime. Laudantium, adipisci at.</p>
+            <p class="text-sm md:text-base">{{ property.description }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae adipisci magni nam inventore impedit quas saepe voluptatibus expedita, quasi vitae hic eum voluptatum, officia maiores! Suscipit quod reiciendis debitis excepturi. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti deserunt quos mollitia temporibus minus commodi eaque et obcaecati accusamus voluptate perspiciatis recusandae eius qui, suscipit debitis inventore quidem labore vero? Lore</p>
 
             <p class="text-sm md:text-base"><b>Dirección:</b> {{ property.address }}</p>
         </div>
@@ -46,7 +46,7 @@
     </div>
 
     <div class="flex-1 mt-[48px] xl:mt-0 xl:mb-0">
-        <img class="bg-cover bg-center w-full" [src]="property.images[0]" alt="image"/>
+        <img class="bg-cover bg-center h-full w-full xl:w-auto rounded-xl" [src]="property.images[0]" alt="image"/>
     </div>    
 </div>
 

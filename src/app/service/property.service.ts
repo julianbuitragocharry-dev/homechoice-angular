@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DtoProperty } from '../interfaces/property/dto-property';
@@ -12,8 +12,40 @@ export class PropertyService {
 
   constructor(private http: HttpClient) {}
 
-  getPublicProperties(): Observable<DtoProperty[]> {
-    return this.http.get<DtoProperty[]>(this.apiUrl + 'public');
+  getPublicProperties(
+    name: string, 
+    status: boolean | null, 
+    minPrice: number | null, 
+    minArea: number | null, 
+    type: string,
+    concept: string): Observable<DtoProperty[]> {
+    
+    let params = new HttpParams()
+      .set('name', name)
+
+    if (status != null) {
+      params = params.set('status', status);
+    }
+    
+    if (minPrice != null) {
+      params = params.set('minPrice', minPrice);
+    }
+
+    if(minArea != null) {
+      params = params.set('minArea', minArea);
+    }
+  
+    if(type != null) {
+      params = params.set('type', type);
+    }
+
+    if(concept != null) {
+      params = params.set('concept', concept);
+    }
+
+    console.log('params', params);
+
+    return this.http.get<DtoProperty[]>(this.apiUrl + 'public', { params });
   }
 
   getPropertiesByAgentId(agentId: number): Observable<DtoProperty[]> {
@@ -26,5 +58,14 @@ export class PropertyService {
 
   getPropertyById(id: number): Observable<DtoProperty> {
     return this.http.get<DtoProperty>(this.apiUrl + 'public/' + id);
+  }
+
+  // Auxiliary endpoints
+  getPropertyConcept(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl + 'public/concepts');
+  }
+
+  getPropertyType(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl + 'public/types');
   }
 }

@@ -43,7 +43,7 @@ export class DetailsComponent implements OnInit {
   // API calls
   fetchProperty(id: number): void {
     this.propertyService.getPropertyById(id).subscribe(
-      (data) => {
+      (data: DtoProperty) => {
         this.property = data;
         this.initializeMap();
         this.fetchAgent(this.property.agent);

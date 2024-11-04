@@ -20,18 +20,18 @@ export class ListComponent implements OnInit{
   properties: DtoProperty[] = [];
 
   constructor(private propertyService: PropertyService) { }
-
+  
   ngOnInit(): void {
-    this.propertyService.getPublicProperties().subscribe(
+    /*this.propertyService.getPublicProperties().subscribe(
       (data: DtoProperty[]) => {
         this.properties = data;
       },
       (error) => {
         console.error('Error fetching properties:', error);
       }
-    );
+    );*/
   }
-
+  
   onEdit(property: DtoProperty): void {
     console.log('Edit property:', property);
   }
@@ -45,6 +45,7 @@ export class ListComponent implements OnInit{
     this.showDeleteModal = false;
     this.propertyToDelete = null;
   }
+  
   deleteProperty(): void {
     if (this.propertyToDelete) {
       console.log('Delete property ID:', this.propertyToDelete);
