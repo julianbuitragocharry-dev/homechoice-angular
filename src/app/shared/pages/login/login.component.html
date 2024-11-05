@@ -13,6 +13,11 @@
       id="email"
       formControlName="email"
     />
+    <span *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-red-500">
+      <span *ngIf="email?.errors?.['required']">Por favor ingrese su email.</span>
+      <span *ngIf="email?.errors?.['email']">Email inválido.</span>
+    </span>
+
 
     <label class="text-sm md:text-base font-semibold" for="password">password*</label>
     <input
@@ -21,10 +26,16 @@
       id="password"
       formControlName="password"
     />
+    <span *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-red-500">
+      <span *ngIf="password?.errors?.['required']">Por favor ingrese su contraseña.</span>
+      <span *ngIf="password?.errors?.['minlength']">La contraseña debe tener al menos 8 caracteres.</span>
+    </span>
+
+    <span *ngIf="loginError" class="text-red-500">{{ loginError }}</span>
 
     <div class="flex flex-col gap-3">
       <button
-        routerLink="/dashboard"
+        type="submit"
         class="text-sm md:text-base bg-blue-200 hover:bg-blue-300 font-semibold rounded-md h-[36px] md:h-[39px] py-[2px]"
       >
         Login

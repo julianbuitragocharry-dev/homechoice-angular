@@ -1,5 +1,8 @@
 <div class="font-roboto border border-blue-200 rounded-md">
+    <!-- slider -->
     <img class="w-full h-[240px] md:h-[300px] object-cover object-center rounded-t-md" [src]="property.images[0]">
+    
+    <!-- info -->
     <div class="px-[14px]">
         <p class="mt-[16px]">
             <span class="text-xs md:text-sm font-semibold" 
@@ -21,6 +24,7 @@
             {{ property.concept }} - {{ property.type }}
         </p>
     </div>
+    
     <button
     class="flex flex-row bg-blue-200 hover:bg-blue-300 font-semibold gap-[10px] text-sm md:text-base rounded-b-md px-[15px] py-[2px] h-[36px] md:h-[39px] items-center w-full justify-center"
     [routerLink]="[property.id]">

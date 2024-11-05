@@ -13,7 +13,7 @@
     standalone: true,
     imports: [HeaderComponent, CardComponent, CommonModule, LucideAngularModule, NgxPaginationModule, ReactiveFormsModule],
     templateUrl: './properties.component.html',
-    styleUrl: './properties.component.css'
+    styleUrl: '../../../shared/styles/pagination.css'
   })
   export class PropertiesComponent implements OnInit {
     readonly ChevronDown = ChevronDown;
@@ -28,8 +28,9 @@
     conceptList: {id: number, concept: string}[] = [];
     typeList: {id: number, type: string}[] = [];
     
-    pageValue : number = 0;
-    sizeValue : number = 6;
+    pageValue: number = 1;
+    sizeValue: number = 6;
+    totalData: number = 0;
 
     filters = {
       name: '',
@@ -66,10 +67,15 @@
         this.filters.minPrice,
         this.filters.minArea,
         this.filters.type,
-        this.filters.concept
+        this.filters.concept,
+        this.pageValue - 1,
+        this.sizeValue
       ).subscribe(
-        (data: DtoProperty[]) => {
-          this.properties = data;
+        (data) => {
+          this.properties = data.content;
+          this.pageValue = data.pageable.pageNumber + 1;
+          this.sizeValue = data.pageable.pageSize;
+          this.totalData = data.totalElements;
         },
         (error) => {
           console.error('Error fetching properties:', error);
@@ -108,9 +114,11 @@
         minPrice: this.filterForm.get('minPrice')?.value || null,
         minArea: this.filterForm.get('minArea')?.value || null,
       }
+      this.loadProperties();
+    }
 
-      console.log(this.filters);
-
+    onPageChange(page: number): void {
+      this.pageValue = page;
       this.loadProperties();
     }
   }

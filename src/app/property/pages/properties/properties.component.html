@@ -11,34 +11,33 @@
 
 <!-- search -->
 <form [formGroup]="filterForm" (ngSubmit)="onSubmit()" class="w-[90%] mx-auto mb-8 font-roboto">
-    <div class="grid grid-cols-1 md:grid-cols-6 gap-2">
+    <div class="grid grid-cols-1 md:grid-cols-7 gap-2">    
+      <!-- name -->
+      <div>
+        <input type="text" formControlName="name" placeholder="Nombre" class="w-full px-3 py-2 bg-white border border-blue-900 rounded-lg text-sm md:text-base outline-none"/>
+      </div>
+      
       <!-- status -->
       <div>
         <select formControlName="status" class="w-full px-3 py-2 bg-white border border-blue-900 rounded-lg text-sm md:text-base">
-          <option [value]=""></option>
-          <option *ngFor="let item of statusList" [value]="item.value">
-            {{item.label}}
-          </option>
+          <option value="" selected>Disponibilidad</option>
+          <option *ngFor="let item of statusList" [value]="item.value">{{item.label}}</option>
         </select>
       </div>
       
       <!-- concept -->
       <div>
         <select formControlName="concept" class="w-full px-3 py-2 bg-white border border-blue-900 rounded-lg text-sm md:text-base outline-none">
-          <option [value]=""></option>
-          <option *ngFor="let item of conceptList" [value]="item.concept">
-            {{item.concept}}
-          </option>
+          <option value="" selected>Concepto</option>
+          <option *ngFor="let item of conceptList" [value]="item.concept">{{item.concept}}</option>
         </select>
       </div>
       
       <!-- type -->
       <div>
         <select formControlName="type" class="w-full px-3 py-2 bg-white border border-blue-900 rounded-lg text-sm md:text-base outline-none">
-          <option [value]=""></option>
-          <option *ngFor="let item of typeList" [value]="item.type">
-            {{item.type}}
-          </option>
+          <option value="" selected>Tipo</option>
+          <option *ngFor="let item of typeList" [value]="item.type">{{item.type}}</option>
         </select>
       </div>
       
@@ -52,22 +51,20 @@
         <input type="number" formControlName="minArea" placeholder="Área" min="0" class="w-full px-3 py-2 bg-white border border-blue-900 rounded-lg text-sm md:text-base outline-none"/>
       </div>
 
-      <button type="submit" class="bg-blue-100 hover:bg-blue-200 rounded-md font-bold px-3 py-2">
-        Buscar
-      </button>
+      <button type="submit" class="bg-blue-100 hover:bg-blue-200 rounded-md font-bold px-3 py-2">Buscar</button>
     </div>
 </form>
 
 <!-- properties -->
 <div class="mx-auto my-[24px] md:my-[48px] grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[40px] w-[90%]">
-    <app-card *ngFor="let property of properties | paginate: { itemsPerPage: sizeValue, currentPage: pageValue, totalItems: properties.length }" [property]="property"></app-card>
+    <app-card *ngFor="let property of properties | paginate: { itemsPerPage: sizeValue, currentPage: pageValue, totalItems: totalData }" [property]="property"></app-card>
 </div>
 
 <!-- controls -->
 <div class="grid place-items-center py-2 font-roboto">
     <pagination-controls 
         class="my-pagination"
-        (pageChange)="pageValue = $event" 
+        (pageChange)="onPageChange($event)" 
         previousLabel="Anterior" 
         nextLabel="Siguiente"
         [maxSize]="5">

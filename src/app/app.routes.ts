@@ -5,6 +5,7 @@ import { LoginComponent } from './shared/pages/login/login.component';
 import { DetailsComponent } from './property/pages/details/details.component';
 import { DashboardComponent } from './dashboard/pages/dashboard/dashboard.component';
 import { ListComponent } from './property/pages/list/list.component';
+import { authGuard } from './auth/guards/auth.guard';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -15,6 +16,7 @@ export const routes: Routes = [
     { 
         path: 'dashboard', 
         component: DashboardComponent,
+        canActivate: [authGuard],
         children: [
             { path: '', redirectTo: 'properties', pathMatch: 'full' },
             { path: 'properties', component: ListComponent },

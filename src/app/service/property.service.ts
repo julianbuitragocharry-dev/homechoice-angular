@@ -18,32 +18,20 @@ export class PropertyService {
     minPrice: number | null, 
     minArea: number | null, 
     type: string,
-    concept: string): Observable<DtoProperty[]> {
+    concept: string,
+    page: number,
+    size: number): Observable<any> {
     
     let params = new HttpParams()
       .set('name', name)
+      .set('page', page.toString())
+      .set('size', size.toString());
 
-    if (status != null) {
-      params = params.set('status', status);
-    }
-    
-    if (minPrice != null) {
-      params = params.set('minPrice', minPrice);
-    }
-
-    if(minArea != null) {
-      params = params.set('minArea', minArea);
-    }
-  
-    if(type != null) {
-      params = params.set('type', type);
-    }
-
-    if(concept != null) {
-      params = params.set('concept', concept);
-    }
-
-    console.log('params', params);
+    if (status != null) {params = params.set('status', status);}
+    if (minPrice != null) {params = params.set('minPrice', minPrice);}
+    if(minArea != null) {params = params.set('minArea', minArea);}
+    if(type != null) {params = params.set('type', type);}
+    if(concept != null) {params = params.set('concept', concept);}
 
     return this.http.get<DtoProperty[]>(this.apiUrl + 'public', { params });
   }
@@ -59,6 +47,8 @@ export class PropertyService {
   getPropertyById(id: number): Observable<DtoProperty> {
     return this.http.get<DtoProperty>(this.apiUrl + 'public/' + id);
   }
+
+  
 
   // Auxiliary endpoints
   getPropertyConcept(): Observable<any[]> {

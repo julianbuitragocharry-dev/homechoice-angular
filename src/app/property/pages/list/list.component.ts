@@ -22,7 +22,8 @@ export class ListComponent implements OnInit{
   constructor(private propertyService: PropertyService) { }
   
   ngOnInit(): void {
-    /*this.propertyService.getPublicProperties().subscribe(
+    /*
+    this.propertyService.getPublicProperties().subscribe(
       (data: DtoProperty[]) => {
         this.properties = data;
       },
