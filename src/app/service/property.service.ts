@@ -36,10 +36,12 @@ export class PropertyService {
     return this.http.get<DtoProperty[]>(this.apiUrl + 'public', { params });
   }
 
+  // Filters
   getPropertiesByAgentId(agentId: number): Observable<DtoProperty[]> {
     return this.http.get<DtoProperty[]>(this.apiUrl + 'agent/' + agentId);
   }
 
+  // Filters
   getPropertiesNulls(): Observable<DtoProperty[]> {
     return this.http.get<DtoProperty[]>(this.apiUrl + 'nulls');
   }
@@ -48,7 +50,28 @@ export class PropertyService {
     return this.http.get<DtoProperty>(this.apiUrl + 'public/' + id);
   }
 
-  
+  saveProperty(images: File[], request: DtoProperty): Observable<DtoProperty> {
+    const formData = new FormData();
+    images.forEach(element => {
+      formData.append('images', element);
+    });
+
+    formData.append('property', JSON.stringify(request));
+
+    return this.http.post<DtoProperty>(this.apiUrl, formData);
+  }
+
+  updateProperty(id: number, request: DtoProperty): Observable<any> {
+    return this.http.put(this.apiUrl + id, request);
+  }
+
+  deleteProperty(id: number): Observable<any> {
+    return this.http.delete(this.apiUrl + id);
+  }
+
+  updateUserProperty(id: number, agentId: number): Observable<any> {
+    return this.http.put(this.apiUrl + id + '/user/' + agentId, null);
+  }
 
   // Auxiliary endpoints
   getPropertyConcept(): Observable<any[]> {
