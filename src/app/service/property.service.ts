@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class PropertyService {
-  private apiUrl = `${environment.apiBaseUrl}/properties/`;
+  private apiUrl = `${environment.apiBaseUrl}/properties`;
 
   constructor(private http: HttpClient) {}
 
@@ -33,31 +33,24 @@ export class PropertyService {
     if(type != null) {params = params.set('type', type);}
     if(concept != null) {params = params.set('concept', concept);}
 
-    return this.http.get<DtoProperty[]>(this.apiUrl + 'public', { params });
+    return this.http.get<DtoProperty[]>(this.apiUrl + '/public', { params });
   }
 
   // Filters
   getPropertiesByAgentId(agentId: number): Observable<DtoProperty[]> {
-    return this.http.get<DtoProperty[]>(this.apiUrl + 'agent/' + agentId);
+    return this.http.get<DtoProperty[]>(this.apiUrl + '/agent/' + agentId);
   }
 
   // Filters
   getPropertiesNulls(): Observable<DtoProperty[]> {
-    return this.http.get<DtoProperty[]>(this.apiUrl + 'nulls');
+    return this.http.get<DtoProperty[]>(this.apiUrl + '/nulls');
   }
 
   getPropertyById(id: number): Observable<DtoProperty> {
-    return this.http.get<DtoProperty>(this.apiUrl + 'public/' + id);
+    return this.http.get<DtoProperty>(this.apiUrl + '/public/' + id);
   }
 
-  saveProperty(images: File[], request: DtoProperty): Observable<DtoProperty> {
-    const formData = new FormData();
-    images.forEach(element => {
-      formData.append('images', element);
-    });
-
-    formData.append('property', JSON.stringify(request));
-
+  saveProperty(formData: FormData): Observable<DtoProperty> {
     return this.http.post<DtoProperty>(this.apiUrl, formData);
   }
 
@@ -75,10 +68,14 @@ export class PropertyService {
 
   // Auxiliary endpoints
   getPropertyConcept(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl + 'public/concepts');
+    return this.http.get<any[]>(this.apiUrl + '/public/concepts');
   }
 
   getPropertyType(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl + 'public/types');
+    return this.http.get<any[]>(this.apiUrl + '/public/types');
+  }
+
+  getPropertyAmenities(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl + '/amenities');
   }
 }
