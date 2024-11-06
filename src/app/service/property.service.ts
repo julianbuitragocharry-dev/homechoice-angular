@@ -13,6 +13,7 @@ export class PropertyService {
   constructor(private http: HttpClient) {}
 
   getPublicProperties(
+    // filters
     name: string, 
     status: boolean | null, 
     minPrice: number | null, 
@@ -21,7 +22,6 @@ export class PropertyService {
     concept: string,
     page: number,
     size: number): Observable<any> {
-    
     let params = new HttpParams()
       .set('name', name)
       .set('page', page.toString())
@@ -36,18 +36,18 @@ export class PropertyService {
     return this.http.get<DtoProperty[]>(this.apiUrl + '/public', { params });
   }
 
-  // Filters
+  // TODO: add filters
   getPropertiesByAgentId(agentId: number): Observable<DtoProperty[]> {
-    return this.http.get<DtoProperty[]>(this.apiUrl + '/agent/' + agentId);
+    return this.http.get<DtoProperty[]>(`${this.apiUrl}/agent/${agentId}`);
   }
 
-  // Filters
+  // TODO: add filters
   getPropertiesNulls(): Observable<DtoProperty[]> {
-    return this.http.get<DtoProperty[]>(this.apiUrl + '/nulls');
+    return this.http.get<DtoProperty[]>(`${this.apiUrl}/nulls`);
   }
 
   getPropertyById(id: number): Observable<DtoProperty> {
-    return this.http.get<DtoProperty>(this.apiUrl + '/public/' + id);
+    return this.http.get<DtoProperty>(`${this.apiUrl}/public/${id}`);
   }
 
   saveProperty(formData: FormData): Observable<DtoProperty> {
@@ -55,27 +55,27 @@ export class PropertyService {
   }
 
   updateProperty(id: number, request: DtoProperty): Observable<any> {
-    return this.http.put(this.apiUrl + id, request);
+    return this.http.put(`${this.apiUrl}/${id}`, request);
   }
 
   deleteProperty(id: number): Observable<any> {
-    return this.http.delete(this.apiUrl + id);
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
 
   updateUserProperty(id: number, agentId: number): Observable<any> {
-    return this.http.put(this.apiUrl + id + '/user/' + agentId, null);
+    return this.http.put(`this.apiUrl/${id}/user/${agentId}`, null);
   }
 
-  // Auxiliary endpoints
+  // auxiliary endpoints
   getPropertyConcept(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl + '/public/concepts');
+    return this.http.get<any[]>(`${this.apiUrl}/public/concepts`);
   }
 
   getPropertyType(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl + '/public/types');
+    return this.http.get<any[]>(`${this.apiUrl}/public/types`);
   }
 
   getPropertyAmenities(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl + '/amenities');
+    return this.http.get<any[]>(`${this.apiUrl}/amenities`);
   }
 }
