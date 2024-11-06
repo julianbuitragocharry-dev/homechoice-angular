@@ -1,4 +1,4 @@
-<nav class="bg-blue-950 text-blue-100 font-roboto text-sm md:text-base px-[20px] md:px-[74px] py-[10px]">
+<nav class="bg-blue-950 text-blue-100 font-roboto text-sm px-[20px] md:px-[74px] py-[10px]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
             <img class="h-[90px] object-cover object-center" src="img/banner_white.png" alt="banner">
@@ -16,12 +16,12 @@
                         class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
                         Inmuebles
                     </a>
-                    <a routerLink="#" 
+                    <a routerLink="create-property" 
                         routerLinkActive="bg-blue-700"
                         class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
                         Crear Inmueble
                     </a>
-                    <a routerLink="/frozen-properties" 
+                    <!-- <a routerLink="/frozen-properties" 
                         routerLinkActive="bg-blue-700"
                         class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
                         Inmuebles Congelados
@@ -45,7 +45,7 @@
                         routerLinkActive="bg-blue-700"
                         class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
                         Crear Agente
-                    </a>
+                    </a> -->
                     <a (click)="logout()" 
                         class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium cursor-pointer">
                         Logout
@@ -69,50 +69,50 @@
     </div>
 
     <!-- mobile menu -->
-    <div *ngIf="isOpen" class="md:hidden text-sm">
+    <div *ngIf="isOpen" class="md:hidden text-xs">
         <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <a routerLink="#"
             routerLinkActive="bg-blue-700"
-            class="hover:bg-blue-600 block px-3 py-2 rounded-md text-base font-medium">
+            class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
                 Mis inmuebles
             </a>
             <a routerLink="/dashboard/properties"
             routerLinkActive="bg-blue-700"
-            class="hover:bg-blue-600 block px-3 py-2 rounded-md text-base font-medium">
+            class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
                 Inmuebles
             </a>
-            <a routerLink="#"
+            <a routerLink="create-property"
             routerLinkActive="bg-blue-700"
-            class="hover:bg-blue-600 block px-3 py-2 rounded-md text-base font-medium">
+            class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
                 Crear Inmueble
             </a>
-            <a routerLink="/frozen-properties"
+            <!-- <a routerLink="/frozen-properties"
             routerLinkActive="bg-blue-700"
-            class="hover:bg-blue-600 block px-3 py-2 rounded-md text-base font-medium">
+            class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
                 Inmuebles Congelados
             </a>
             <a routerLink="/users"
             routerLinkActive="bg-blue-700"
-            class="hover:bg-blue-600 block px-3 py-2 rounded-md text-base font-medium">
+            class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
                 Usuarios
             </a>
             <a routerLink="#"
             routerLinkActive="bg-blue-700"
-            class="hover:bg-blue-600 block px-3 py-2 rounded-md text-base font-medium">
+            class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
                 Crear Usuario
             </a>
             <a routerLink="/agents"
             routerLinkActive="bg-blue-700"
-            class="hover:bg-blue-600 block px-3 py-2 rounded-md text-base font-medium">
+            class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
                 Agentes
             </a>
             <a routerLink="#"
             routerLinkActive="bg-blue-700"
-            class="hover:bg-blue-600 block px-3 py-2 rounded-md text-base font-medium">
+            class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
                 Crear Agente
-            </a>
+            </a> -->
             <a (click)="logout()"
-            class="hover:bg-blue-600 block px-3 py-2 rounded-md text-base font-medium cursor-pointer">
+            class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium cursor-pointer">
                 Logout
             </a>
         </div>

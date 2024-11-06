@@ -1,3 +1,50 @@
+<!-- search -->
+<form [formGroup]="filterForm" (ngSubmit)="onSubmit()" class="w-[90%] mx-auto my-8 font-roboto">
+    <div class="grid grid-cols-1 md:grid-cols-7 gap-2">    
+      <!-- name -->
+      <div>
+        <input type="text" formControlName="name" placeholder="Nombre" class="w-full px-3 py-2 bg-white border border-blue-900 rounded-lg text-sm md:text-base outline-none"/>
+      </div>
+      
+      <!-- status -->
+      <div>
+        <select formControlName="status" class="w-full px-3 py-2 bg-white border border-blue-900 rounded-lg text-sm md:text-base">
+          <option value="" selected>Disponibilidad</option>
+          <option *ngFor="let item of statusList" [value]="item.value">{{item.label}}</option>
+        </select>
+      </div>
+      
+      <!-- concept -->
+      <div>
+        <select formControlName="concept" class="w-full px-3 py-2 bg-white border border-blue-900 rounded-lg text-sm md:text-base outline-none">
+          <option value="" selected>Concepto</option>
+          <option *ngFor="let item of conceptList" [value]="item.concept">{{item.concept}}</option>
+        </select>
+      </div>
+      
+      <!-- type -->
+      <div>
+        <select formControlName="type" class="w-full px-3 py-2 bg-white border border-blue-900 rounded-lg text-sm md:text-base outline-none">
+          <option value="" selected>Tipo</option>
+          <option *ngFor="let item of typeList" [value]="item.type">{{item.type}}</option>
+        </select>
+      </div>
+      
+      <!-- price -->
+      <div>
+        <input type="number" formControlName="minPrice" placeholder="Desde" class="w-full px-3 py-2 bg-white border border-blue-900 rounded-lg text-sm md:text-base outline-none" min="0"/>
+      </div>
+      
+      <!-- area -->
+      <div>
+        <input type="number" formControlName="minArea" placeholder="Área" min="0" class="w-full px-3 py-2 bg-white border border-blue-900 rounded-lg text-sm md:text-base outline-none"/>
+      </div>
+
+      <button type="submit" class="bg-blue-100 hover:bg-blue-200 rounded-md font-bold px-3 py-2">Buscar</button>
+    </div>
+</form>
+
+<!-- table -->
 <div class="mt-[24px] w-full px-4 text-sm md:text-base font-roboto text-center">
     <div class="overflow-x-auto">
         <div class="min-w-[1000px]">
@@ -14,7 +61,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let property of properties" class="hover:bg-blue-50">
+                    <tr *ngFor="let property of properties | paginate: { itemsPerPage: sizeValue, currentPage: pageValue, totalItems: totalData }" class="hover:bg-blue-50">
                         <td class="p-3 md:p-4">{{ property.id }}</td>
                         <td class="p-3 md:p-4">{{ property.name }}</td>
                         <td class="p-3 md:p-4">{{ property.address }}</td>
@@ -29,6 +76,10 @@
                         <td class="p-3 md:p-4">{{ property.type }}</td>
                         <td class="p-3 md:p-4">
                             <div class="flex gap-3 items-center justify-center">
+                                <button class="p-3 bg-yellow-50 hover:bg-yellow-100 text-yellow-600 rounded-md transition-colors" 
+                                        (click)="view(property)">
+                                    <i-lucide [img]="Eye" class="w-5 h-5" [strokeWidth]="2.5"></i-lucide>
+                                </button>
                                 <button class="p-3 bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-md transition-colors" 
                                         (click)="onEdit(property)">
                                     <i-lucide [img]="Pencil" class="w-5 h-5" [strokeWidth]="2.5"></i-lucide>
@@ -65,7 +116,7 @@
         <!-- body -->
         <div class="p-4">
             <p class="text-blue-800">
-                ¿Estás seguro de que deseas eliminar esta propiedad? Esta acción no se puede deshacer.
+                ¿Estás seguro de que deseas eliminar esta propiedad con <b>ID: {{propertyToDelete}}</b> Esta acción no se puede deshacer.
             </p>
         </div>
 
@@ -84,3 +135,16 @@
         </div>
     </div>
 </div>
+
+<!-- controls -->
+<div class="grid place-items-center py-2 mt-8 font-roboto">
+    <pagination-controls 
+        class="my-pagination"
+        (pageChange)="onPageChange($event)" 
+        previousLabel="Anterior" 
+        nextLabel="Siguiente"
+        [maxSize]="5">
+    </pagination-controls>
+</div>
+
+<app-scroll-top></app-scroll-top>

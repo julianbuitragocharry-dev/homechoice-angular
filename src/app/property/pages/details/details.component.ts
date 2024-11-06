@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from "../../../shared/components/header/header.component";
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
-
 @Component({
   selector: 'app-details',
   standalone: true,
@@ -16,10 +15,12 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   templateUrl: './details.component.html'
 })
 export class DetailsComponent implements OnInit {
+  //#region variables
   propertyId !: number;
   property !: DtoProperty;
   agent !: DTOAgentResponse;
   mapUrl !: SafeResourceUrl;
+  //#endregion
 
   constructor(
     private route: ActivatedRoute,
@@ -29,37 +30,37 @@ export class DetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Get the property ID from the URL
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id')!;
 
       if (id) {  
         this.propertyId = +id;
-        this.fetchProperty(this.propertyId);
+        this.loadProperty(this.propertyId);
       }
     });
   }
 
-  // API calls
-  fetchProperty(id: number): void {
+  //#region api calls
+  loadProperty(id: number): void {
     this.propertyService.getPropertyById(id).subscribe(
       (data: DtoProperty) => {
         this.property = data;
         this.initializeMap();
-        this.fetchAgent(this.property.agent);
+        this.loadAgent(this.property.agent);
       }
     );
   }
 
-  fetchAgent(agentId: number): void {
+  loadAgent(agentId: number): void {
     this.userService.getAgentById(agentId).subscribe(
       (data) => {
         this.agent = data;
       }
     );
   }
+  //#endregion
 
-  // Helper functions
+  //#region methods
   contactAgent(): void {
     const phone = this.agent.phone.replace(/\D/g, '');
     const message = `Estimado/a ${this.agent.name},
@@ -80,4 +81,5 @@ export class DetailsComponent implements OnInit {
       this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
     }
   }
+  //#endregion
 }

@@ -1,10 +1,11 @@
 <app-header></app-header>
 
-<div class="flex flex-col xl:flex-row font-roboto mt-[48px] px-[24px] pb-[24px] gap-[5%]">
+<div class="flex flex-col xl:flex-row font-roboto mt-12 px-6 pb-6 gap-[5%]">
     <!-- info -->
     <div id="info" class="xl:w-[45%]">
+        
         <!-- property -->
-        <div class="flex flex-col gap-[26px] px-[24px] pb-[24px]">
+        <div class="flex flex-col gap-6 px-6 pb-6">
             <h1 class="font-bold text-4xl md:text-[40px]">{{ property.name }}</h1>
             
             <div class="flex flex-wrap gap-[12px] md:gap-[48px] font-semibold text-xs md:text-sm">
@@ -21,8 +22,16 @@
                 <p>{{ property.type }}</p>
             </div>
     
-            <p class="text-sm md:text-base">{{ property.description }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae adipisci magni nam inventore impedit quas saepe voluptatibus expedita, quasi vitae hic eum voluptatum, officia maiores! Suscipit quod reiciendis debitis excepturi. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti deserunt quos mollitia temporibus minus commodi eaque et obcaecati accusamus voluptate perspiciatis recusandae eius qui, suscipit debitis inventore quidem labore vero? Lore</p>
+            <p class="text-sm md:text-base">{{ property.description }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae adipisci magni nam inventore impedit quas saepe voluptatibus expedita, quasi vitae hic eum vol Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium ea esse necessitatibus laboriosam suscipit ducimus fuga. Enim voluptate facere impedit totam. Nam sunt eaque laboriosam itaque, inventore vitae! Libero, dignissimos.e vero? Lore</p>
 
+            <div class="flex flex-wrap gap-2 text-xs md:text-sm font-semibold">
+                <ng-container *ngFor="let amenity of property.amenities; let last = last">
+                    <span class="bg-blue-700 text-blue-100 px-3 py-1 rounded-md">
+                        {{ amenity }}
+                    </span>
+                </ng-container>
+            </div>         
+            
             <p class="text-sm md:text-base"><b>Dirección:</b> {{ property.address }}</p>
         </div>
 
@@ -47,7 +56,7 @@
 
     <div class="flex-1 mt-[48px] xl:mt-0 xl:mb-0">
         <img class="bg-cover bg-center h-full w-full xl:w-auto rounded-xl" [src]="property.images[0]" alt="image"/>
-    </div>    
+    </div>
 </div>
 
 <!-- map -->
