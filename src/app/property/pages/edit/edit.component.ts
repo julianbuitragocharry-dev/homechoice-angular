@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PropertyService } from '../../../service/property.service';
 import { DtoProperty } from '../../../interfaces/property/dto-property';
 
@@ -31,6 +31,7 @@ export class EditPropertyComponent {
   // TODO: add validators
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private propertyService: PropertyService,
     private formBuilder: FormBuilder
   ) {
@@ -98,6 +99,7 @@ export class EditPropertyComponent {
       this.propertyService.updateProperty(this.propertyId, updatedProperty).subscribe(
         (response) => {
           console.log('Propiedad actualizada exitosamente', response);
+          this.router.navigate([`/dashboard`]);
         },
         (error) => {
           console.error('Error al actualizar la propiedad', error);

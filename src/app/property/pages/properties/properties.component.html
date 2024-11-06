@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <section class="font-roboto text-center my-[48px]">
-    <h1 class="text-[32px] md:text-5xl font-bold">
+    <h1 class="text-4xl md:text-5xl font-bold">
         HomeChoice
     </h1>
     <p class="text-sm md:text-base">
@@ -51,9 +51,17 @@
         <input type="number" formControlName="minArea" placeholder="Área" min="0" class="w-full px-3 py-2 bg-white border border-blue-900 rounded-lg text-sm md:text-base outline-none"/>
       </div>
 
-      <button type="submit" class="bg-blue-100 hover:bg-blue-200 rounded-md font-bold px-3 py-2">Buscar</button>
+      <button type="submit" class="bg-blue-200 hover:bg-blue-300 rounded-md font-bold px-3 py-2">Buscar</button>
     </div>
 </form>
+
+<!-- properties not found -->
+<div class="mx-auto my-6 md:my-12 text-center" *ngIf="totalData === 0">
+  <h2 class="text-2xl font-bold text-gray-500">
+      ¡Ninguna propiedad fue encontrada!
+  </h2>
+  <p class="text-gray-400">Intenta modificar los filtros de búsqueda.</p>
+</div>
 
 <!-- properties -->
 <div class="mx-auto my-[24px] md:my-[48px] grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[40px] w-[90%]">
@@ -62,13 +70,13 @@
 
 <!-- controls -->
 <div class="grid place-items-center py-2 font-roboto">
-    <pagination-controls 
-        class="my-pagination"
-        (pageChange)="onPageChange($event)" 
-        previousLabel="Anterior" 
-        nextLabel="Siguiente"
-        [maxSize]="5">
-    </pagination-controls>
-</div>
+  <pagination-controls 
+      class="my-pagination"
+      (pageChange)="onPageChange($event)" 
+      previousLabel="Anterior" 
+      nextLabel="Siguiente"
+      [maxSize]="5">
+  </pagination-controls>
+</div>  
 
 <app-scroll-top></app-scroll-top>

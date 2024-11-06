@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CommonModule } from '@angular/common';
 import { CloudUpload, LucideAngularModule } from 'lucide-angular';
 import { ScrollTopComponent } from "../../../shared/components/scroll-top/scroll-top.component";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-property',
@@ -40,7 +41,8 @@ export class CreatePropertyComponent implements OnInit{
   // TODO: add validators
   constructor(
     private propertyService: PropertyService, 
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {
     this.propertyForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -53,7 +55,7 @@ export class CreatePropertyComponent implements OnInit{
       description: ['', Validators.required],
       concept: ['', Validators.required],
       type: ['', Validators.required],
-      images: [null],
+      images: [Validators.required],
       amenities: [[], Validators.required]
     });
   }
@@ -102,6 +104,7 @@ export class CreatePropertyComponent implements OnInit{
       this.propertyService.saveProperty(formData).subscribe(
         (response) => {
           console.log('Propiedad guardada exitosamente', response);
+          this.router.navigate([`/dashboard`]);
         },
         (error) => {
           console.error('Error al guardar la propiedad', error);

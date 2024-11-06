@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PropertyService } from '../../../service/property.service';
-import { UserService } from '../../../service/user.service';
+import { AgentService } from '../../../service/agent.service';
 import { DtoProperty } from '../../../interfaces/property/dto-property';
-import { DTOAgentResponse } from '../../../interfaces/user/dtoagent-response';
+import { DTOAgentResponse } from '../../../interfaces/agent/dto-agent-response';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from "../../../shared/components/header/header.component";
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -25,7 +25,7 @@ export class DetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private propertyService: PropertyService,
-    private userService: UserService,
+    private agentService: AgentService,
     private sanitizer: DomSanitizer
   ) {}
 
@@ -52,7 +52,7 @@ export class DetailsComponent implements OnInit {
   }
 
   loadAgent(agentId: number): void {
-    this.userService.getAgentById(agentId).subscribe(
+    this.agentService.getAgentById(agentId).subscribe(
       (data) => {
         this.agent = data;
       }
