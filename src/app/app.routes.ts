@@ -6,6 +6,8 @@ import { DetailsComponent } from './property/pages/details/details.component';
 import { DashboardComponent } from './dashboard/pages/dashboard/dashboard.component';
 import { ListComponent } from './property/pages/list/list.component';
 import { authGuard } from './auth/guards/auth.guard';
+import { CreatePropertyComponent } from './property/pages/create/create.component';
+import { EditPropertyComponent } from './property/pages/edit/edit.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -20,6 +22,8 @@ export const routes: Routes = [
         children: [
             { path: '', redirectTo: 'properties', pathMatch: 'full' },
             { path: 'properties', component: ListComponent },
+            { path: 'create-property', component: CreatePropertyComponent},
+            { path: 'edit-property/:id', component: EditPropertyComponent},
         ]
     },
 ];
