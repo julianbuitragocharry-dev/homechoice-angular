@@ -6,12 +6,12 @@
             <div class="flex items-center">
                 <div class="hidden md:block">
                     <div class="flex items-baseline space-x-4">
-                    <a routerLink="#" 
+                    <a routerLink="my-properties" 
                         routerLinkActive="bg-blue-700"
                         class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
                         Mis Inmuebles
                     </a>
-                    <a routerLink="/dashboard/properties" 
+                    <a routerLink="properties" 
                         routerLinkActive="bg-blue-700"
                         class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
                         Inmuebles
@@ -21,11 +21,12 @@
                         class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
                         Crear Inmueble
                     </a>
-                    <!-- <a routerLink="/frozen-properties" 
+                    <a routerLink="frozen-properties" 
                         routerLinkActive="bg-blue-700"
                         class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
                         Inmuebles Congelados
                     </a>
+                    <!--
                     <a routerLink="/users" 
                         routerLinkActive="bg-blue-700"
                         class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
@@ -71,12 +72,12 @@
     <!-- mobile menu -->
     <div *ngIf="isOpen" class="md:hidden text-xs">
         <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a routerLink="#"
+            <a routerLink="my-properties"
             routerLinkActive="bg-blue-700"
             class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
                 Mis inmuebles
             </a>
-            <a routerLink="/dashboard/properties"
+            <a routerLink="properties"
             routerLinkActive="bg-blue-700"
             class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
                 Inmuebles
@@ -86,12 +87,12 @@
             class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
                 Crear Inmueble
             </a>
-            <!-- <a routerLink="/frozen-properties"
+            <a routerLink="frozen-properties"
             routerLinkActive="bg-blue-700"
             class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
                 Inmuebles Congelados
             </a>
-            <a routerLink="/users"
+            <!-- <a routerLink="/users"
             routerLinkActive="bg-blue-700"
             class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
                 Usuarios

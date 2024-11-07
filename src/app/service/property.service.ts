@@ -13,7 +13,6 @@ export class PropertyService {
   constructor(private http: HttpClient) {}
 
   getPublicProperties(
-    // filters
     name: string, 
     status: boolean | null, 
     minPrice: number | null, 
@@ -22,6 +21,7 @@ export class PropertyService {
     concept: string,
     page: number,
     size: number): Observable<any> {
+    
     let params = new HttpParams()
       .set('name', name)
       .set('page', page.toString())
@@ -36,14 +36,52 @@ export class PropertyService {
     return this.http.get<DtoProperty[]>(this.apiUrl + '/public', { params });
   }
 
-  // TODO: add filters
-  getPropertiesByAgentId(agentId: number): Observable<DtoProperty[]> {
-    return this.http.get<DtoProperty[]>(`${this.apiUrl}/agent/${agentId}`);
+  getPropertiesByAgentId(
+    name: string, 
+    status: boolean | null, 
+    minPrice: number | null, 
+    minArea: number | null, 
+    type: string,
+    concept: string,
+    page: number,
+    size: number): Observable<any> {
+    
+    let params = new HttpParams()
+    .set('name', name)
+    .set('page', page.toString())
+    .set('size', size.toString());
+
+    if (status != null) {params = params.set('status', status);}
+    if (minPrice != null) {params = params.set('minPrice', minPrice);}
+    if(minArea != null) {params = params.set('minArea', minArea);}
+    if(type != null) {params = params.set('type', type);}
+    if(concept != null) {params = params.set('concept', concept);}
+    
+    return this.http.get<DtoProperty[]>(`${this.apiUrl}/agent`, { params });
   }
 
-  // TODO: add filters
-  getPropertiesNulls(): Observable<DtoProperty[]> {
-    return this.http.get<DtoProperty[]>(`${this.apiUrl}/nulls`);
+  getPropertiesNulls(
+    name: string, 
+    status: boolean | null, 
+    minPrice: number | null, 
+    minArea: number | null, 
+    type: string,
+    concept: string,
+    page: number,
+    size: number): Observable<DtoProperty[]> {
+    
+    let params = new HttpParams()
+    .set('name', name)
+    .set('page', page.toString())
+    .set('size', size.toString());
+
+    if (status != null) {params = params.set('status', status);}
+    if (minPrice != null) {params = params.set('minPrice', minPrice);}
+    if(minArea != null) {params = params.set('minArea', minArea);}
+    if(type != null) {params = params.set('type', type);}
+    if(concept != null) {params = params.set('concept', concept);}
+
+    return this.http.get<DtoProperty[]>(`${this.apiUrl}/nulls`, { params });
   }
 
   getPropertyById(id: number): Observable<DtoProperty> {

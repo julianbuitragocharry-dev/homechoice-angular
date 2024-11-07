@@ -8,6 +8,8 @@ import { ListComponent } from './property/pages/list/list.component';
 import { authGuard } from './auth/guards/auth.guard';
 import { CreatePropertyComponent } from './property/pages/create/create.component';
 import { EditPropertyComponent } from './property/pages/edit/edit.component';
+import { NullsComponent } from './property/pages/nulls/nulls.component';
+import { MylistComponent } from './property/pages/mylist/mylist.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -22,8 +24,10 @@ export const routes: Routes = [
         children: [
             { path: '', redirectTo: 'properties', pathMatch: 'full' },
             { path: 'properties', component: ListComponent },
-            { path: 'create-property', component: CreatePropertyComponent},
-            { path: 'edit-property/:id', component: EditPropertyComponent},
+            { path: 'create-property', component: CreatePropertyComponent },
+            { path: 'edit-property/:id', component: EditPropertyComponent },
+            { path: 'frozen-properties', component: NullsComponent },
+            { path: 'my-properties', component: MylistComponent}
         ]
     },
 ];
