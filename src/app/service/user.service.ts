@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { DtoUserResponse } from '../interfaces/user/dto-user-response';
@@ -13,8 +13,17 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  getAllUsers(): Observable<DtoUserResponse[]> {
-    return this.http.get<DtoUserResponse[]>(`${this.apiUrl}`);
+  getAllUsers(
+    nit: string,
+    page: number,
+    size: number
+  ): Observable<any> {
+    let params = new HttpParams()
+    .set('nit', nit)
+    .set('page', page.toString())
+    .set('size', size.toString());
+
+    return this.http.get<DtoUserResponse[]>(`${this.apiUrl}`, { params });
   }
 
   getUserById(id: number): Observable<DtoUser> {

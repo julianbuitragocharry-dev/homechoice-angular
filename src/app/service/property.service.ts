@@ -68,7 +68,7 @@ export class PropertyService {
     type: string,
     concept: string,
     page: number,
-    size: number): Observable<DtoProperty[]> {
+    size: number): Observable<any> {
     
     let params = new HttpParams()
     .set('name', name)
@@ -101,7 +101,7 @@ export class PropertyService {
   }
 
   updateUserProperty(id: number, agentId: number): Observable<any> {
-    return this.http.put(`this.apiUrl/${id}/user/${agentId}`, null);
+    return this.http.put(`${this.apiUrl}/${id}/user/${agentId}`, null);
   }
 
   // auxiliary endpoints

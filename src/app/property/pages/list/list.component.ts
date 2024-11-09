@@ -22,7 +22,7 @@ import { ScrollTopComponent } from "../../../shared/components/scroll-top/scroll
   templateUrl: './list.component.html',
   styleUrl: '../../../shared/styles/pagination.css'
 })
-export class ListComponent implements OnInit {
+export class ListPropertiesComponent implements OnInit {
   //#region variables
   readonly Pencil = Pencil;
   readonly Trash2 = Trash2;

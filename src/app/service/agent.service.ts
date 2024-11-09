@@ -13,13 +13,13 @@ export class AgentService {
   apiUrl = `${environment.apiBaseUrl}/users/`;
 
   constructor(private http: HttpClient) {}
+  
+  getAllAgents(): Observable<DtoUserResponse[]> {
+    return this.http.get<DtoUserResponse[]>(`${this.apiUrl}agents`);
+  }
 
   getAgentById(agentId: number): Observable<DTOAgentResponse> {
     return this.http.get<DTOAgentResponse>(this.apiUrl + 'public/agents/' + agentId);
-  }
-
-  getAllAgents(): Observable<DtoUserResponse[]> {
-    return this.http.get<DtoUserResponse[]>(`${this.apiUrl}agents/`);
   }
 
   createAgent(agent: DtoAgent): Observable<DtoUserResponse> {

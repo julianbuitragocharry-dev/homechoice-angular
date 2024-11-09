@@ -4,12 +4,15 @@ import { PropertiesComponent } from './property/pages/properties/properties.comp
 import { LoginComponent } from './shared/pages/login/login.component';
 import { DetailsComponent } from './property/pages/details/details.component';
 import { DashboardComponent } from './dashboard/pages/dashboard/dashboard.component';
-import { ListComponent } from './property/pages/list/list.component';
+import { ListPropertiesComponent } from './property/pages/list/list.component';
 import { authGuard } from './auth/guards/auth.guard';
 import { CreatePropertyComponent } from './property/pages/create/create.component';
 import { EditPropertyComponent } from './property/pages/edit/edit.component';
 import { NullsComponent } from './property/pages/nulls/nulls.component';
 import { MylistComponent } from './property/pages/mylist/mylist.component';
+import { CreateUserComponent } from './user/pages/create/create.component';
+import { ListUsersComponent } from './user/pages/list/list.component';
+import { EditUserComponent } from './user/pages/edit/edit.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -23,11 +26,17 @@ export const routes: Routes = [
         canActivate: [authGuard],
         children: [
             { path: '', redirectTo: 'properties', pathMatch: 'full' },
-            { path: 'properties', component: ListComponent },
+            { path: 'properties', component: ListPropertiesComponent },
             { path: 'create-property', component: CreatePropertyComponent },
             { path: 'edit-property/:id', component: EditPropertyComponent },
             { path: 'frozen-properties', component: NullsComponent },
-            { path: 'my-properties', component: MylistComponent}
+            { path: 'my-properties', component: MylistComponent},
+            { path: 'users', component: ListUsersComponent },
+            { path: 'edit-user/:id', component: EditUserComponent},
+            { path: 'create-user', component: CreateUserComponent },
+            // { path: 'agents', component: },
+            // { path: 'edit-agent/:id', component: },
+            // { path: 'create-agent', component: }
         ]
     },
 ];

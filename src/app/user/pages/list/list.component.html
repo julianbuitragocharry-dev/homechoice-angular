@@ -1,0 +1,111 @@
+<!-- search -->
+<form [formGroup]="filterForm" (ngSubmit)="onSubmit()" class="w-[90%] mx-auto my-8 font-roboto">
+    <div class="grid grid-cols-1 md:grid-cols-7 gap-2">    
+      <!-- nit -->
+      <div>
+        <input type="text" formControlName="nit" placeholder="Nit" 
+               class="w-full px-3 py-2 bg-white border border-blue-900 rounded-lg text-sm md:text-base outline-none"/>
+      </div>
+
+      <button type="submit" class="bg-blue-200 hover:bg-blue-300 rounded-md font-bold px-3 py-2">Buscar</button>
+    </div>
+</form>
+
+<!-- table -->
+<div class="mt-[24px] w-full px-4 text-sm md:text-base font-roboto text-center">
+    <div class="overflow-x-auto">
+        <div class="min-w-[1000px]">
+            <table class="w-full table-auto">
+                <thead class="bg-blue-800 text-blue-50">
+                    <tr>
+                        <th class="p-3 md:p-4" scope="col">ID</th>
+                        <th class="p-3 md:p-4" scope="col">NOMBRE COMPLETO</th>
+                        <th class="p-3 md:p-4" scope="col">CORREO</th>
+                        <th class="p-3 md:p-4" scope="col">TELÉFONO</th>
+                        <th class="p-3 md:p-4" scope="col">DIRECCIÓN</th>
+                        <th class="p-3 md:p-4" scope="col">NIT</th>
+                        <th class="p-3 md:p-4" scope="col">ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users | paginate: { itemsPerPage: sizeValue, currentPage: pageValue, totalItems: totalData }" class="hover:bg-blue-50">
+                        <td class="p-3 md:p-4">{{ user.id }}</td>
+                        <td class="p-3 md:p-4">{{ user.firstName }} {{ user.lastName }}</td>
+                        <td class="p-3 md:p-4">{{ user.email }}</td>
+                        <td class="p-3 md:p-4">{{ user.phone }}</td>
+                        <td class="p-3 md:p-4">{{ user.address }}</td>
+                        <td class="p-3 md:p-4">{{ user.nit }}</td>
+                        <td class="p-3 md:p-4">
+                            <div class="flex gap-3 items-center justify-center">
+                                <button class="p-3 bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-md" 
+                                        (click)="onEdit(user)">
+                                    <i-lucide [img]="Pencil" class="w-5 h-5" [strokeWidth]="2.5"></i-lucide>
+                                </button>
+                                <button class="p-3 bg-red-50 hover:bg-red-100 text-red-600 rounded-md" 
+                                        (click)="confirmDelete(user)">
+                                    <i-lucide [img]="Trash2" class="w-5 h-5" [strokeWidth]="2.5"></i-lucide>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- users not found -->
+<div class="mx-auto my-6 md:my-12 text-center" *ngIf="totalData === 0">
+    <h2 class="text-2xl font-bold text-gray-500">
+        ¡Ninguna usuario fue encontrado!
+    </h2>
+    <p class="text-gray-400">Intenta modificar los filtros de búsqueda.</p>
+</div>
+
+<!-- modal -->
+<div *ngIf="showDeleteModal" 
+     class="fixed inset-0 bg-blue-950/50 flex items-center justify-center z-50"
+     (click)="closeModal()">
+    
+    <div class="bg-blue-50 w-11/12 max-w-md rounded-lg shadow-lg" 
+         (click)="$event.stopPropagation()">
+        
+        <div class="p-4 border-b border-blue-200">
+            <h3 class="text-lg font-medium text-blue-900">
+                Confirmar eliminación
+            </h3>
+        </div>
+
+        <div class="p-4">
+            <p class="text-blue-800">
+                ¿Estás seguro de que deseas eliminar este usuario con <b>ID: {{userToDelete}}</b>? Esta acción no se puede deshacer.
+            </p>
+        </div>
+
+        <div class="p-4 border-t border-blue-200 flex justify-end space-x-3">
+            <button 
+                class="px-4 py-2 bg-blue-50 text-blue-700 rounded-md hover:bg-blue-100"
+                (click)="closeModal()">
+                Cancelar
+            </button>
+            <button 
+                class="px-4 py-2 bg-red-600 text-blue-50 rounded-md hover:bg-red-700"
+                (click)="deleteUser()">
+                Eliminar
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- controls -->
+<div class="grid place-items-center py-2 mt-8 font-roboto">
+    <pagination-controls 
+        class="my-pagination"
+        (pageChange)="onPageChange($event)" 
+        previousLabel="Anterior" 
+        nextLabel="Siguiente"
+        [maxSize]="5">
+    </pagination-controls>
+</div>
+
+<app-scroll-top></app-scroll-top>
