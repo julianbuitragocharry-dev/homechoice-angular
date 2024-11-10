@@ -70,12 +70,12 @@
                         <input 
                             class="form-check-input" 
                             type="checkbox" 
-                            [value]="role" 
-                            (change)="onRoleChange($event, role)" 
-                            [checked]="isRoleSelected(role)" 
-                            [id]="'role-' + role"
+                            [value]="role.rol" 
+                            (change)="onRoleChange($event, role.rol)" 
+                            [checked]="isRoleSelected(role.rol)" 
+                            [id]="'role-' + role.id"
                         >
-                        <label class="form-check-label ml-2" [for]="'role-' + role">{{ role }}</label>
+                        <label class="form-check-label ml-2" [for]="'role-' + role.id">{{ role.rol }}</label>
                     </div>
                 </div>
             </div>

@@ -6,7 +6,10 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-dashboard',
   standalone: true,
   imports: [NavbarComponent, RouterOutlet],
-  templateUrl: './dashboard.component.html'
+  template: `
+  <app-navbar></app-navbar>
+  <router-outlet></router-outlet>
+  `
 })
 export class DashboardComponent {
 

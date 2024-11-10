@@ -16,14 +16,10 @@ export class EditUserComponent {
   userForm: FormGroup;
   userId!: number;
   selectedRoles: string[] = [];
-  
-  rolesList: string[] = [
-    'ADMIN',
-    'AGENT'
-  ];
+  rolesList: {id: number, rol: string}[] = [];
   //#endregion
 
-  //#region constructor
+  //#region form
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -38,37 +34,41 @@ export class EditUserComponent {
       nit: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: [''],
-      roles: [[], Validators.required]
+      roles: [[], [Validators.required, Validators.minLength(1)]]
     });
   }
   //#endregion
 
-  //#region lifecycle hooks
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id')!;
       if (id) {
         this.userId = +id;
         this.loadUser(this.userId);
+        this.loadRolesList();
       }
     });
   }
-  //#endregion
 
   //#region methods
-  onRoleChange(event: any, role: string): void {
+  onRoleChange(event: any, rol: string): void {
     if (event.target.checked) {
-      this.selectedRoles.push(role);
+      this.selectedRoles.push(rol);
     } else {
-      this.selectedRoles = this.selectedRoles.filter(r => r !== role);
+      if (this.selectedRoles.length > 1) {
+        this.selectedRoles = this.selectedRoles.filter(r => r !== rol);
+    } else {
+        event.target.checked = true;
+        return;
+    }
     }
     this.userForm.patchValue({
       roles: this.selectedRoles
     });
   }
 
-  isRoleSelected(role: string): boolean {
-    return this.selectedRoles.includes(role);
+  isRoleSelected(rol: string): boolean {
+    return this.selectedRoles.includes(rol);
   }
 
   onSubmit(): void {
@@ -112,6 +112,18 @@ export class EditUserComponent {
           roles: data.roles
         });
         this.selectedRoles = data.roles;
+      }
+    );
+  }
+
+  loadRolesList(): void {
+    this.userService.getRoles().subscribe(
+      (data) => {
+        console.log(data);
+        this.rolesList = data;
+      },
+      (error) => {
+        console.error('Error fetching concept list:', error);
       }
     );
   }
