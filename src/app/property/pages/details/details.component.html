@@ -1,6 +1,6 @@
 <app-header></app-header>
 
-<div class="flex flex-col xl:flex-row font-roboto mt-12 px-6 pb-6 gap-[5%]">
+<div class="flex flex-col xl:flex-row font-roboto mt-12 px-6 pb-6 gap-[5%] w-11/12 mx-auto">
     <!-- info -->
     <div id="info" class="xl:w-[45%]">
         
@@ -8,7 +8,7 @@
         <div class="flex flex-col gap-6 px-6 pb-6">
             <h1 class="font-bold text-4xl md:text-5xl">{{ property.name }}</h1>
             
-            <div class="flex flex-wrap gap-3 md:gap-12 font-semibold text-xs md:text-sm">
+            <div class="flex flex-wrap gap-3 md:gap-x-12 md:gap-y-6 font-semibold text-xs md:text-sm">
                 <p>
                     <span 
                         [ngClass]="property.status ? 'bg-blue-100 text-blue-700 px-3 py-1 rounded-md' : 
@@ -22,7 +22,7 @@
                 <p>{{ property.type }}</p>
             </div>
     
-            <p class="text-sm md:text-base">{{ property.description }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae adipisci magni nam inventore impedit quas saepe voluptatibus expedita, quasi vitae hic eum vol Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium ea esse necessitatibus laboriosam suscipit ducimus fuga. Enim voluptate facere impedit totam. Nam sunt eaque laboriosam itaque, inventore vitae! Libero, dignissimos.e vero? Lore</p>
+            <p class="text-sm md:text-base">{{ property.description }}</p>
 
             <div class="flex flex-wrap gap-2 text-xs md:text-sm font-semibold">
                 <ng-container *ngFor="let amenity of property.amenities; let last = last">
@@ -55,15 +55,20 @@
     </div>
 
     <div class="flex-1 mt-12 xl:mt-0 xl:mb-0">
-        <img class="bg-cover bg-center h-full w-full xl:w-auto rounded-xl" [src]="property.images[0]" alt="image"/>
+        <!-- carousel -->
+        <app-carousel
+            [imageUrls]="property.images"
+            [autoPlay]="true"
+            [slideInterval]="8000"
+        ></app-carousel>
+
+        <!-- map -->
+        <iframe 
+        class="pt-12 w-full h-64 md:h-72"
+        style="border:0" 
+        loading="lazy" 
+        allowfullscreen 
+        [src]="mapUrl">
+        </iframe>
     </div>
 </div>
-
-<!-- map -->
-<iframe 
-    class="p-6 w-[100%] h-72 md:h-80" 
-    style="border:0" 
-    loading="lazy" 
-    allowfullscreen 
-    [src]="mapUrl">
-</iframe>

@@ -1,0 +1,22 @@
+<div class="carousel-container">
+    <div class="carousel-track">
+      <div 
+        *ngFor="let imageUrl of imageUrls; let i = index" 
+        class="carousel-slide"
+        [class.active]="i === currentSlide">
+        <img [src]="imageUrl" alt="slide image" class="object-cover object-center">
+      </div>
+    </div>
+    
+    <button class="carousel-button prev" (click)="previousSlide()">❮</button>
+    <button class="carousel-button next" (click)="nextSlide()">❯</button>
+    
+    <div class="carousel-dots">
+      <span 
+        *ngFor="let image of imageUrls; let i = index" 
+        class="dot"
+        [class.active]="i === currentSlide"
+        (click)="goToSlide(i)">
+      </span>
+    </div>
+</div>

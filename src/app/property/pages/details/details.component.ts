@@ -7,11 +7,12 @@ import { DTOAgentResponse } from '../../../interfaces/agent/dto-agent-response';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from "../../../shared/components/header/header.component";
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { CarouselComponent } from "../../components/carousel/carousel.component";
 
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [CommonModule, HeaderComponent],
+  imports: [CommonModule, HeaderComponent, CarouselComponent],
   templateUrl: './details.component.html'
 })
 export class DetailsComponent implements OnInit {

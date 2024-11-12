@@ -30,7 +30,7 @@ export class ListUsersComponent implements OnInit {
   users: DtoUserResponse[] = [];
   
   pageValue: number = 1;
-  sizeValue: number = 12;
+  sizeValue: number = 20;
   totalData: number = 0;
 
   filters = {
