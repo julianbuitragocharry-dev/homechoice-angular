@@ -37,7 +37,7 @@ export class PropertiesComponent implements OnInit {
   typeList: {id: number, type: string}[] = [];
   
   pageValue: number = 1;
-  sizeValue: number = 6;
+  sizeValue: number = 12;
   totalData: number = 0;
 
   filters = {

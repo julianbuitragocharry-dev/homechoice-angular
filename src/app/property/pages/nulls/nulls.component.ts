@@ -205,10 +205,12 @@ export class NullsComponent {
     });
   }
 
+  // TODO: Pageable system
   loadAgents(): void {
-    this.agentService.getAllAgents('', 0, 1000000).subscribe({
-      next: (data: DtoUserResponse[]) => {
-        this.agentList = data;
+    this.agentService.getAllAgents('', 0, 10).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.agentList = data.content;
         console.log(this.agentList);
       },
       error: (error) => {
