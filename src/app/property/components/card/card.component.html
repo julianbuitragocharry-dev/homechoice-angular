@@ -1,34 +1,35 @@
-<div class="font-roboto border border-blue-200 rounded-md">
+<article class="font-roboto border border-blue-200 rounded-md">
     <!-- slider -->
-    <img class="w-full h-[240px] md:h-[300px] object-cover object-center rounded-t-md" [src]="property.images[0]">
+    <!-- TODO: slider -->
+    <img class="w-full h-60 md:h-80 object-cover object-center rounded-t-md" [src]="property.images[0]">
     
     <!-- info -->
-    <div class="px-[14px]">
-        <p class="mt-[16px]">
+    <section class="px-3">
+        <p class="mt-4">
             <span class="text-xs md:text-sm font-semibold" 
             [ngClass]="property.status ? 'bg-blue-100 text-blue-700 px-3 py-1 rounded-md' : 
             'bg-red-100 text-red-700 px-3 py-1 rounded-md'">
                 {{ property.status ? 'Disponible' : 'No disponible' }}
             </span>
         </p>
-        <h2 class="text-xl md:text-2xl font-bold mt-[16px]">
+        <h2 class="text-xl md:text-2xl font-bold mt-4">
             {{ property.name }}
         </h2>
-        <p class="text-sm md:text-base font-semibold mt-[16px]">
+        <p class="text-sm md:text-base font-semibold mt-4">
             {{ property.area }} m²
         </p>
         <p class="text-sm md:text-base">
             $ {{ property.price | currency: '':'':'1.0-0' }} COP
         </p>
-        <p class="text-sm md:text-base mb-[24px]">
+        <p class="text-sm md:text-base mb-6">
             {{ property.concept }} - {{ property.type }}
         </p>
-    </div>
+    </section>
     
     <button
-    class="flex flex-row bg-blue-200 hover:bg-blue-300 font-semibold gap-[10px] text-sm md:text-base rounded-b-md px-[15px] py-[2px] h-[36px] md:h-[39px] items-center w-full justify-center"
+    class="flex flex-row bg-blue-200 hover:bg-blue-300 font-semibold gap-2 text-sm md:text-base rounded-b-md px-4 py-0.5 h-9 md:h-10 items-center w-full justify-center"
     [routerLink]="[property.id]">
         Ver Inmueble
         <i-lucide [img]="Link" class="my-icon" [strokeWidth]="2.5"></i-lucide>
     </button>
-</div>
+</article>

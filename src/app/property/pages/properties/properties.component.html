@@ -1,6 +1,6 @@
 <app-header></app-header>
 
-<section class="font-roboto text-center my-[48px]">
+<section class="font-roboto text-center my-12">
     <h1 class="text-4xl md:text-5xl font-bold">
         HomeChoice
     </h1>
@@ -10,49 +10,82 @@
 </section>
 
 <!-- search -->
-<form [formGroup]="filterForm" (ngSubmit)="onSubmit()" class="w-[90%] mx-auto mb-8 font-roboto">
-    <div class="grid grid-cols-1 md:grid-cols-7 gap-2">    
-      <!-- name -->
-      <div>
-        <input type="text" formControlName="name" placeholder="Nombre" class="w-full px-3 py-2 bg-white border border-blue-900 rounded-lg text-sm md:text-base outline-none"/>
-      </div>
-      
-      <!-- status -->
-      <div>
-        <select formControlName="status" class="w-full px-3 py-2 bg-white border border-blue-900 rounded-lg text-sm md:text-base">
-          <option value="" selected>Disponibilidad</option>
-          <option *ngFor="let item of statusList" [value]="item.value">{{item.label}}</option>
-        </select>
-      </div>
-      
-      <!-- concept -->
-      <div>
-        <select formControlName="concept" class="w-full px-3 py-2 bg-white border border-blue-900 rounded-lg text-sm md:text-base outline-none">
-          <option value="" selected>Concepto</option>
-          <option *ngFor="let item of conceptList" [value]="item.concept">{{item.concept}}</option>
-        </select>
-      </div>
-      
-      <!-- type -->
-      <div>
-        <select formControlName="type" class="w-full px-3 py-2 bg-white border border-blue-900 rounded-lg text-sm md:text-base outline-none">
-          <option value="" selected>Tipo</option>
-          <option *ngFor="let item of typeList" [value]="item.type">{{item.type}}</option>
-        </select>
-      </div>
-      
-      <!-- price -->
-      <div>
-        <input type="number" formControlName="minPrice" placeholder="Desde" class="w-full px-3 py-2 bg-white border border-blue-900 rounded-lg text-sm md:text-base outline-none" min="0"/>
-      </div>
-      
-      <!-- area -->
-      <div>
-        <input type="number" formControlName="minArea" placeholder="Área" min="0" class="w-full px-3 py-2 bg-white border border-blue-900 rounded-lg text-sm md:text-base outline-none"/>
-      </div>
-
-      <button type="submit" class="bg-blue-200 hover:bg-blue-300 rounded-md font-bold px-3 py-2">Buscar</button>
+<form [formGroup]="filterForm" (ngSubmit)="onSubmit()" class="w-[90%] mx-auto my-8 font-roboto p-6 shadow-md rounded-lg">
+  <div class="grid grid-cols-1 md:grid-cols-7 gap-4 items-center">    
+    
+    <!-- name -->
+    <div>
+      <input 
+        type="text" 
+        formControlName="name" 
+        placeholder="Nombre" 
+        class="w-full px-4 py-3 border border-blue-900 rounded-md text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200"
+      />
     </div>
+    
+    <!-- status -->
+    <div>
+      <select 
+        formControlName="status" 
+        class="w-full px-4 py-3 border border-blue-900 rounded-md text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200"
+      >
+        <option value="" selected>Disponibilidad</option>
+        <option *ngFor="let item of statusList" [value]="item.value">{{item.label}}</option>
+      </select>
+    </div>
+    
+    <!-- concept -->
+    <div>
+      <select 
+        formControlName="concept" 
+        class="w-full px-4 py-3 border border-blue-900 rounded-md text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200"
+      >
+        <option value="" selected>Concepto</option>
+        <option *ngFor="let item of conceptList" [value]="item.concept">{{item.concept}}</option>
+      </select>
+    </div>
+    
+    <!-- type -->
+    <div>
+      <select 
+        formControlName="type" 
+        class="w-full px-4 py-3 border border-blue-900 rounded-md text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200"
+      >
+        <option value="" selected>Tipo</option>
+        <option *ngFor="let item of typeList" [value]="item.type">{{item.type}}</option>
+      </select>
+    </div>
+    
+    <!-- price -->
+    <div>
+      <input 
+        type="number" 
+        formControlName="minPrice" 
+        placeholder="Desde" 
+        class="w-full px-4 py-3 border border-blue-900 rounded-md text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200" 
+        min="0"
+      />
+    </div>
+    
+    <!-- area -->
+    <div>
+      <input 
+        type="number" 
+        formControlName="minArea" 
+        placeholder="Área" 
+        min="0" 
+        class="w-full px-4 py-3 border border-blue-900 rounded-md text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200" 
+      />
+    </div>
+
+    <!-- submit button -->
+    <button 
+      type="submit" 
+      class="bg-blue-200 hover:bg-blue-300 rounded-md font-bold px-4 py-3 text-sm md:text-base"
+    >
+      Buscar
+    </button>
+  </div>
 </form>
 
 <!-- properties not found -->
@@ -64,7 +97,7 @@
 </div>
 
 <!-- properties -->
-<div class="mx-auto my-[24px] md:my-[48px] grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[40px] w-[90%]">
+<div class="mx-auto my-6 md:my-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 w-[90%]">
     <app-card *ngFor="let property of properties | paginate: { itemsPerPage: sizeValue, currentPage: pageValue, totalItems: totalData }" [property]="property"></app-card>
 </div>
 

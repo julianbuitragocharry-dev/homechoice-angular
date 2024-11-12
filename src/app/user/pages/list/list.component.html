@@ -1,18 +1,29 @@
 <!-- search -->
-<form [formGroup]="filterForm" (ngSubmit)="onSubmit()" class="w-[90%] mx-auto my-8 font-roboto">
-    <div class="grid grid-cols-1 md:grid-cols-7 gap-2">    
+<form [formGroup]="filterForm" (ngSubmit)="onSubmit()" class="w-[90%] mx-auto my-8 font-roboto bg-white p-6 shadow-md rounded-lg">
+    <div class="grid grid-cols-1 md:grid-cols-7 gap-4 items-center">
+      
       <!-- nit -->
       <div>
-        <input type="text" formControlName="nit" placeholder="Nit" 
-               class="w-full px-3 py-2 bg-white border border-blue-900 rounded-lg text-sm md:text-base outline-none"/>
+        <input 
+          type="text" 
+          formControlName="nit" 
+          placeholder="Nit" 
+          class="w-full px-4 py-2 bg-white border border-blue-900 rounded-lg text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200"
+        />
       </div>
 
-      <button type="submit" class="bg-blue-200 hover:bg-blue-300 rounded-md font-bold px-3 py-2">Buscar</button>
+      <!-- submit button -->
+      <button 
+        type="submit" 
+        class="bg-blue-200 hover:bg-blue-300 rounded-md font-bold px-4 py-2 text-sm md:text-base"
+      >
+        Buscar
+      </button>
     </div>
 </form>
 
 <!-- table -->
-<div class="mt-[24px] w-full px-4 text-sm md:text-base font-roboto text-center">
+<div class="mt-6 w-full px-4 text-sm md:text-base font-roboto text-center">
     <div class="overflow-x-auto">
         <div class="min-w-[1000px]">
             <table class="w-full table-auto">
@@ -37,11 +48,11 @@
                         <td class="p-3 md:p-4">{{ user.nit }}</td>
                         <td class="p-3 md:p-4">
                             <div class="flex gap-3 items-center justify-center">
-                                <button class="p-3 bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-md" 
+                                <button class="p-3 bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-full" 
                                         (click)="onEdit(user)">
                                     <i-lucide [img]="Pencil" class="w-5 h-5" [strokeWidth]="2.5"></i-lucide>
                                 </button>
-                                <button class="p-3 bg-red-50 hover:bg-red-100 text-red-600 rounded-md" 
+                                <button class="p-3 bg-red-50 hover:bg-red-100 text-red-600 rounded-full" 
                                         (click)="confirmDelete(user)">
                                     <i-lucide [img]="Trash2" class="w-5 h-5" [strokeWidth]="2.5"></i-lucide>
                                 </button>
