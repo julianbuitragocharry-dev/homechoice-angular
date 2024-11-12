@@ -11,6 +11,4 @@ import { RouterOutlet } from '@angular/router';
   <router-outlet></router-outlet>
   `
 })
-export class DashboardComponent {
-
-}
+export class DashboardComponent {}

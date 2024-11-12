@@ -1,122 +1,166 @@
-<nav class="bg-blue-950 text-blue-100 font-roboto text-sm px-[20px] md:px-[74px] py-[10px]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<header class="bg-blue-950 text-blue-100 font-roboto text-sm px-5 md:px-24 py-2 md:py-3">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
-            <img class="h-[90px] object-cover object-center" src="img/banner_white.png" alt="banner">
+            <img class="h-[90px] object-cover object-center" src="img/banner_white.png" alt="Banner HomeChoice">
 
             <div class="flex items-center">
                 <div class="hidden md:block">
-                    <div class="flex items-baseline space-x-4">
-                    <a routerLink="my-properties" 
-                        routerLinkActive="bg-blue-700"
-                        class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
-                        Mis Inmuebles
-                    </a>
-                    <a routerLink="properties" 
-                        routerLinkActive="bg-blue-700"
-                        class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
-                        Inmuebles
-                    </a>
-                    <a routerLink="create-property" 
-                        routerLinkActive="bg-blue-700"
-                        class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
-                        Crear Inmueble
-                    </a>
-                    <a routerLink="frozen-properties" 
-                        routerLinkActive="bg-blue-700"
-                        class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
-                        Inmuebles Congelados
-                    </a>
-                    <a routerLink="users" 
-                        routerLinkActive="bg-blue-700"
-                        class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
-                        Usuarios
-                    </a>
-                    <a routerLink="create-user" 
-                        routerLinkActive="bg-blue-700"
-                        class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
-                        Crear Usuario
-                    </a>
-                    <!--
-                    <a routerLink="agents" 
-                        routerLinkActive="bg-blue-700"
-                        class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
-                        Agentes
-                    </a>
-                    <a routerLink="create-agent" 
-                        routerLinkActive="bg-blue-700"
-                        class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
-                        Crear Agente
-                    </a> -->
-                    <a (click)="logout()" 
-                        class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium cursor-pointer">
-                        Logout
-                    </a>
-                    </div>
+                    <li class="flex items-baseline space-x-4">
+                        <ul>
+                            <a *hasRole="['AGENT']" routerLink="my-properties" 
+                                routerLinkActive="bg-blue-700"
+                                class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
+                                Mis Inmuebles
+                            </a>
+                        </ul>
+                        <ul>
+                            <a *hasRole="['SUPER_ADMIN', 'ADMIN']" routerLink="properties" 
+                                routerLinkActive="bg-blue-700"
+                                class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
+                                Inmuebles
+                            </a>
+                        </ul>
+                        <ul>
+                            <a *hasRole="['AGENT']" routerLink="create-property" 
+                                routerLinkActive="bg-blue-700"
+                                class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
+                                Crear Inmueble
+                            </a>
+                        </ul>
+                        <ul>
+                            <a *hasRole="['SUPER_ADMIN', 'ADMIN']" routerLink="frozen-properties" 
+                                routerLinkActive="bg-blue-700"
+                                class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
+                                Inmuebles Congelados
+                            </a>
+                        </ul>
+                        <ul>
+                            <a *hasRole="['SUPER_ADMIN']" routerLink="users" 
+                                routerLinkActive="bg-blue-700"
+                                class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
+                                Usuarios
+                            </a>
+                        </ul>
+                        <ul>
+                            <a *hasRole="['SUPER_ADMIN']" routerLink="create-user" 
+                                routerLinkActive="bg-blue-700"
+                                class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
+                                Crear Usuario
+                            </a>
+                        </ul>
+                        <ul>
+                            <a *hasRole="['ADMIN']" routerLink="agents" 
+                                routerLinkActive="bg-blue-700"
+                                class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
+                                Agentes
+                            </a>
+                        </ul>
+                        <ul>
+                            <a *hasRole="['ADMIN']" routerLink="create-agent" 
+                                routerLinkActive="bg-blue-700"
+                                class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
+                                Crear Agente
+                            </a>
+                        </ul>
+                        <ul>
+                            <a (click)="logout()" 
+                                class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium cursor-pointer">
+                                Logout
+                            </a>
+                        </ul>
+                    </li>
                 </div>
             </div>
+            
             <div class="md:hidden">
-            <button
-                (click)="isOpen = !isOpen"
-                class="inline-flex items-center justify-center p-2 rounded-md hover:bg-blue-600">
-                <svg *ngIf="!isOpen" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-                <svg *ngIf="isOpen" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
+                <button
+                    (click)="isOpen = !isOpen"
+                    class="inline-flex items-center justify-center p-2 rounded-md hover:bg-blue-600">
+                    
+                    <svg *ngIf="!isOpen" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    <svg *ngIf="isOpen" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
             </div>
         </div>
-    </div>
+    </nav>
 
     <!-- mobile menu -->
-    <div *ngIf="isOpen" class="md:hidden text-xs">
-        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a routerLink="my-properties"
-            routerLinkActive="bg-blue-700"
-            class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
-                Mis inmuebles
-            </a>
-            <a routerLink="properties"
-            routerLinkActive="bg-blue-700"
-            class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
-                Inmuebles
-            </a>
-            <a routerLink="create-property"
-            routerLinkActive="bg-blue-700"
-            class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
-                Crear Inmueble
-            </a>
-            <a routerLink="frozen-properties"
-            routerLinkActive="bg-blue-700"
-            class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
-                Inmuebles Congelados
-            </a>
-            <a routerLink="users"
-            routerLinkActive="bg-blue-700"
-            class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
-                Usuarios
-            </a>
-            <a routerLink="create-user"
-            routerLinkActive="bg-blue-700"
-            class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
-                Crear Usuario
-            </a>
-            <!--
-            <a routerLink="agents"
-            routerLinkActive="bg-blue-700"
-            class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
-                Agentes
-            </a>
-            <a routerLink="create-agent"
-            routerLinkActive="bg-blue-700"
-            class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
-                Crear Agente
-            </a> -->
-            <a (click)="logout()"
-            class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium cursor-pointer">
-                Logout
-            </a>
-        </div>
-    </div>
-</nav>
+    <nav *ngIf="isOpen" class="md:hidden text-xs">
+        <li class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <ul>
+                <a *hasRole="['AGENT']" 
+                routerLink="my-properties"
+                routerLinkActive="bg-blue-700"
+                class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
+                    Mis inmuebles
+                </a>
+            </ul>
+            <ul>
+                <a *hasRole="['SUPER_ADMIN', 'ADMIN']"
+                routerLink="properties"
+                routerLinkActive="bg-blue-700"
+                class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
+                    Inmuebles
+                </a>
+            </ul>
+            <ul>
+                <a *hasRole="['AGENT']" 
+                routerLink="create-property"
+                routerLinkActive="bg-blue-700"
+                class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
+                    Crear Inmueble
+                </a>
+            </ul>
+            <ul>
+                <a *hasRole="['SUPER_ADMIN', 'ADMIN']" 
+                routerLink="frozen-properties"
+                routerLinkActive="bg-blue-700"
+                class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
+                    Inmuebles Congelados
+                </a>
+            </ul>
+            <ul>
+                <a *hasRole="['SUPER_ADMIN']" 
+                routerLink="users"
+                routerLinkActive="bg-blue-700"
+                class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
+                    Usuarios
+                </a>
+            </ul>
+            <ul>
+                <a *hasRole="['SUPER_ADMIN']" 
+                routerLink="create-user"
+                routerLinkActive="bg-blue-700"
+                class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
+                    Crear Usuario
+                </a>
+            </ul>
+            <ul>
+                <a *hasRole="['ADMIN']"
+                routerLink="agents"
+                routerLinkActive="bg-blue-700"
+                class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
+                    Agentes
+                </a>
+            </ul>
+            <ul>
+                <a *hasRole="['ADMIN']" 
+                routerLink="create-agent"
+                routerLinkActive="bg-blue-700"
+                class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
+                    Crear Agente
+                </a>
+            </ul>
+            <ul>
+                <a (click)="logout()"
+                class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium cursor-pointer">
+                    Logout
+                </a>
+            </ul>
+        </li>
+    </nav>
+</header>

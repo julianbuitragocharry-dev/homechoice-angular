@@ -13,22 +13,27 @@ import { AuthService } from '../../../auth/auth.service';
   templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
+  loginForm !: FormGroup;
   loginError: string | null = null;
 
-  constructor(private fb: FormBuilder, private loginService: AuthService, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
+
+  ngOnInit() {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]]
     });
   }
 
-  ngOnInit() {}
-
-  onSubmit() {
+  onSubmit(): void {
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
       this.login();
+    } else {
+      this.loginForm.markAllAsTouched();
     }
   }
 
@@ -40,21 +45,16 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  login() {
+  private login(): void {
     this.loginError = null;
-    if(this.loginForm.valid) {
-      this.loginService.login(this.loginForm.value as LoginRequest).subscribe({
-        complete: () => {
-          console.info("Login completado!!");
-          this.router.navigateByUrl('/dashboard');
-          this.loginForm.reset();
-        },
-        error: () => {
-          this.loginError = 'Clave inválida. Por favor, verifique sus credenciales.';
-        }
-      })
-    } else {
-      this.loginForm.markAllAsTouched();
-    }
+    this.authService.login(this.loginForm.value as LoginRequest).subscribe({
+      complete: () => {
+        this.router.navigateByUrl('/dashboard');
+        this.loginForm.reset();
+      },
+      error: () => {
+        this.loginError = 'Clave inválida. Por favor, verifique sus credenciales.';
+      }
+    });
   }
 }

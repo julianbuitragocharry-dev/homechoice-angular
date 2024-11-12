@@ -13,6 +13,9 @@ import { MylistComponent } from './property/pages/mylist/mylist.component';
 import { CreateUserComponent } from './user/pages/create/create.component';
 import { ListUsersComponent } from './user/pages/list/list.component';
 import { EditUserComponent } from './user/pages/edit/edit.component';
+import { ListAgentsComponent } from './agent/pages/list/list.component';
+import { EditAgentComponent } from './agent/pages/edit/edit.component';
+import { CreateAgentComponent } from './agent/pages/create/create.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -34,9 +37,11 @@ export const routes: Routes = [
             { path: 'users', component: ListUsersComponent },
             { path: 'edit-user/:id', component: EditUserComponent},
             { path: 'create-user', component: CreateUserComponent },
-            // { path: 'agents', component: },
-            // { path: 'edit-agent/:id', component: },
-            // { path: 'create-agent', component: }
+            { path: 'agents', component: ListAgentsComponent },
+            { path: 'edit-agent/:id', component: EditAgentComponent },
+            { path: 'create-agent', component: CreateAgentComponent}
         ]
     },
+    { path: 'unauthorized', component: HomeComponent },
+    { path: '**', redirectTo: 'home' }
 ];

@@ -1,13 +1,10 @@
-<header class="flex justify-between items-center border-b font-roboto font-semibold px-[20px] md:px-[74px]">
-    <div class="cursor-pointer">
-        <img class="h-[90px] object-cover object-center" src="img/banner.png" alt="banner" routerLink="/">
-    </div>
-
-    <button 
-    class="flex flex-row hover:bg-blue-100 gap-[10px] rounded-md px-[15px] py-[2px] h-[36px] md:h-[39px] items-center"
-    routerLink="/login">
-    Ingresar
-    <i-lucide [img]="LogIn" class="my-icon" [strokeWidth]="2.5"></i-lucide>
+<header class="flex justify-between items-center border-b font-roboto font-semibold px-5 md:px-24 py-2 md:py-3">
+    <a class="cursor-pointer" aria-label="Inicio">
+      <img class="h-20 object-cover object-center" src="img/banner.png" alt="Banner HomeChoice" routerLink="/">
+    </a>
+  
+    <button class="flex flex-row hover:bg-blue-100 gap-2.5 rounded-md px-4 py-0.5 h-9 md:h-10 items-center" routerLink="/login">
+      Ingresar
+      <i-lucide [img]="LogIn" class="my-icon" [strokeWidth]="2.5"></i-lucide>
     </button>
-    
 </header>

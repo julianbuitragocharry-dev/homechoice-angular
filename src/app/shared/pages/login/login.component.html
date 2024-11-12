@@ -1,14 +1,15 @@
-<div class="flex flex-col mx-auto justify-center h-screen font-robot w-[292px] md:w-[420px]">
-  <h1 class="text-2xl md:text-4xl font-bold text-center mb-[24px]">Iniciar Sesión</h1>
+<div class="flex flex-col mx-auto justify-center h-screen font-roboto w-72 md:w-[420px]">
+  <h1 class="text-2xl md:text-4xl font-bold text-center mb-6">Iniciar Sesión</h1>
 
   <form
     [formGroup]="loginForm"
     (ngSubmit)="onSubmit()"
-    class="flex flex-col gap-y-4 text-sm md:text-base"
+    class="flex flex-col gap-4 text-sm md:text-base"
   >
-    <label class="text-sm md:text-base font-semibold" for="email">email*</label>
+    <!-- email -->
+    <label class="text-sm md:text-base font-semibold" for="email">Email*</label>
     <input
-      class="text-sm md:text-base border rounded-md h-[36px] md:h-[39px] py-[2px] px-[8px]"
+      class="text-sm md:text-base border rounded-md h-9 md:h-10 px-2"
       type="email"
       id="email"
       formControlName="email"
@@ -18,10 +19,10 @@
       <span *ngIf="email?.errors?.['email']">Email inválido.</span>
     </span>
 
-
-    <label class="text-sm md:text-base font-semibold" for="password">password*</label>
+    <!-- password -->
+    <label class="text-sm md:text-base font-semibold" for="password">Password*</label>
     <input
-      class="text-sm md:text-base border rounded-md h-[36px] md:h-[39px] py-[2px] px-[8px]"
+      class="text-sm md:text-base border rounded-md h-9 md:h-10 px-2"
       type="password"
       id="password"
       formControlName="password"
@@ -31,12 +32,14 @@
       <span *ngIf="password?.errors?.['minlength']">La contraseña debe tener al menos 8 caracteres.</span>
     </span>
 
+    <!-- login error message -->
     <span *ngIf="loginError" class="text-red-500">{{ loginError }}</span>
 
+    <!-- buttons -->
     <div class="flex flex-col gap-3">
       <button
         type="submit"
-        class="text-sm md:text-base bg-blue-200 hover:bg-blue-300 font-semibold rounded-md h-[36px] md:h-[39px] py-[2px]"
+        class="text-sm md:text-base bg-blue-200 hover:bg-blue-300 font-semibold rounded-md h-9 md:h-10"
       >
         Login
       </button>
@@ -44,7 +47,7 @@
       <button
         type="button"
         routerLink="/"
-        class="text-sm md:text-base hover:bg-blue-100 font-semibold rounded-md h-[36px] md:h-[39px] py-[2px]"
+        class="text-sm md:text-base hover:bg-blue-100 font-semibold rounded-md h-9 md:h-10"
       >
         Inicio
       </button>

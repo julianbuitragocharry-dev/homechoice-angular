@@ -62,8 +62,7 @@ export class AuthService {
     return this.http.post<boolean>(`${this.apiUrl}/auth/verify-token`, { token });
   }
 
-  /*
   getRoles():Observable<string[]> {
-    return this.http.get<string[]>(`${this.apiUrl}/auth/roles`, {withCredentials: true});
-  }*/
+    return this.http.get<string[]>(`${this.apiUrl}/auth/roles`);
+  }
 }

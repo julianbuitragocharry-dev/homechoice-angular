@@ -6,28 +6,22 @@ import { ArrowUp, LucideAngularModule } from 'lucide-angular';
   selector: 'app-scroll-top',
   standalone: true,
   imports: [CommonModule, LucideAngularModule],
-  template: 
-  `<button 
-    *ngIf="showButton"
-    (click)="scrollToTop()"
-    class="fixed bottom-4 right-4 bg-blue-200 hover:bg-blue-300 text-white p-4 rounded-full transition-all duration-300 ease-in-out">
-    <i-lucide [img]="ArrowUp" class="my-icon" [strokeWidth]="2.5"></i-lucide>
-  </button>`
+  template: `
+    <button 
+      *ngIf="showButton"
+      (click)="scrollToTop()"
+      class="fixed bottom-4 right-4 bg-blue-200 hover:bg-blue-300 text-white p-4 rounded-full">
+      <i-lucide [img]="ArrowUp" class="my-icon" [strokeWidth]="2.5"></i-lucide>
+    </button>
+  `
 })
 export class ScrollTopComponent {
-  // lucide icons
   readonly ArrowUp = ArrowUp;
-
-  // set up the button visibility
   showButton = false;
 
-  @HostListener('window:scroll', [])
+  @HostListener('window:scroll')
   onWindowScroll(): void {
-    if (window.scrollY > 200) {
-      this.showButton = true;
-    } else {
-      this.showButton = false;
-    }
+    this.showButton = window.scrollY > 200;
   }
 
   scrollToTop(): void {

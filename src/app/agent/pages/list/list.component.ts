@@ -1,12 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { DtoUserResponse } from '../../../interfaces/user/dto-user-response';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { UserService } from '../../../service/user.service';
 import { Router, RouterLink } from '@angular/router';
 import { LucideAngularModule, Pencil, Trash2 } from 'lucide-angular';
-import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ScrollTopComponent } from '../../../shared/components/scroll-top/scroll-top.component';
+import { AgentService } from '../../../service/agent.service';
+import { DTOAgentResponse } from '../../../interfaces/agent/dto-agent-response';
+import { DtoUserResponse } from '../../../interfaces/user/dto-user-response';
 
 @Component({
   selector: 'app-list',
@@ -22,12 +23,12 @@ import { ScrollTopComponent } from '../../../shared/components/scroll-top/scroll
   templateUrl: './list.component.html',
   styleUrl: '../../../shared/styles/pagination.css'
 })
-export class ListUsersComponent implements OnInit {
+export class ListAgentsComponent implements OnInit {
   //#region variables
   readonly Pencil = Pencil;
   readonly Trash2 = Trash2;
 
-  users: DtoUserResponse[] = [];
+  agents: DtoUserResponse[] = [];
   
   pageValue: number = 1;
   sizeValue: number = 12;
@@ -39,11 +40,11 @@ export class ListUsersComponent implements OnInit {
   filterForm: FormGroup;
   
   showDeleteModal: boolean = false;
-  userToDelete: number | null = null;
+  agentToDelete: number | null = null;
   //#endregion
 
   constructor(
-    private userService: UserService, 
+    private agentService: AgentService, 
     private fb: FormBuilder, 
     private router: Router
   ) {
@@ -53,7 +54,7 @@ export class ListUsersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadUsers();
+    this.loadAgents();
   }
   
   //#region methods
@@ -61,38 +62,38 @@ export class ListUsersComponent implements OnInit {
     this.filters = {
       nit: this.filterForm.get('nit')?.value || ''
     };
-    this.loadUsers();
+    this.loadAgents();
   }
 
   onPageChange(page: number): void {
     this.pageValue = page;
-    this.loadUsers();
+    this.loadAgents();
   }
 
-  onEdit(user: DtoUserResponse): void {
-    this.router.navigate([`/dashboard/edit-user/${user.id}`]);
+  onEdit(agent: DtoUserResponse): void {
+    this.router.navigate([`/dashboard/edit-agent/${agent.id}`]);
   }
 
-  confirmDelete(user: DtoUserResponse): void {
-    this.userToDelete = user.id;
+  confirmDelete(agent: DtoUserResponse): void {
+    this.agentToDelete = agent.id;
     this.showDeleteModal = true;
   }
 
   closeModal(): void {
     this.showDeleteModal = false;
-    this.userToDelete = null;
+    this.agentToDelete = null;
   }
   
-  deleteUser(): void {
-    if (this.userToDelete) {
-      this.userService.deleteUser(this.userToDelete).subscribe({
+  deleteAgent(): void {
+    if (this.agentToDelete) {
+      this.agentService.deleteAgent(this.agentToDelete).subscribe({
         next: () => {
-          this.users = this.users.filter(u => u.id !== this.userToDelete);
+          this.agents = this.agents.filter(a => a.id !== this.agentToDelete);
           this.closeModal();
-          this.loadUsers();
+          this.loadAgents();
         },
         error: (error) => {
-          console.error('Error deleting user:', error);
+          console.error('Error deleting agent:', error);
           this.closeModal();
         }
       });
@@ -101,19 +102,20 @@ export class ListUsersComponent implements OnInit {
   //#endregion
 
   //#region api calls
-  loadUsers(): void {
-    this.userService.getAllUsers(
+  loadAgents(): void {
+    this.agentService.getAllAgents(
       this.filters.nit,
       this.pageValue - 1,
       this.sizeValue
     ).subscribe(
       (data) => {
-        this.users = data.content;
+        console.log(data);
+        this.agents = data.content;
         this.pageValue = data.pageable.pageNumber + 1;
-        this.totalData = data.totalElements;
+        this.totalData = data.length;
       },
       (error) => {
-        console.error('Error fetching properties:', error);
+        console.error('Error fetching agents:', error);
       }
     );
   }

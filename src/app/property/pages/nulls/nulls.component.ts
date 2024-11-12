@@ -206,7 +206,7 @@ export class NullsComponent {
   }
 
   loadAgents(): void {
-    this.agentService.getAllAgents().subscribe({
+    this.agentService.getAllAgents('', 0, 1000000).subscribe({
       next: (data: DtoUserResponse[]) => {
         this.agentList = data;
         console.log(this.agentList);

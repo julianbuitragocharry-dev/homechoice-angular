@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DTOAgentResponse } from '../interfaces/agent/dto-agent-response';
@@ -14,8 +14,17 @@ export class AgentService {
 
   constructor(private http: HttpClient) {}
   
-  getAllAgents(): Observable<DtoUserResponse[]> {
-    return this.http.get<DtoUserResponse[]>(`${this.apiUrl}agents`);
+  getAllAgents(
+    nit: string,
+    page: number,
+    size: number
+  ): Observable<any> {
+    let params = new HttpParams()
+    .set('nit', nit)
+    .set('page', page.toString())
+    .set('size', size.toString());
+
+    return this.http.get<DtoUserResponse[]>(`${this.apiUrl}agents`, { params });
   }
 
   getAgentById(agentId: number): Observable<DTOAgentResponse> {
@@ -23,7 +32,7 @@ export class AgentService {
   }
 
   createAgent(agent: DtoAgent): Observable<DtoUserResponse> {
-    return this.http.post<DtoUserResponse>(`${this.apiUrl}agents/`, agent);
+    return this.http.post<DtoUserResponse>(`${this.apiUrl}agents`, agent);
   }
 
   updateAgent(id: number, agent: DtoAgent): Observable<any> {

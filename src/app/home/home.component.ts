@@ -8,6 +8,4 @@ import { RouterLink } from '@angular/router';
   imports: [RouterLink, HeaderComponent],
   templateUrl: './home.component.html'
 })
-export class HomeComponent {
-
-}
+export class HomeComponent {}
