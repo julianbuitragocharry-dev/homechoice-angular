@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AgentService } from '../../../service/agent.service';
 import { DtoAgent } from '../../../interfaces/agent/dto-agent';
@@ -19,6 +19,15 @@ export class EditAgentComponent {
   //#endregion
 
   //#region form
+  passwordValidator(): ValidatorFn {
+    return (control: AbstractControl) => {
+      const password = control.value;
+      if (!password) { return null; }
+      const valid = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[_\.]).{8,}$/.test(password);
+      return valid ? null : { passwordInvalid: true };
+    };
+  }
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -27,13 +36,13 @@ export class EditAgentComponent {
     private formBuilder: FormBuilder
   ) {
     this.agentForm = this.formBuilder.group({
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      phone: ['', [Validators.required]],
-      address: ['', [Validators.required]],
-      nit: ['', [Validators.required]],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      phone: ['', [Validators.required, Validators.pattern(/^3\d{2}\s\d{4}\s\d{3}$/)]],
+      address: ['', Validators.required],
+      nit: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['']
+      password: ['', this.passwordValidator()]
     });
   }
   //#endregion

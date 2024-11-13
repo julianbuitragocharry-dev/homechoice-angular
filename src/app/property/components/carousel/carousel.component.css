@@ -4,7 +4,30 @@
     margin: 0 auto;
     overflow: hidden;
     height: 400px;
-    min-height: 240px;
+}
+
+@media (max-width: 1024px) {
+    .carousel-container {
+        height: 360px;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-container {
+        height: 320px;
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel-container {
+        height: 280px;
+    }
+}
+
+@media (max-width: 400px) {
+    .carousel-container {
+        height: 240px;
+    }
 }
 
 .carousel-track {

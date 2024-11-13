@@ -16,7 +16,6 @@ import { ScrollTopComponent } from "../../../shared/components/scroll-top/scroll
     LucideAngularModule, 
     NgxPaginationModule, 
     ReactiveFormsModule, 
-    RouterLink, 
     ScrollTopComponent
   ],
   templateUrl: './list.component.html',
@@ -56,7 +55,7 @@ export class ListPropertiesComponent implements OnInit {
   //#endregion
 
   //#region form
-  // TODO: add validators
+  
   constructor(private propertyService: PropertyService, private fb: FormBuilder, private router: Router) {
     this.filterForm = this.fb.group({
       name: [''],

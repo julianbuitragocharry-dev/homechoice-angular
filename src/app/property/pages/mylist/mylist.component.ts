@@ -16,7 +16,6 @@ import { PropertyService } from '../../../service/property.service';
     LucideAngularModule,
     NgxPaginationModule,
     ReactiveFormsModule,
-    RouterLink,
     ScrollTopComponent
   ],
   templateUrl: './mylist.component.html',

@@ -52,7 +52,6 @@ export class PropertiesComponent implements OnInit {
   //#endregion
 
   //#region form
-  // TODO: add validators
   constructor(private propertyService: PropertyService, private fb: FormBuilder) {
     this.filterForm = this.fb.group({
       name: [''],

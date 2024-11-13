@@ -38,7 +38,7 @@ export class CreatePropertyComponent implements OnInit{
   //#endregion
 
   //#region form
-  // TODO: add validators
+
   constructor(
     private propertyService: PropertyService, 
     private formBuilder: FormBuilder,
@@ -49,8 +49,8 @@ export class CreatePropertyComponent implements OnInit{
       area: ['', Validators.required],
       price: ['', Validators.required],
       address: ['', Validators.required],
-      latitude: ['', Validators.required],
-      longitude: ['', Validators.required],
+      latitude: ['', [Validators.required, Validators.pattern(/^-?([1-8]?[1-9]|[1-9]0)\.{1}\d{1,6}/)]],
+      longitude: ['', [Validators.required, Validators.pattern(/^-?([1-8]?[1-9]|[1-9]0)\.{1}\d{1,6}/)]],
       status: [true, Validators.required],
       description: ['', Validators.required],
       concept: ['', Validators.required],
@@ -82,8 +82,7 @@ export class CreatePropertyComponent implements OnInit{
         longitude: this.propertyForm.value.longitude,
         status: this.propertyForm.value.status,
         description: this.propertyForm.value.description,
-        // TODO: get agent from session
-        agent: 1,
+        agent: 1, // fake id
         concept: this.propertyForm.value.concept,
         type: this.propertyForm.value.type,
         amenities: this.selectedAmenities

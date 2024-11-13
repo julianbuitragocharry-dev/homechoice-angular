@@ -18,7 +18,6 @@ import { AgentService } from '../../../service/agent.service';
     LucideAngularModule, 
     NgxPaginationModule, 
     ReactiveFormsModule, 
-    RouterLink,
     FormsModule,
     ScrollTopComponent
   ],
