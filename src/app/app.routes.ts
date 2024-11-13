@@ -16,6 +16,9 @@ import { EditUserComponent } from './user/pages/edit/edit.component';
 import { ListAgentsComponent } from './agent/pages/list/list.component';
 import { EditAgentComponent } from './agent/pages/edit/edit.component';
 import { CreateAgentComponent } from './agent/pages/create/create.component';
+import { NotfoundComponent } from './shared/pages/notfound/notfound.component';
+import { UnauthorizedComponent } from './shared/pages/unauthorized/unauthorized.component';
+import { CrashComponent } from './shared/pages/crash/crash.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -42,6 +45,7 @@ export const routes: Routes = [
             { path: 'create-agent', component: CreateAgentComponent}
         ]
     },
-    { path: 'unauthorized', component: HomeComponent },
-    { path: '**', redirectTo: 'home' }
+    { path: 'unauthorized', component: UnauthorizedComponent },
+    { path: 'crash', component: CrashComponent },
+    { path: '**', component: NotfoundComponent }
 ];
