@@ -6,72 +6,141 @@
 
     <form [formGroup]="agentForm" (ngSubmit)="onSubmit()" class="w-[90%] mx-auto mb-8 font-roboto">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <!-- firstName -->
-        <input 
-            type="text" 
-            formControlName="firstName" 
-            placeholder="Nombre" 
-            class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
-        />
+            
+            <!-- firstName -->
+            <div class="flex flex-col gap-1">
+                <input 
+                    type="text" 
+                    formControlName="firstName" 
+                    placeholder="Nombre" 
+                    class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
+                />
+                <span *ngIf="agentForm.get('firstName')?.invalid && (agentForm.get('firstName')?.dirty || agentForm.get('firstName')?.touched)" 
+                      class="text-red-500 text-sm">
+                    <span *ngIf="agentForm.get('firstName')?.errors?.['required']">
+                        El nombre es requerido.
+                    </span>
+                </span>
+            </div>
 
-        <!-- lastName -->
-        <input 
-            type="text" 
-            formControlName="lastName" 
-            placeholder="Apellido" 
-            class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
-        />
+            <!-- lastName -->
+            <div class="flex flex-col gap-1">
+                <input 
+                    type="text" 
+                    formControlName="lastName" 
+                    placeholder="Apellido" 
+                    class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
+                />
+                <span *ngIf="agentForm.get('lastName')?.invalid && (agentForm.get('lastName')?.dirty || agentForm.get('lastName')?.touched)" 
+                      class="text-red-500 text-sm">
+                    <span *ngIf="agentForm.get('lastName')?.errors?.['required']">
+                        El apellido es requerido.
+                    </span>
+                </span>
+            </div>
 
-        <!-- phone -->
-        <input 
-            type="text" 
-            formControlName="phone" 
-            placeholder="Teléfono" 
-            class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
-        />
+            <!-- phone -->
+            <div class="flex flex-col gap-1">
+                <input 
+                    type="text" 
+                    formControlName="phone" 
+                    placeholder="Teléfono (Ej: 300 1234 567)" 
+                    class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
+                />
+                <span *ngIf="agentForm.get('phone')?.invalid && (agentForm.get('phone')?.dirty || agentForm.get('phone')?.touched)" 
+                      class="text-red-500 text-sm">
+                    <span *ngIf="agentForm.get('phone')?.errors?.['required']">
+                        El teléfono es requerido.
+                    </span>
+                    <span *ngIf="agentForm.get('phone')?.errors?.['pattern']">
+                        El formato debe ser: 3XX XXXX XXX
+                    </span>
+                </span>
+            </div>
 
-        <!-- address -->
-        <input 
-            type="text" 
-            formControlName="address" 
-            placeholder="Dirección" 
-            class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
-        />
+            <!-- address -->
+            <div class="flex flex-col gap-1">
+                <input 
+                    type="text" 
+                    formControlName="address" 
+                    placeholder="Dirección" 
+                    class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
+                />
+                <span *ngIf="agentForm.get('address')?.invalid && (agentForm.get('address')?.dirty || agentForm.get('address')?.touched)" 
+                      class="text-red-500 text-sm">
+                    <span *ngIf="agentForm.get('address')?.errors?.['required']">
+                        La dirección es requerida.
+                    </span>
+                </span>
+            </div>
 
-        <!-- nit -->
-        <input 
-            type="text" 
-            formControlName="nit" 
-            placeholder="NIT" 
-            class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
-        />
+            <!-- nit -->
+            <div class="flex flex-col gap-1">
+                <input 
+                    type="text" 
+                    formControlName="nit" 
+                    placeholder="NIT" 
+                    class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
+                />
+                <span *ngIf="agentForm.get('nit')?.invalid && (agentForm.get('nit')?.dirty || agentForm.get('nit')?.touched)" 
+                      class="text-red-500 text-sm">
+                    <span *ngIf="agentForm.get('nit')?.errors?.['required']">
+                        El NIT es requerido.
+                    </span>
+                    <span *ngIf="agentForm.get('nit')?.errors?.['pattern']">
+                        El NIT debe contener solo números.
+                    </span>
+                </span>
+            </div>
 
-        <!-- email -->
-        <input 
-            type="email" 
-            formControlName="email" 
-            placeholder="Correo electrónico" 
-            class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
-        />
+            <!-- email -->
+            <div class="flex flex-col gap-1">
+                <input 
+                    type="email" 
+                    formControlName="email" 
+                    placeholder="Correo electrónico" 
+                    class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
+                />
+                <span *ngIf="agentForm.get('email')?.invalid && (agentForm.get('email')?.dirty || agentForm.get('email')?.touched)" 
+                      class="text-red-500 text-sm">
+                    <span *ngIf="agentForm.get('email')?.errors?.['required']">
+                        El correo electrónico es requerido.
+                    </span>
+                    <span *ngIf="agentForm.get('email')?.errors?.['email']">
+                        Formato de correo electrónico inválido.
+                    </span>
+                </span>
+            </div>
 
-        <!-- password -->
-        <input 
-            type="password" 
-            formControlName="password" 
-            placeholder="Contraseña" 
-            class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
-        />
+            <!-- password -->
+            <div class="flex flex-col gap-1">
+                <input 
+                    type="password" 
+                    formControlName="password" 
+                    placeholder="Contraseña" 
+                    class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
+                />
+                <span *ngIf="agentForm.get('password')?.invalid && (agentForm.get('password')?.dirty || agentForm.get('password')?.touched)" 
+                      class="text-red-500 text-sm">
+                    <span *ngIf="agentForm.get('password')?.errors?.['required']">
+                        La contraseña es requerida.
+                    </span>
+                    <span *ngIf="agentForm.get('password')?.errors?.['pattern']">
+                        La contraseña debe contener al menos: 8 caracteres, 1 mayúscula, 1 minúscula, 1 número y 1 carácter especial (_ o .).
+                    </span>
+                </span>
+            </div>
 
-        <!-- submit button -->
-        <div class="md:col-span-2 text-center mt-4">
-            <button 
-            type="submit" 
-            class="bg-blue-200 hover:bg-blue-300 rounded-md font-bold px-3 py-2 focus:outline-none cursor-pointer" 
-            [disabled]="agentForm.invalid"
-            >
-            Crear Agente
-            </button>
-        </div>
+            <!-- submit button -->
+            <div class="md:col-span-2 text-center mt-4">
+                <button 
+                    type="submit" 
+                    class="bg-blue-200 hover:bg-blue-300 rounded-md font-bold px-3 py-2 focus:outline-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" 
+                    [disabled]="agentForm.invalid"
+                >
+                    Crear Agente
+                </button>
+            </div>
         </div>
     </form>
 </div>

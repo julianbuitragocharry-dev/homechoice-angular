@@ -6,61 +6,127 @@
 
     <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="w-[90%] mx-auto mb-8 font-roboto">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            
             <!-- firstName -->
-            <input 
-                type="text" 
-                formControlName="firstName" 
-                placeholder="Nombre" 
-                class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
-            />
+            <div class="flex flex-col gap-1">
+                <input 
+                    type="text" 
+                    formControlName="firstName" 
+                    placeholder="Nombre" 
+                    class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
+                />
+                <span *ngIf="userForm.get('firstName')?.invalid && (userForm.get('firstName')?.dirty || userForm.get('firstName')?.touched)" 
+                      class="text-red-500 text-sm">
+                    <span *ngIf="userForm.get('firstName')?.errors?.['required']">
+                        El nombre es requerido.
+                    </span>
+                </span>
+            </div>
 
             <!-- lastName -->
-            <input 
-                type="text" 
-                formControlName="lastName" 
-                placeholder="Apellido" 
-                class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
-            />
+            <div class="flex flex-col gap-1">
+                <input 
+                    type="text" 
+                    formControlName="lastName" 
+                    placeholder="Apellido" 
+                    class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
+                />
+                <span *ngIf="userForm.get('lastName')?.invalid && (userForm.get('lastName')?.dirty || userForm.get('lastName')?.touched)" 
+                      class="text-red-500 text-sm">
+                    <span *ngIf="userForm.get('lastName')?.errors?.['required']">
+                        El apellido es requerido.
+                    </span>
+                </span>
+            </div>
 
             <!-- phone -->
-            <input 
-                type="text" 
-                formControlName="phone" 
-                placeholder="Teléfono" 
-                class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
-            />
+            <div class="flex flex-col gap-1">
+                <input 
+                    type="text" 
+                    formControlName="phone" 
+                    placeholder="Teléfono (Ej: 300 1234 567)" 
+                    class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
+                />
+                <span *ngIf="userForm.get('phone')?.invalid && (userForm.get('phone')?.dirty || userForm.get('phone')?.touched)" 
+                      class="text-red-500 text-sm">
+                    <span *ngIf="userForm.get('phone')?.errors?.['required']">
+                        El teléfono es requerido.
+                    </span>
+                    <span *ngIf="userForm.get('phone')?.errors?.['pattern']">
+                        El formato debe ser: 3XX XXXX XXX
+                    </span>
+                </span>
+            </div>
 
             <!-- address -->
-            <input 
-                type="text" 
-                formControlName="address" 
-                placeholder="Dirección" 
-                class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
-            />
+            <div class="flex flex-col gap-1">
+                <input 
+                    type="text" 
+                    formControlName="address" 
+                    placeholder="Dirección" 
+                    class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
+                />
+                <span *ngIf="userForm.get('address')?.invalid && (userForm.get('address')?.dirty || userForm.get('address')?.touched)" 
+                      class="text-red-500 text-sm">
+                    <span *ngIf="userForm.get('address')?.errors?.['required']">
+                        La dirección es requerida.
+                    </span>
+                </span>
+            </div>
 
             <!-- nit -->
-            <input 
-                type="text" 
-                formControlName="nit" 
-                placeholder="NIT" 
-                class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
-            />
+            <div class="flex flex-col gap-1">
+                <input 
+                    type="text" 
+                    formControlName="nit" 
+                    placeholder="NIT" 
+                    class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
+                />
+                <span *ngIf="userForm.get('nit')?.invalid && (userForm.get('nit')?.dirty || userForm.get('nit')?.touched)" 
+                      class="text-red-500 text-sm">
+                    <span *ngIf="userForm.get('nit')?.errors?.['required']">
+                        El NIT es requerido.
+                    </span>
+                    <span *ngIf="userForm.get('nit')?.errors?.['pattern']">
+                        El NIT debe contener solo números.
+                    </span>
+                </span>
+            </div>
 
             <!-- email -->
-            <input 
-                type="email" 
-                formControlName="email" 
-                placeholder="Correo electrónico" 
-                class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
-            />
+            <div class="flex flex-col gap-1">
+                <input 
+                    type="email" 
+                    formControlName="email" 
+                    placeholder="Correo electrónico" 
+                    class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
+                />
+                <span *ngIf="userForm.get('email')?.invalid && (userForm.get('email')?.dirty || userForm.get('email')?.touched)" 
+                      class="text-red-500 text-sm">
+                    <span *ngIf="userForm.get('email')?.errors?.['required']">
+                        El correo electrónico es requerido.
+                    </span>
+                    <span *ngIf="userForm.get('email')?.errors?.['email']">
+                        Formato de correo electrónico inválido.
+                    </span>
+                </span>
+            </div>
 
             <!-- password -->
-            <input 
-                type="password" 
-                formControlName="password" 
-                placeholder="Contraseña" 
-                class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
-            />
+            <div class="flex flex-col gap-1">
+                <input 
+                    type="password" 
+                    formControlName="password" 
+                    placeholder="Contraseña (opcional)" 
+                    class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
+                />
+                <span *ngIf="userForm.get('password')?.invalid && (userForm.get('password')?.dirty || userForm.get('password')?.touched)" 
+                      class="text-red-500 text-sm">
+                    <span *ngIf="userForm.get('password')?.errors?.['passwordInvalid']">
+                        Si ingresa una contraseña, debe contener al menos: 8 caracteres, 1 mayúscula, 1 minúscula, 1 número y 1 carácter especial (_ o .).
+                    </span>
+                </span>
+            </div>
 
             <!-- roles -->
             <div class="md:col-span-2">
@@ -69,7 +135,7 @@
                     <div class="form-check" *ngFor="let role of rolesList">
                         <input 
                             class="form-check-input" 
-                            type="checkbox" 
+                            type="checkbox"
                             [value]="role.rol" 
                             (change)="onRoleChange($event, role.rol)" 
                             [checked]="isRoleSelected(role.rol)" 
@@ -84,7 +150,7 @@
             <div class="md:col-span-2 text-center mt-4">
                 <button 
                     type="submit" 
-                    class="bg-blue-200 hover:bg-blue-300 rounded-md font-bold px-3 py-2 focus:outline-none cursor-pointer" 
+                    class="bg-blue-200 hover:bg-blue-300 rounded-md font-bold px-6 py-2 focus:outline-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" 
                     [disabled]="userForm.invalid"
                 >
                     Guardar Cambios
