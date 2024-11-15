@@ -28,7 +28,6 @@ export class EditPropertyComponent {
   //#endregion
 
   //#region form
-  // TODO: add validators
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -54,6 +53,7 @@ export class EditPropertyComponent {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id')!;
+      
       if (id) {
         this.propertyId = +id;
         this.fetchProperty(this.propertyId);
@@ -96,23 +96,22 @@ export class EditPropertyComponent {
         amenities: this.selectedAmenities
       };
 
-      this.propertyService.updateProperty(this.propertyId, updatedProperty).subscribe(
-        (response) => {
-          console.log('Propiedad actualizada exitosamente', response);
-          this.router.navigate([`/dashboard`]);
+      this.propertyService.updateProperty(this.propertyId, updatedProperty).subscribe({
+        next: () => {
+          this.router.navigate(['/dashboard']);
         },
-        (error) => {
-          console.error('Error al actualizar la propiedad', error);
+        error: () => {
+          this.router.navigate(['/crash']);
         }
-      );
+      });
     }
   }
   //#endregion
 
   //#region api calls
   fetchProperty(id: number): void {
-    this.propertyService.getPropertyById(id).subscribe(
-      (data) => {
+    this.propertyService.getPropertyById(id).subscribe({
+      next: (data) => {
         this.propertyForm.patchValue({
           name: data.name,
           area: data.area,
@@ -125,36 +124,46 @@ export class EditPropertyComponent {
           concept: data.concept,
           type: data.type
         });
+        
         this.selectedAmenities = data.amenities;
         this.loadConceptList();
         this.loadTypeList();
         this.loadAmenitiesList();
       }
-    );
+    });
   }
 
   loadConceptList(): void {
-    this.propertyService.getPropertyConcept().subscribe(
-      (data) => {
+    this.propertyService.getPropertyConcept().subscribe({
+      next: (data) => {
         this.conceptList = data;
+      },
+      error: (error) => {
+        console.error('Error fetching concept list:', error);
       }
-    );
+    });
   }
 
   loadTypeList(): void {
-    this.propertyService.getPropertyType().subscribe(
-      (data) => {
+    this.propertyService.getPropertyType().subscribe({
+      next: (data) => {
         this.typeList = data;
+      },
+      error: (error) => {
+        console.error('Error fetching type list:', error);
       }
-    );
+    });
   }
 
   loadAmenitiesList(): void {
-    this.propertyService.getPropertyAmenities().subscribe(
-      (data) => {
+    this.propertyService.getPropertyAmenities().subscribe({
+      next: (data) => {
         this.amenitiesList = data;
+      },
+      error: (error) => {
+        console.error('Error fetching amenities list:', error);
       }
-    );
+    });
   }
   //#endregion
 }

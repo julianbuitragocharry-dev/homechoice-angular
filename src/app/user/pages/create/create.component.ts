@@ -65,7 +65,7 @@ export class CreateUserComponent {
   onSubmit(): void {
     if (this.userForm.valid) {
       const newUser: DtoUser = {
-        id: 1, // El id no se usa en la creación
+        id: 1, // id unused
         firstName: this.userForm.value.firstName,
         lastName: this.userForm.value.lastName,
         phone: this.userForm.value.phone,
@@ -76,30 +76,28 @@ export class CreateUserComponent {
         roles: this.selectedRoles
       };
 
-      this.userService.createUser(newUser).subscribe(
-        (response) => {
-          console.log('Usuario creado exitosamente', response);
+      this.userService.createUser(newUser).subscribe({
+        next: () => {
           this.router.navigate(['/dashboard']);
         },
-        (error) => {
-          console.error('Error al crear el usuario', error);
+        error: () => {
+          this.router.navigate(['/crash']);
         }
-      );
+      });
     }
   }
   //#endregion
 
   //#region api calls
   loadRolesList(): void {
-    this.userService.getRoles().subscribe(
-      (data) => {
-        console.log(data);
+    this.userService.getRoles().subscribe({
+      next: (data) => {
         this.rolesList = data;
       },
-      (error) => {
+      error: (error) => {
         console.error('Error fetching roles list:', error);
       }
-    );
+    });
   }
   //#endregion
 }

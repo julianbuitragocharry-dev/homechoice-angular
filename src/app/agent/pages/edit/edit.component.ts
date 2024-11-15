@@ -71,23 +71,22 @@ export class EditAgentComponent {
         password: this.agentForm.value.password
       };
 
-      this.agentService.updateAgent(this.agentId, updatedAgent).subscribe(
-        (response) => {
-          console.log('Agente actualizado exitosamente', response);
+      this.agentService.updateAgent(this.agentId, updatedAgent).subscribe({
+        next: () => {
           this.router.navigate(['/dashboard']);
         },
-        (error) => {
-          console.error('Error al actualizar el agente', error);
+        error: () => {
+          this.router.navigate(['/crash']);
         }
-      );
+      });
     }
   }
   //#endregion
 
   //#region api calls
   loadAgent(id: number): void {
-    this.userService.getUserById(id).subscribe(
-      (data) => {
+    this.userService.getUserById(id).subscribe({
+      next: (data) => {
         this.agentForm.patchValue({
           firstName: data.firstName,
           lastName: data.lastName,
@@ -96,8 +95,11 @@ export class EditAgentComponent {
           nit: data.nit,
           email: data.email
         });
+      },
+      error: () => {
+        this.router.navigate(['/crash']);
       }
-    );
+    });
   }
   //#endregion
 }

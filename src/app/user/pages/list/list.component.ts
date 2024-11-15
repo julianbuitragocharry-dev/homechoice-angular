@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DtoUserResponse } from '../../../interfaces/user/dto-user-response';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from '../../../service/user.service';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { LucideAngularModule, Pencil, Trash2 } from 'lucide-angular';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -15,8 +15,7 @@ import { ScrollTopComponent } from '../../../shared/components/scroll-top/scroll
     CommonModule, 
     LucideAngularModule, 
     NgxPaginationModule, 
-    ReactiveFormsModule, 
-    RouterLink, 
+    ReactiveFormsModule,
     ScrollTopComponent
   ],
   templateUrl: './list.component.html',
@@ -91,8 +90,7 @@ export class ListUsersComponent implements OnInit {
           this.closeModal();
           this.loadUsers();
         },
-        error: (error) => {
-          console.error('Error deleting user:', error);
+        error: () => {
           this.closeModal();
         }
       });
@@ -106,16 +104,16 @@ export class ListUsersComponent implements OnInit {
       this.filters.nit,
       this.pageValue - 1,
       this.sizeValue
-    ).subscribe(
-      (data) => {
+    ).subscribe({
+      next: (data) => {
         this.users = data.content;
         this.pageValue = data.pageable.pageNumber + 1;
         this.totalData = data.totalElements;
       },
-      (error) => {
-        console.error('Error fetching properties:', error);
+      error: () => {
+        this.router.navigate(['/crash']);
       }
-    );
+    });
   }
   //#endregion
 }

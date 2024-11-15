@@ -1,10 +1,10 @@
-import { CanActivateFn, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { CanActivateFn, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { inject } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { AuthService } from '../auth.service';
 
-export const roleGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> => {
+export const roleGuard: CanActivateFn = (route: ActivatedRouteSnapshot): Observable<boolean> => {
   const authService = inject(AuthService);
   const router = inject(Router);
   const expectedRoles = route.data['roles'] as string[];

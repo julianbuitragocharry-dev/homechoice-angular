@@ -71,6 +71,7 @@ export class EditUserComponent {
         return;
     }
     }
+    
     this.userForm.patchValue({
       roles: this.selectedRoles
     });
@@ -94,23 +95,22 @@ export class EditUserComponent {
         roles: this.selectedRoles
       };
 
-      this.userService.updateUser(this.userId, updatedUser).subscribe(
-        (response) => {
-          console.log('Usuario actualizado exitosamente', response);
+      this.userService.updateUser(this.userId, updatedUser).subscribe({
+        next: () => {
           this.router.navigate(['/dashboard']);
         },
-        (error) => {
-          console.error('Error al actualizar el usuario', error);
+        error: () => {
+          this.router.navigate(['/crash']); 
         }
-      );
+      });
     }
   }
   //#endregion
 
   //#region api calls
   loadUser(id: number): void {
-    this.userService.getUserById(id).subscribe(
-      (data) => {
+    this.userService.getUserById(id).subscribe({
+      next: (data) => {
         this.userForm.patchValue({
           firstName: data.firstName,
           lastName: data.lastName,
@@ -120,21 +120,24 @@ export class EditUserComponent {
           email: data.email,
           roles: data.roles
         });
+        
         this.selectedRoles = data.roles;
+      },
+      error: () => {
+        this.router.navigate(['/crash']);
       }
-    );
+    });
   }
 
   loadRolesList(): void {
-    this.userService.getRoles().subscribe(
-      (data) => {
-        console.log(data);
+    this.userService.getRoles().subscribe({
+      next: (data) => {
         this.rolesList = data;
       },
-      (error) => {
+      error: (error) => {
         console.error('Error fetching concept list:', error);
       }
-    );
+    });
   }
   //#endregion
 }

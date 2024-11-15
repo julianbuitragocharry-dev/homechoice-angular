@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { LucideAngularModule, Search, Trash2, UserPen } from 'lucide-angular';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ScrollTopComponent } from '../../../shared/components/scroll-top/scroll-top.component';
@@ -121,13 +121,12 @@ export class NullsComponent {
         next: () => {
           this.loadProperties();
           this.closeChangeAgentModal();
-          console.log('Agent updated successfully');
         },
-        error: (error) => {
-          console.error('Error updating agent:', error);
+        error: () => {
           this.closeChangeAgentModal();
         }
       });
+      this.closeModal();
     }
   }
 
@@ -150,10 +149,10 @@ export class NullsComponent {
           this.loadProperties();
         },
         error: (error) => {
-          console.error('Error deleting property:', error);
           this.closeModal();
         }
       });
+      this.closeModal();
     }
   }
   //#endregion
@@ -176,8 +175,8 @@ export class NullsComponent {
         this.sizeValue = data.pageable.pageSize;
         this.totalData = data.totalElements;
       },
-      error: (error) => {
-        console.error('Error fetching properties:', error);
+      error: () => {
+        this.router.navigate(['/crash']);
       }
     });
   }

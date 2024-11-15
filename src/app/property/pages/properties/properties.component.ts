@@ -8,6 +8,7 @@ import { LucideAngularModule, Search } from 'lucide-angular';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ScrollTopComponent } from "../../../shared/components/scroll-top/scroll-top.component";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-properties',
@@ -52,7 +53,7 @@ export class PropertiesComponent implements OnInit {
   //#endregion
 
   //#region form
-  constructor(private propertyService: PropertyService, private fb: FormBuilder) {
+  constructor(private propertyService: PropertyService, private fb: FormBuilder, private router: Router) {
     this.filterForm = this.fb.group({
       name: [''],
       status: [''],
@@ -100,17 +101,17 @@ export class PropertiesComponent implements OnInit {
       this.filters.concept,
       this.pageValue - 1,
       this.sizeValue
-    ).subscribe(
-      (data) => {
+    ).subscribe({
+      next: (data) => {
         this.properties = data.content;
         this.pageValue = data.pageable.pageNumber + 1;
         this.sizeValue = data.pageable.pageSize;
         this.totalData = data.totalElements;
       },
-      (error) => {
-        console.error('Error fetching properties:', error);
+      error: () => {
+        this.router.navigate(['/crash']);
       }
-    );
+    });
   }
   
   loadConceptList(): void {

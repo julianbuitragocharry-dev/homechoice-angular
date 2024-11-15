@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PropertyService } from '../../../service/property.service';
 import { AgentService } from '../../../service/agent.service';
 import { DtoProperty } from '../../../interfaces/property/dto-property';
@@ -24,6 +24,7 @@ export class DetailsComponent implements OnInit {
   //#endregion
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private propertyService: PropertyService,
     private agentService: AgentService,
@@ -43,21 +44,24 @@ export class DetailsComponent implements OnInit {
 
   //#region api calls
   loadProperty(id: number): void {
-    this.propertyService.getPropertyById(id).subscribe(
-      (data: DtoProperty) => {
+    this.propertyService.getPropertyById(id).subscribe({
+      next: (data: DtoProperty) => {
         this.property = data;
         this.initializeMap();
         this.loadAgent(this.property.agent);
+      },
+      error: () => {
+        this.router.navigate(['/404']);
       }
-    );
+    });
   }
 
   loadAgent(agentId: number): void {
-    this.agentService.getAgentById(agentId).subscribe(
-      (data) => {
+    this.agentService.getAgentById(agentId).subscribe({
+      next: (data) => {
         this.agent = data;
       }
-    );
+    });
   }
   //#endregion
 

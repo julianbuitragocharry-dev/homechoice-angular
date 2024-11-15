@@ -90,7 +90,6 @@ export class CreatePropertyComponent implements OnInit{
       formData.append('data', new Blob([JSON.stringify(data)], {
         type: 'application/json'
       }));
-      console.log(data);
 
       // images files
       this.images.forEach((file) => {
@@ -98,17 +97,14 @@ export class CreatePropertyComponent implements OnInit{
         formData.append('images', file, file.name);
       });
 
-      console.log(formData);
-
-      this.propertyService.saveProperty(formData).subscribe(
-        (response) => {
-          console.log('Propiedad guardada exitosamente', response);
-          this.router.navigate([`/dashboard`]);
+      this.propertyService.saveProperty(formData).subscribe({
+        next: () => {
+          this.router.navigate(['/dashboard']);
         },
-        (error) => {
-          console.error('Error al guardar la propiedad', error);
+        error: () => {
+          this.router.navigate(['/crash']);
         }
-      );
+      });
     }
   }
 
@@ -134,36 +130,36 @@ export class CreatePropertyComponent implements OnInit{
 
   //#region api calls
   loadAmenitiesList(): void {
-    this.propertyService.getPropertyAmenities().subscribe(
-      (data: any[]) => {
+    this.propertyService.getPropertyAmenities().subscribe({
+      next: (data) => {
         this.amenitiesList = data;
       },
-      (error) => {
+      error: (error) => {
         console.error('Error fetching amenities list:', error);
       }
-    );
+    });
   }
 
   loadConceptList(): void {
-    this.propertyService.getPropertyConcept().subscribe(
-      (data: any[]) => {
+    this.propertyService.getPropertyConcept().subscribe({
+      next: (data) => {
         this.conceptList = data;
       },
-      (error) => {
+      error: (error) => {
         console.error('Error fetching concept list:', error);
       }
-    );
+    });
   }
 
   loadTypeList(): void {
-    this.propertyService.getPropertyType().subscribe(
-      (data: any[]) => {
+    this.propertyService.getPropertyType().subscribe({
+      next: (data) => {
         this.typeList = data;
       },
-      (error) => {
+      error: (error) => {
         console.error('Error fetching type list:', error);
       }
-    );
+    });
   }
   //#endregion
 }

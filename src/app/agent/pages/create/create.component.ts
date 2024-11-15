@@ -33,7 +33,7 @@ export class CreateAgentComponent {
   onSubmit(): void {
     if (this.agentForm.valid) {
       const newAgent: DtoAgent = {
-        id: 1, // El id no se usa en la creación
+        id: 1, // id unused
         firstName: this.agentForm.value.firstName,
         lastName: this.agentForm.value.lastName,
         phone: this.agentForm.value.phone,
@@ -43,15 +43,14 @@ export class CreateAgentComponent {
         password: this.agentForm.value.password
       };
 
-      this.agentService.createAgent(newAgent).subscribe(
-        (response) => {
-          console.log('Agente creado exitosamente', response);
+      this.agentService.createAgent(newAgent).subscribe({
+        next: () => {
           this.router.navigate(['/dashboard']);
         },
-        (error) => {
-          console.error('Error al crear el agente', error);
+        error: () => {
+          this.router.navigate(['/crash']);
         }
-      );
+      });
     }
   }
 }

@@ -41,9 +41,9 @@ export class AuthService {
     if (error.status === 0) {
       console.error('An error occurred:', error.error);
     } else {
-      console.error("Backend retornó el código de estado ", error)
+      console.error("The backend returned a status code: ", error)
     }
-    return throwError(() => new Error('Something bad happened; please try again later.'));
+    return throwError(() => new Error('An unexpected error has occurred. Please try again later.'));
   }
 
   getUserData():Observable<String> {

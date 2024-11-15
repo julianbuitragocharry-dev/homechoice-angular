@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { Eye, LucideAngularModule, Pencil, Search, Trash2 } from 'lucide-angular';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ScrollTopComponent } from '../../../shared/components/scroll-top/scroll-top.component';
@@ -122,11 +122,11 @@ export class MylistComponent {
           this.closeModal();
           this.loadProperties();
         },
-        error: (error) => {
-          console.error('Error deleting property:', error);
+        error: () => {
           this.closeModal();
         }
       });
+      this.closeModal();
     }
   }
   //#endregion
@@ -149,15 +149,15 @@ export class MylistComponent {
         this.sizeValue = data.pageable.pageSize;
         this.totalData = data.totalElements;
       },
-      error: (error) => {
-        console.error('Error fetching properties:', error);
+      error: () => {
+        this.router.navigate(['/crash']);
       }
     });
   }
   
   loadConceptList(): void {
     this.propertyService.getPropertyConcept().subscribe({
-      next: (data: any[]) => {
+      next: (data) => {
         this.conceptList = data;
       },
       error: (error) => {
@@ -168,7 +168,7 @@ export class MylistComponent {
 
   loadTypeList(): void {
     this.propertyService.getPropertyType().subscribe({
-      next: (data: any[]) => {
+      next: (data) => {
         this.typeList = data;
       },
       error: (error) => {

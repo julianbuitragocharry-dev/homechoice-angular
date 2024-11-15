@@ -1,12 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { LucideAngularModule, Pencil, Trash2 } from 'lucide-angular';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ScrollTopComponent } from '../../../shared/components/scroll-top/scroll-top.component';
 import { AgentService } from '../../../service/agent.service';
-import { DTOAgentResponse } from '../../../interfaces/agent/dto-agent-response';
 import { DtoUserResponse } from '../../../interfaces/user/dto-user-response';
 
 @Component({
@@ -17,7 +16,6 @@ import { DtoUserResponse } from '../../../interfaces/user/dto-user-response';
     LucideAngularModule, 
     NgxPaginationModule, 
     ReactiveFormsModule, 
-    RouterLink, 
     ScrollTopComponent
   ],
   templateUrl: './list.component.html',
@@ -92,8 +90,7 @@ export class ListAgentsComponent implements OnInit {
           this.closeModal();
           this.loadAgents();
         },
-        error: (error) => {
-          console.error('Error deleting agent:', error);
+        error: () => {
           this.closeModal();
         }
       });
@@ -107,17 +104,16 @@ export class ListAgentsComponent implements OnInit {
       this.filters.nit,
       this.pageValue - 1,
       this.sizeValue
-    ).subscribe(
-      (data) => {
-        console.log(data);
+    ).subscribe({
+      next: (data) => {
         this.agents = data.content;
         this.pageValue = data.pageable.pageNumber + 1;
         this.totalData = data.length;
       },
-      (error) => {
-        console.error('Error fetching agents:', error);
+      error: () => {
+        this.router.navigate(['/crash']);
       }
-    );
+    });
   }
   //#endregion
 }

@@ -5,7 +5,7 @@ import { Eye, LucideAngularModule, Pencil, Search, Trash2 } from 'lucide-angular
 import { PropertyService } from '../../../service/property.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { ScrollTopComponent } from "../../../shared/components/scroll-top/scroll-top.component";
 
 @Component({
@@ -55,7 +55,6 @@ export class ListPropertiesComponent implements OnInit {
   //#endregion
 
   //#region form
-  
   constructor(private propertyService: PropertyService, private fb: FormBuilder, private router: Router) {
     this.filterForm = this.fb.group({
       name: [''],
@@ -113,17 +112,16 @@ export class ListPropertiesComponent implements OnInit {
   
   deleteProperty(): void {
     if (this.propertyToDelete) {
-      this.propertyService.deleteProperty(this.propertyToDelete).subscribe(
-        () => {
+      this.propertyService.deleteProperty(this.propertyToDelete).subscribe({
+        next: () => {
           this.properties = this.properties.filter(p => p.id !== this.propertyToDelete);
           this.closeModal();
           this.loadProperties();
         },
-        (error) => {
-          console.error('Error deleting property:', error);
+        error: () => {
           this.closeModal();
         }
-      );
+      });
       this.closeModal();
     }
   }
@@ -140,39 +138,39 @@ export class ListPropertiesComponent implements OnInit {
       this.filters.concept,
       this.pageValue - 1,
       this.sizeValue
-    ).subscribe(
-      (data) => {
+    ).subscribe({
+      next: (data) => {
         this.properties = data.content;
         this.pageValue = data.pageable.pageNumber + 1;
         this.sizeValue = data.pageable.pageSize;
         this.totalData = data.totalElements;
       },
-      (error) => {
-        console.error('Error fetching properties:', error);
+      error: () => {
+        this.router.navigate(['/crash']);
       }
-    );
+    });
   }
   
   loadConceptList(): void {
-    this.propertyService.getPropertyConcept().subscribe(
-      (data: any[]) => {
+    this.propertyService.getPropertyConcept().subscribe({
+      next: (data) => {
         this.conceptList = data;
       },
-      (error) => {
+      error: (error) => {
         console.error('Error fetching concept list:', error);
       }
-    );
+    });
   }
 
   loadTypeList(): void {
-    this.propertyService.getPropertyType().subscribe(
-      (data: any[]) => {
+    this.propertyService.getPropertyType().subscribe({
+      next: (data) => {
         this.typeList = data;
       },
-      (error) => {
+      error: (error) => {
         console.error('Error fetching type list:', error);
       }
-    );
+    });
   }
   //#endregion
 }

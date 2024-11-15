@@ -21,9 +21,7 @@ export class HasRoleDirective {
   ngOnInit() {
     this.subscription = this.authService.getRoles().subscribe(userRoles => {
       const hasRole = this.roles.some(role => userRoles.includes(role));
-      console.log('hasRole', hasRole);
-      console.log(this.templateRef);
-
+      
       if (hasRole && !this.hasView) {
         this.viewContainer.clear();
         this.viewContainer.createEmbeddedView(this.templateRef);
