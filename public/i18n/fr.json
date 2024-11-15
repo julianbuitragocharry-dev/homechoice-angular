@@ -1,0 +1,25 @@
+{
+    "home": {
+        "title": "HomeChoice trouvez votre maison idéale avec nous",
+        "quote": "Nous connectons des personnes avec des propriétés uniques pour chaque style de vie. La meilleure agence immobilière de Neiva, Huila.",
+        "button": "Explorer les propriétés",
+        "alt": "Intérieur de maison",
+        "about-us": {
+            "mission": {
+                "title": "Mission",
+                "description": "Aider chaque client à trouver la propriété qui correspond le mieux à ses besoins, en leur offrant une expérience personnalisée et efficace dans leur recherche du domicile idéal."
+            },
+            "vision": {
+                "title": "Vision",
+                "description": "Être l'entreprise immobilière leader sur le marché, reconnue pour son innovation, son service exceptionnel et son engagement à aider les gens à trouver des propriétés."
+            },
+            "values": {
+                "title": "Valeurs",
+                "description": "Intégrité, engagement envers la satisfaction du client, innovation constante et travail d'équipe, toujours axés sur la confiance et les résultats solides."
+            }
+        }
+    },
+    "header": {
+        "button": "Entrer"
+    }
+}

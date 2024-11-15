@@ -1,0 +1,58 @@
+{
+    "home": {
+        "title": "HomeChoice encuentra tu hogar ideal con nosotros",
+        "quote": "Conectamos personas con propiedades únicas para cada estilo de vida. La mejor inmobiliaria de Neiva, Huila.",
+        "button": "Explorar inmuebles",
+        "alt": "Interior de Hogar",
+        "about-us": {
+            "mission": {
+                "title": "Misión",
+                "description": "Ayudar a cada cliente a encontrar la propiedad que mejor se adapte a sus necesidades, ofreciéndoles una experiencia personalizada y eficiente en su búsqueda del hogar ideal."
+            },
+            "vision": {
+                "title": "Visión",
+                "description": "Ser la empresa inmobiliaria líder en el mercado, reconocida por su innovación, servicio excepcional y compromiso con ayudar a las personas a encontrar propiedades."
+            },
+            "values": {
+                "title": "Valores",
+                "description": "Integridad, compromiso con la satisfacción del cliente, innovación constante, y trabajo en equipo, siempre enfocados en generar confianza y resultados sólidos."
+            }
+        }   
+    },
+    "header": {
+        "button": "Ingresar"
+    },
+    "login": {
+        "title": "Iniciar Sesión",
+        "email": {
+            "label": "Email*",
+            "required": "Por favor ingrese su email.",
+            "invalid": "Email inválido."
+        },
+        "password": {
+            "label": "Password*",
+            "required": "Por favor ingrese su contraseña.",
+            "invalid": "La contraseña debe tener al menos 8 caracteres."
+        },
+        "next": "Ingresar",
+        "back": "Inicio"
+    },
+    "notfound": {
+        "title": "404",
+        "description": "Página no encontrada",
+        "text": "Lo sentimos, la página que buscas no existe.",
+        "button": "Volver al inicio"
+    },
+    "unauthorized": {
+        "title": "403",
+        "description": "Acceso no autorizado",
+        "text": "Lo sentimos, no tienes permiso para acceder a esta página.",
+        "button": "Volver al inicio"
+    },
+    "crash": {
+        "title": "500",
+        "description": "Error del servidor",
+        "text": "Lo sentimos, algo salió mal. Por favor, inténtalo de nuevo más tarde.",
+        "button": "Volver al inicio"
+    }
+}

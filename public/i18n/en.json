@@ -1,0 +1,25 @@
+{
+    "home": {
+        "title": "HomeChoice find your ideal home with us",
+        "quote": "We connect people with unique properties for every lifestyle. The best real estate agency in Neiva, Huila.",
+        "button": "Explore properties",
+        "alt": "Home Interior",
+        "about-us": {
+            "mission": {
+                "title": "Mission",
+                "description": "To help each client find the property that best suits their needs, offering them a personalized and efficient experience in their search for the ideal home."
+            },
+            "vision": {
+                "title": "Vision",
+                "description": "To be the leading real estate company in the market, recognized for innovation, exceptional service, and commitment to helping people find properties."
+            },
+            "values": {
+                "title": "Values",
+                "description": "Integrity, commitment to customer satisfaction, constant innovation, and teamwork, always focused on building trust and achieving solid results."
+            }
+        }
+    },
+    "header": {
+        "button": "Login"
+    }
+}  
