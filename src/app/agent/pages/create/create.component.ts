@@ -4,11 +4,12 @@ import { Router } from '@angular/router';
 import { AgentService } from '../../../service/agent.service';
 import { DtoAgent } from '../../../interfaces/agent/dto-agent';
 import { CommonModule } from '@angular/common';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslateModule],
   templateUrl: './create.component.html'
 })
 export class CreateAgentComponent {
@@ -17,8 +18,14 @@ export class CreateAgentComponent {
   constructor(
     private router: Router,
     private agentService: AgentService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private translateService: TranslateService
   ) {
+    const userLang = navigator.language || 'es';
+    const languageCode = userLang.split('-')[0];
+    this.translateService.setDefaultLang(languageCode);
+    this.translateService.use(languageCode);
+
     this.agentForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],

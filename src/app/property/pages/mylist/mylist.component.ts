@@ -7,6 +7,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ScrollTopComponent } from '../../../shared/components/scroll-top/scroll-top.component';
 import { DtoProperty } from '../../../interfaces/property/dto-property';
 import { PropertyService } from '../../../service/property.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-mylist',
@@ -16,7 +17,8 @@ import { PropertyService } from '../../../service/property.service';
     LucideAngularModule,
     NgxPaginationModule,
     ReactiveFormsModule,
-    ScrollTopComponent
+    ScrollTopComponent,
+    TranslateModule
   ],
   templateUrl: './mylist.component.html',
   styleUrl: '../../../shared/styles/pagination.css'
@@ -58,8 +60,14 @@ export class MylistComponent {
   constructor(
     private propertyService: PropertyService, 
     private fb: FormBuilder, 
-    private router: Router
+    private router: Router,
+    private translateService: TranslateService
   ) {
+    const userLang = navigator.language || 'es';
+    const languageCode = userLang.split('-')[0];
+    this.translateService.setDefaultLang(languageCode);
+    this.translateService.use(languageCode);
+
     this.filterForm = this.fb.group({
       name: [''],
       status: [''],

@@ -1,7 +1,9 @@
 <header class="bg-blue-950 text-blue-100 font-roboto text-sm px-5 md:px-24 py-2 md:py-3">
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
-            <img class="h-[90px] object-cover object-center" src="img/banner_white.png" alt="Banner HomeChoice">
+            <a routerLink="/dashboard/hello">
+                <img class="h-[90px] object-cover object-center" src="img/banner_white.png" alt="Banner HomeChoice">
+            </a>
 
             <div class="flex items-center">
                 <div class="hidden md:block">
@@ -10,62 +12,62 @@
                             <a routerLink="my-properties" 
                                 routerLinkActive="bg-blue-700"
                                 class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
-                                Mis Inmuebles
+                                {{ "navbar.my-properties" | translate }}
                             </a>
                         </li>
                         <li *hasRole="['SUPER_ADMIN', 'ADMIN']">
                             <a routerLink="properties" 
                                 routerLinkActive="bg-blue-700"
                                 class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
-                                Inmuebles
+                                {{ "navbar.properties" | translate }}
                             </a>
                         </li>
                         <li *hasRole="['AGENT']">
                             <a routerLink="create-property" 
                                 routerLinkActive="bg-blue-700"
                                 class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
-                                Crear Inmueble
+                                {{ "navbar.create-property" | translate }}
                             </a>
                         </li>
                         <li *hasRole="['SUPER_ADMIN', 'ADMIN']">
                             <a routerLink="frozen-properties" 
                                 routerLinkActive="bg-blue-700"
                                 class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
-                                Inmuebles Congelados
+                                {{ "navbar.frozen-properties" | translate }}
                             </a>
                         </li>
                         <li *hasRole="['SUPER_ADMIN']">
                             <a routerLink="users" 
                                 routerLinkActive="bg-blue-700"
                                 class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
-                                Usuarios
+                                {{ "navbar.users" | translate }}
                             </a>
                         </li>
                         <li *hasRole="['SUPER_ADMIN']">
                             <a routerLink="create-user" 
                                 routerLinkActive="bg-blue-700"
                                 class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
-                                Crear Usuario
+                                {{ "navbar.create-user" | translate }}
                             </a>
                         </li>
                         <li *hasRole="['ADMIN']" >
                             <a routerLink="agents" 
                                 routerLinkActive="bg-blue-700"
                                 class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
-                                Agentes
+                                {{ "navbar.agents" | translate }}
                             </a>
                         </li>
                         <li *hasRole="['ADMIN']">
                             <a routerLink="create-agent" 
                                 routerLinkActive="bg-blue-700"
                                 class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium">
-                                Crear Agente
+                                {{ "navbar.create-agent" | translate }}
                             </a>
                         </li>
                         <li>
                             <a (click)="logout()" 
                                 class="hover:bg-blue-600 px-3 py-2 rounded-md font-medium cursor-pointer">
-                                Logout
+                                {{ "navbar.logout" | translate }}
                             </a>
                         </li>
                     </ul>
@@ -96,7 +98,7 @@
                 routerLink="my-properties"
                 routerLinkActive="bg-blue-700"
                 class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
-                    Mis inmuebles
+                    {{ "navbar.my-properties" | translate }}
                 </a>
             </li>
             <li *hasRole="['SUPER_ADMIN', 'ADMIN']">
@@ -104,7 +106,7 @@
                 routerLink="properties"
                 routerLinkActive="bg-blue-700"
                 class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
-                    Inmuebles
+                    {{ "navbar.properties" | translate }}
                 </a>
             </li>
             <li *hasRole="['AGENT']">
@@ -112,7 +114,7 @@
                 routerLink="create-property"
                 routerLinkActive="bg-blue-700"
                 class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
-                    Crear Inmueble
+                    {{ "navbar.create-property" | translate }}
                 </a>
             </li>
             <li *hasRole="['SUPER_ADMIN', 'ADMIN']">
@@ -120,7 +122,7 @@
                 routerLink="frozen-properties"
                 routerLinkActive="bg-blue-700"
                 class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
-                    Inmuebles Congelados
+                    {{ "navbar.fronzen-properties" | translate }}
                 </a>
             </li>
             <li *hasRole="['SUPER_ADMIN']">
@@ -128,7 +130,7 @@
                 routerLink="users"
                 routerLinkActive="bg-blue-700"
                 class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
-                    Usuarios
+                    {{ "navbar.users" | translate }}
                 </a>
             </li>
             <li *hasRole="['SUPER_ADMIN']">
@@ -136,7 +138,7 @@
                 routerLink="create-user"
                 routerLinkActive="bg-blue-700"
                 class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
-                    Crear Usuario
+                    {{ "navbar.create-user" | translate }}
                 </a>
             </li>
             <li *hasRole="['ADMIN']">
@@ -144,7 +146,7 @@
                 routerLink="agents"
                 routerLinkActive="bg-blue-700"
                 class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
-                    Agentes
+                    {{ "navbar.agents" | translate }}
                 </a>
             </li>
             <li *hasRole="['ADMIN']">
@@ -152,13 +154,13 @@
                 routerLink="create-agent"
                 routerLinkActive="bg-blue-700"
                 class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
-                    Crear Agente
+                    {{ "navbar.create-agent" | translate }}
                 </a>
             </li>
             <li>
                 <a (click)="logout()"
                 class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium cursor-pointer">
-                    Logout
+                    {{ "navbar.logout" | translate }}
                 </a>
             </li>
         </ul>

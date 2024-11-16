@@ -1,5 +1,5 @@
 <div class="flex flex-col mx-auto justify-center h-screen font-roboto w-72 md:w-[420px]">
-  <h1 class="text-2xl md:text-4xl font-bold text-center mb-6">Iniciar Sesión</h1>
+  <h1 class="text-2xl md:text-4xl font-bold text-center mb-6">{{ "login.title" | translate }}</h1>
 
   <form
     [formGroup]="loginForm"
@@ -7,7 +7,7 @@
     class="flex flex-col gap-4 text-sm md:text-base"
   >
     <!-- email -->
-    <label class="text-sm md:text-base font-semibold" for="email">Email*</label>
+    <label class="text-sm md:text-base font-semibold" for="email">{{ "login.email.label" | translate }}</label>
     <input
       class="text-sm md:text-base border rounded-md h-9 md:h-10 px-2"
       type="email"
@@ -15,12 +15,12 @@
       formControlName="email"
     />
     <span *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-red-500">
-      <span *ngIf="email?.errors?.['required']">Por favor ingrese su email.</span>
-      <span *ngIf="email?.errors?.['email']">Email inválido.</span>
+      <span *ngIf="email?.errors?.['required']">{{ "login.email.required" | translate}}</span>
+      <span *ngIf="email?.errors?.['email']">{{ "login.email.invalid" | translate }}</span>
     </span>
 
     <!-- password -->
-    <label class="text-sm md:text-base font-semibold" for="password">Password*</label>
+    <label class="text-sm md:text-base font-semibold" for="password">{{ "login.password.label" | translate }}</label>
     <input
       class="text-sm md:text-base border rounded-md h-9 md:h-10 px-2"
       type="password"
@@ -28,8 +28,8 @@
       formControlName="password"
     />
     <span *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-red-500">
-      <span *ngIf="password?.errors?.['required']">Por favor ingrese su contraseña.</span>
-      <span *ngIf="password?.errors?.['minlength']">La contraseña debe tener al menos 8 caracteres.</span>
+      <span *ngIf="password?.errors?.['required']">{{ "login.password.required" | translate }}</span>
+      <span *ngIf="password?.errors?.['minlength']">{{ "login.password.invalid" | translate }}</span>
     </span>
 
     <!-- login error message -->
@@ -41,7 +41,7 @@
         type="submit"
         class="text-sm md:text-base bg-blue-200 hover:bg-blue-300 font-semibold rounded-md h-9 md:h-10"
       >
-        Login
+        {{ "login.next" | translate }}
       </button>
   
       <button
@@ -49,7 +49,7 @@
         routerLink="/"
         class="text-sm md:text-base hover:bg-blue-100 font-semibold rounded-md h-9 md:h-10"
       >
-        Inicio
+        {{ "login.back" | translate }}
       </button>
     </div>
   </form>

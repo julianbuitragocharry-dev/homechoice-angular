@@ -7,6 +7,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ScrollTopComponent } from "../../../shared/components/scroll-top/scroll-top.component";
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-list-properties',
@@ -16,7 +17,8 @@ import { ScrollTopComponent } from "../../../shared/components/scroll-top/scroll
     LucideAngularModule, 
     NgxPaginationModule, 
     ReactiveFormsModule, 
-    ScrollTopComponent
+    ScrollTopComponent,
+    TranslateModule
   ],
   templateUrl: './list.component.html',
   styleUrl: '../../../shared/styles/pagination.css'
@@ -55,7 +57,17 @@ export class ListPropertiesComponent implements OnInit {
   //#endregion
 
   //#region form
-  constructor(private propertyService: PropertyService, private fb: FormBuilder, private router: Router) {
+  constructor(
+    private propertyService: PropertyService, 
+    private fb: FormBuilder, 
+    private router: Router,
+    private translateService: TranslateService
+  ) {
+    const userLang = navigator.language || 'es';
+    const languageCode = userLang.split('-')[0];
+    this.translateService.setDefaultLang(languageCode);
+    this.translateService.use(languageCode);
+
     this.filterForm = this.fb.group({
       name: [''],
       status: [''],

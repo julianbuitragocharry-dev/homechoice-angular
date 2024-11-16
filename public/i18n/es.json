@@ -1,0 +1,310 @@
+{
+    "meta": {
+        "description": "HomeChoice es tu plataforma todo-en-uno para gestionar propiedades de manera eficiente y efectiva. Descubre herramientas para anuncios, asignación de propiedades y más.",
+        "keywords": "HomeChoice, gestión de propiedades, real estate, property management, anuncios de propiedades, agentes, asignación de propiedades",
+        "author": "Equipo de HomeChoice"
+    },
+    "home": {
+        "title": "HomeChoice encuentra tu hogar ideal con nosotros",
+        "quote": "Conectamos personas con propiedades únicas para cada estilo de vida. La mejor inmobiliaria de Neiva, Huila.",
+        "button": "Explorar inmuebles",
+        "alt": "Interior de Hogar",
+        "about-us": {
+            "mission": {
+                "title": "Misión",
+                "description": "Ayudar a cada cliente a encontrar la propiedad que mejor se adapte a sus necesidades, ofreciéndoles una experiencia personalizada y eficiente en su búsqueda del hogar ideal."
+            },
+            "vision": {
+                "title": "Visión",
+                "description": "Ser la empresa inmobiliaria líder en el mercado, reconocida por su innovación, servicio excepcional y compromiso con ayudar a las personas a encontrar propiedades."
+            },
+            "values": {
+                "title": "Valores",
+                "description": "Integridad, compromiso con la satisfacción del cliente, innovación constante, y trabajo en equipo, siempre enfocados en generar confianza y resultados sólidos."
+            }
+        }
+    },
+    "header": {
+        "button": "Ingresar"
+    },
+    "navbar": {
+        "my-properties": "Mis inmuebles",
+        "properties": "Inmuebles",
+        "create-property": "Crear inmueble",
+        "frozen-properties": "Inmuebles congelados",
+        "users": "Usuarios",
+        "create-user": "Crear usuario",
+        "agents": "Agentes",
+        "create-agent": "Crear agente",
+        "logout": "Cerrar sesión"
+    },
+    "login": {
+        "title": "Iniciar Sesión",
+        "email": {
+            "label": "Email*",
+            "required": "Por favor ingrese su email.",
+            "invalid": "Email inválido."
+        },
+        "password": {
+            "label": "Password*",
+            "required": "Por favor ingrese su contraseña.",
+            "invalid": "La contraseña debe tener al menos 8 caracteres."
+        },
+        "next": "Ingresar",
+        "back": "Inicio"
+    },
+    "notfound": {
+        "title": "404",
+        "description": "Página no encontrada",
+        "text": "Lo sentimos, la página que buscas no existe.",
+        "button": "Volver al inicio"
+    },
+    "unauthorized": {
+        "title": "403",
+        "description": "Acceso no autorizado",
+        "text": "Lo sentimos, no tienes permiso para acceder a esta página.",
+        "button": "Volver al inicio"
+    },
+    "crash": {
+        "title": "500",
+        "description": "Error del servidor",
+        "text": "Lo sentimos, algo salió mal. Por favor, inténtalo de nuevo más tarde.",
+        "button": "Volver al inicio"
+    },
+    "property": {
+        "components": {
+            "card": {
+                "status": {
+                    "true": "Disponible",
+                    "false": "No disponible"
+                },
+                "button": "Ver Inmueble"
+            }
+        },
+        "pages": {
+            "hello": {
+                "quote": "Bienvenido a HomeChoice,"
+            },
+            "public": {
+                "title": "HomeChoice",
+                "quote": "Encuentra la casa de tus sueños y hazlo realidad"
+            },
+            "create": {
+                "title": "Crear Nueva Propiedad",
+                "description": "Ingresa los datos de la nueva propiedad",
+                "button": "Guardar Propiedad"
+            },
+            "edit": {
+                "title": "Editar Propiedad",
+                "description": "Modifica los datos de la propiedad",
+                "button": "Guardar Cambios"
+            },
+            "details": {
+                "info": {
+                    "address": "Dirección:",
+                    "agent": {
+                        "title": "Agente",
+                        "name": "Nombre:",
+                        "phone": "Teléfono:",
+                        "email": "Correo:",
+                        "button": "Contactar"
+                    }
+
+                }
+            },
+            "list": {
+                "form": {
+                    "status": "Disponibilidad",
+                    "concept": "Concepto",
+                    "type": "Tipo",
+                    "price": "Desde",
+                    "button": "Buscar"
+                },
+                "table": {
+                    "th": {
+                        "id": "ID",
+                        "name": "NOMBRE",
+                        "address": "DIRECCIÓN",
+                        "status": "ESTADO",
+                        "concept": "CONCEPTO",
+                        "type": "TIPO",
+                        "actions": "ACCIONES"
+                    }
+                },
+                "notfound": {
+                    "title": "¡Ninguna propiedad fue encontrada!",
+                    "description": "Intenta modificar los filtros de búsqueda." 
+                },
+                "modal": {
+                    "title": "Confirmar eliminación",
+                    "description1": "¿Estás seguro de que deseas eliminar esta propiedad con",
+                    "description2": "ID:",
+                    "description3": "Esta acción no se puede deshacer.",
+                    "next": "Eliminar",
+                    "back": "Cancelar"
+                }
+            },
+            "nulls": {
+                "modal": {
+                    "title": "Cambiar Agente Asignado",
+                    "description1": "Seleccione el nuevo agente para la propiedad con",
+                    "description2": "ID:",
+                    "option": "Seleccionar agente",
+                    "next": "Guardar Cambios",
+                    "back": "Cancelar"
+                }
+            },
+            "form": {
+                "name": {
+                    "placeholder": "Nombre",
+                    "required": "El nombre es requerido."
+                },
+                "area": {
+                    "placeholder": "Área",
+                    "required": "El área es requerida."
+                },
+                "price": {
+                    "placeholder": "Precio",
+                    "required": "El precio es requerido."
+                },
+                "address": {
+                    "placeholder": "Dirección",
+                    "required": "La dirección es requerida."
+                },
+                "latitude": {
+                    "placeholder": "Latitud",                    
+                    "required": "La latitud es requerida.",
+                    "invalid": "Formato de latitud inválido."
+                },
+                "longitude": {
+                    "placeholder": "Longitud",
+                    "required": "La longitud es requerida.",
+                    "invalid": "Formato de longitud inválido."
+                },
+                "concept": {
+                    "select": "Seleccione un concepto",
+                    "required": "El concepto es requerido."
+                },
+                "type": {
+                    "select": "Seleccione un tipo",
+                    "required": "El tipo es requerido."
+                },
+                "description": {
+                    "placeholder": "Descripción",
+                    "required": "La descripción es requerida.",
+                    "min": "La descripción debe tener al menos 200 caracteres.",
+                    "max": "La descripción no debe exceder los 250 caracteres."
+                },
+                "amenity": {
+                    "label": "Comodidades"
+                },
+                "images": {
+                    "label": "Imágenes",
+                    "note": "Nota: Una vez subidas las imágenes no se podrán editar.",
+                    "info1": "Click para subir",
+                    "info2": " o arrastrar y soltar.",
+                    "format": "PNG, JPG, GIF hasta 10MB"
+                }
+            }
+        }
+    },
+    "user": {
+        "pages": {
+            "agent": {
+                "create": {
+                    "title": "Crear Agente",
+                    "description": "Ingresa los datos del nuevo agente",
+                    "button": "Crear Agente"
+                },
+                "edit": {
+                    "title": "Editar Agente",
+                    "description": "Modifica los datos del agente",
+                    "button": "Guardar Cambios"
+                }
+            },
+            "user": {
+                "create": {
+                    "title": "Crear Usuario",
+                    "description": "Ingresa los datos del nuevo usuario",
+                    "button": "Crear Usuario"
+                },
+                "edit": {
+                    "title": "Editar Usuario",
+                    "description": "Modifica los datos del usuario",
+                    "button": "Guardar Cambios"
+                }
+            },
+            "form": {
+                "name": {
+                    "placeholder": "Nombre",
+                    "required": "El nombre es requerido."
+                },
+                "lastname": {
+                    "placeholder": "Apellido",
+                    "required": "El apellido es requerido."
+                },
+                "phone": {
+                    "placeholder": "Teléfono (Ej: 300 1234 567)",
+                    "required": "El teléfono es requerido.",
+                    "invalid": "El formato debe ser: 3XX XXXX XXX."
+                },
+                "address": {
+                    "placeholder": "Dirección",
+                    "required": "La dirección es requerida."
+                },
+                "nit": {
+                    "placeholder": "NIT",
+                    "required": "El NIT es requerido.",
+                    "invalid": "El NIT debe contener solo números."
+                },
+                "email": {
+                    "placeholder": "Correo electrónico",
+                    "required": "El correo electrónico es requerido.",
+                    "invalid": "El correo electrónico es inválido."
+                },
+                "password": {
+                    "placeholder": "Contraseña",
+                    "required": "La contraseña es requerida.",
+                    "invalid": "La contraseña debe contener al menos: 8 caracteres, 1 mayúscula, 1 minúscula, 1 número y 1 carácter especial (_ o .)."
+                },
+                "optional": {
+                    "placeholder": "Contraseña (opcional)"
+                },
+                "roles": {
+                    "label": "Roles"
+                }
+            },
+            "list": {
+                "table": {
+                    "th": {
+                        "id": "ID",
+                        "name": "NOMBRE COMPLETO",
+                        "email": "CORREO",
+                        "phone": "TELÉFONO",
+                        "address": "DIRECCIÓN",
+                        "nit": "NIT",
+                        "actions": "ACCIONES"
+                    }
+                },
+                "form": {
+                    "nit": "Nit",
+                    "button": "Buscar"
+                },
+                "notfound": {
+                    "agent": "¡Ningún agente fue encontrado!",
+                    "title": "¡Ninguna usuario fue encontrado!",
+                    "description": "Intenta modificar los filtros de búsqueda." 
+                },
+                "modal": {
+                    "title": "Confirmar eliminación",
+                    "description0": "¿Estás seguro de que deseas eliminar este agente con",
+                    "description1": "¿Estás seguro de que deseas eliminar este usuario con",
+                    "description2": "ID:",
+                    "description3": "Esta acción no se puede deshacer.",
+                    "next": "Eliminar",
+                    "back": "Cancelar"
+                }
+            }
+        }
+    }
+}

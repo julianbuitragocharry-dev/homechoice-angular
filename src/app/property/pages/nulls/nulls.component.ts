@@ -9,6 +9,7 @@ import { DtoProperty } from '../../../interfaces/property/dto-property';
 import { PropertyService } from '../../../service/property.service';
 import { DtoUserResponse } from '../../../interfaces/user/dto-user-response';
 import { AgentService } from '../../../service/agent.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-nulls',
@@ -19,7 +20,8 @@ import { AgentService } from '../../../service/agent.service';
     NgxPaginationModule, 
     ReactiveFormsModule, 
     FormsModule,
-    ScrollTopComponent
+    ScrollTopComponent,
+    TranslateModule
   ],
   templateUrl: './nulls.component.html',
   styleUrl: '../../../shared/styles/pagination.css'
@@ -65,8 +67,14 @@ export class NullsComponent {
     private propertyService: PropertyService, 
     private agentService: AgentService,
     private fb: FormBuilder, 
-    private router: Router
+    private router: Router,
+    private translateService: TranslateService
   ) {
+    const userLang = navigator.language || 'es';
+    const languageCode = userLang.split('-')[0];
+    this.translateService.setDefaultLang(languageCode);
+    this.translateService.use(languageCode);
+
     this.filterForm = this.fb.group({
       name: [''],
       status: [''],
@@ -205,7 +213,7 @@ export class NullsComponent {
 
   // TODO: Pageable system
   loadAgents(): void {
-    this.agentService.getAllAgents('', 0, 10).subscribe({
+    this.agentService.getAllAgents('', 0, 1000).subscribe({
       next: (data) => {
         console.log(data);
         this.agentList = data.content;
