@@ -8,11 +8,17 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from "../../../shared/components/header/header.component";
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { CarouselComponent } from "../../components/carousel/carousel.component";
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, CarouselComponent],
+  imports: [
+    CommonModule, 
+    HeaderComponent, 
+    CarouselComponent,
+    TranslateModule
+  ],
   templateUrl: './details.component.html'
 })
 export class DetailsComponent implements OnInit {
@@ -28,8 +34,14 @@ export class DetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private propertyService: PropertyService,
     private agentService: AgentService,
-    private sanitizer: DomSanitizer
-  ) {}
+    private sanitizer: DomSanitizer,
+    private translateService: TranslateService
+  ) {
+    const userLang = navigator.language || 'es';
+    const languageCode = userLang.split('-')[0];
+    this.translateService.setDefaultLang(languageCode);
+    this.translateService.use(languageCode);
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {

@@ -1,10 +1,10 @@
 <main class="flex items-center justify-center min-h-screen bg-blue-50 font-roboto">
     <div class="text-center">
-      <h1 class="text-9xl font-bold text-blue-300">404</h1>
-      <p class="text-2xl text-blue-900 mt-4 font-bold">Página no encontrada</p>
-      <p class="text-blue-950 mt-2">Lo sentimos, la página que buscas no existe.</p>
+      <h1 class="text-9xl font-bold text-blue-300">{{ "notfound.title" | translate }}</h1>
+      <p class="text-2xl text-blue-900 mt-4 font-bold">{{ "notfound.description" | translate }}</p>
+      <p class="text-blue-950 mt-2">{{ "notfound.text" | translate }}</p>
       <button routerLink="/" class="mt-8 h-9 md:h-10 px-4 font-semibold bg-blue-200 rounded-md hover:bg-blue-300">
-        Volver al inicio
+        {{ "notfound.button" | translate }}
       </button>
     </div>
 </main>

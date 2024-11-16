@@ -4,11 +4,12 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ActivatedRoute, Router } from '@angular/router';
 import { PropertyService } from '../../../service/property.service';
 import { DtoProperty } from '../../../interfaces/property/dto-property';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-edit',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslateModule],
   templateUrl: './edit.component.html'
 })
 export class EditPropertyComponent {
@@ -32,8 +33,14 @@ export class EditPropertyComponent {
     private route: ActivatedRoute,
     private router: Router,
     private propertyService: PropertyService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private translateService: TranslateService
   ) {
+    const userLang = navigator.language || 'es';
+    const languageCode = userLang.split('-')[0];
+    this.translateService.setDefaultLang(languageCode);
+    this.translateService.use(languageCode);
+
     this.propertyForm = this.formBuilder.group({
       name: ['', Validators.required],
       area: ['', Validators.required],

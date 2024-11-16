@@ -1,7 +1,7 @@
 <div class="mt-5 font-roboto">
     <div class="text-center py-6">
-        <h1 class="text-3xl md:text-5xl font-bold">Editar Usuario</h1>
-        <p class="text-sm md:text-base">Modifica los datos del usuario</p>
+        <h1 class="text-3xl md:text-5xl font-bold">{{ 'user.pages.user.edit.title' | translate }}</h1>
+        <p class="text-sm md:text-base">{{ 'user.pages.user.edit.description' | translate }}</p>
     </div>
 
     <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="w-[90%] mx-auto mb-8 font-roboto">
@@ -12,13 +12,13 @@
                 <input 
                     type="text" 
                     formControlName="firstName" 
-                    placeholder="Nombre" 
+                    [placeholder]="'user.pages.form.name.placeholder' | translate"
                     class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
                 />
                 <span *ngIf="userForm.get('firstName')?.invalid && (userForm.get('firstName')?.dirty || userForm.get('firstName')?.touched)" 
                       class="text-red-500 text-sm">
                     <span *ngIf="userForm.get('firstName')?.errors?.['required']">
-                        El nombre es requerido.
+                        {{ 'user.pages.form.name.required' | translate}}
                     </span>
                 </span>
             </div>
@@ -28,13 +28,13 @@
                 <input 
                     type="text" 
                     formControlName="lastName" 
-                    placeholder="Apellido" 
+                    [placeholder]="'user.pages.form.lastname.placeholder' | translate"
                     class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
                 />
                 <span *ngIf="userForm.get('lastName')?.invalid && (userForm.get('lastName')?.dirty || userForm.get('lastName')?.touched)" 
                       class="text-red-500 text-sm">
                     <span *ngIf="userForm.get('lastName')?.errors?.['required']">
-                        El apellido es requerido.
+                        {{ 'user.pages.form.lastname.required' | translate }}
                     </span>
                 </span>
             </div>
@@ -44,16 +44,16 @@
                 <input 
                     type="text" 
                     formControlName="phone" 
-                    placeholder="Teléfono (Ej: 300 1234 567)" 
+                    [placeholder]="'user.pages.form.phone.placeholder' | translate"
                     class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
                 />
                 <span *ngIf="userForm.get('phone')?.invalid && (userForm.get('phone')?.dirty || userForm.get('phone')?.touched)" 
                       class="text-red-500 text-sm">
                     <span *ngIf="userForm.get('phone')?.errors?.['required']">
-                        El teléfono es requerido.
+                        {{ 'user.pages.form.phone.required' | translate }}
                     </span>
                     <span *ngIf="userForm.get('phone')?.errors?.['pattern']">
-                        El formato debe ser: 3XX XXXX XXX
+                        {{ 'user.pages.form.phone.invalid' | translate }}
                     </span>
                 </span>
             </div>
@@ -63,13 +63,13 @@
                 <input 
                     type="text" 
                     formControlName="address" 
-                    placeholder="Dirección" 
+                    [placeholder]="'user.pages.form.address.placeholder' | translate"
                     class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
                 />
                 <span *ngIf="userForm.get('address')?.invalid && (userForm.get('address')?.dirty || userForm.get('address')?.touched)" 
                       class="text-red-500 text-sm">
                     <span *ngIf="userForm.get('address')?.errors?.['required']">
-                        La dirección es requerida.
+                        {{ 'user.pages.form.address.required' | translate }}
                     </span>
                 </span>
             </div>
@@ -79,16 +79,16 @@
                 <input 
                     type="text" 
                     formControlName="nit" 
-                    placeholder="NIT" 
+                    [placeholder]="'user.pages.form.nit.placeholder' | translate"
                     class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
                 />
                 <span *ngIf="userForm.get('nit')?.invalid && (userForm.get('nit')?.dirty || userForm.get('nit')?.touched)" 
                       class="text-red-500 text-sm">
                     <span *ngIf="userForm.get('nit')?.errors?.['required']">
-                        El NIT es requerido.
+                        {{ 'user.pages.form.nit.required' | translate }}
                     </span>
                     <span *ngIf="userForm.get('nit')?.errors?.['pattern']">
-                        El NIT debe contener solo números.
+                        {{ 'user.pages.form.nit.invalid' | translate }}
                     </span>
                 </span>
             </div>
@@ -98,16 +98,16 @@
                 <input 
                     type="email" 
                     formControlName="email" 
-                    placeholder="Correo electrónico" 
+                    [placeholder]="'user.pages.form.email.placeholder' | translate"
                     class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
                 />
                 <span *ngIf="userForm.get('email')?.invalid && (userForm.get('email')?.dirty || userForm.get('email')?.touched)" 
                       class="text-red-500 text-sm">
                     <span *ngIf="userForm.get('email')?.errors?.['required']">
-                        El correo electrónico es requerido.
+                        {{ 'user.pages.form.email.required' | translate }}
                     </span>
                     <span *ngIf="userForm.get('email')?.errors?.['email']">
-                        Formato de correo electrónico inválido.
+                        {{ 'user.pages.form.email.invalid' | translate }}
                     </span>
                 </span>
             </div>
@@ -117,20 +117,20 @@
                 <input 
                     type="password" 
                     formControlName="password" 
-                    placeholder="Contraseña (opcional)" 
+                    [placeholder]="'user.pages.form.optional.placeholder' | translate"
                     class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
                 />
                 <span *ngIf="userForm.get('password')?.invalid && (userForm.get('password')?.dirty || userForm.get('password')?.touched)" 
                       class="text-red-500 text-sm">
                     <span *ngIf="userForm.get('password')?.errors?.['passwordInvalid']">
-                        Si ingresa una contraseña, debe contener al menos: 8 caracteres, 1 mayúscula, 1 minúscula, 1 número y 1 carácter especial (_ o .).
+                        {{ 'user.pages.form.password.invalid' | translate }}
                     </span>
                 </span>
             </div>
 
             <!-- roles -->
             <div class="md:col-span-2">
-                <h2 class="mb-4 font-bold">Roles</h2>
+                <h2 class="mb-4 font-bold">{{ 'user.pages.form.roles.label' | translate }}</h2>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
                     <div class="form-check" *ngFor="let role of rolesList">
                         <input 
@@ -153,7 +153,7 @@
                     class="bg-blue-200 hover:bg-blue-300 rounded-md font-bold px-6 py-2 focus:outline-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" 
                     [disabled]="userForm.invalid"
                 >
-                    Guardar Cambios
+                    {{ 'user.pages.user.edit.button' | translate }}
                 </button>
             </div>
         </div>

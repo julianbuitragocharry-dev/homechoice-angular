@@ -13,7 +13,7 @@
                     <span 
                         [ngClass]="property.status ? 'bg-blue-100 text-blue-700 px-3 py-1 rounded-md' : 
                         'bg-red-100 text-red-700 px-3 py-1 rounded-md'">
-                        {{ property.status ? 'Disponible' : 'No disponible' }}
+                        {{ property.status ? ('property.components.card.status.true' | translate) : ('property.components.card.status.false' | translate) }}
                     </span>
                 </p>
                 <p>$ {{ property.price | currency: '':'':'1.0-0' }} COP</p>
@@ -32,24 +32,24 @@
                 </ng-container>
             </div>         
             
-            <p class="text-sm md:text-base"><b>Dirección:</b> {{ property.address }}</p>
+            <p class="text-sm md:text-base"><b>{{ 'property.pages.details.info.address' | translate }}</b> {{ property.address }}</p>
         </div>
 
         <!-- agent -->
         <div class="flex flex-col gap-4 p-5 border-t border-b">
-            <h2 class="font-bold text-base md:text-2xl">Agente</h2>
+            <h2 class="font-bold text-base md:text-2xl">{{ 'property.pages.details.info.agent.title' | translate }}</h2>
             
             <div class="text-sm md:text-base">
-                <p><b>Nombre:</b> {{ agent.name }}</p>
-                <p><b>Telefono:</b> {{ agent.phone }}</p>
-                <p><b>Correo:</b> {{ agent.email }}</p>
+                <p><b>{{ 'property.pages.details.info.agent.name' | translate }}</b> {{ agent.name }}</p>
+                <p><b>{{ 'property.pages.details.info.agent.phone' | translate }}</b> {{ agent.phone }}</p>
+                <p><b>{{ 'property.pages.details.info.agent.email' | translate }}</b> {{ agent.email }}</p>
             </div>
 
             <button 
             class="text-sm md:text-base bg-blue-200 hover:bg-blue-300 font-semibold rounded-md h-9 md:h-10 py-0.5 w-28"
             (click)="contactAgent()"
             >
-                Contactar
+                {{ 'property.pages.details.info.agent.button' | translate }}
             </button>
         </div>
     </div>

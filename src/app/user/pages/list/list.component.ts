@@ -7,6 +7,7 @@ import { LucideAngularModule, Pencil, Trash2 } from 'lucide-angular';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ScrollTopComponent } from '../../../shared/components/scroll-top/scroll-top.component';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-list',
@@ -16,7 +17,8 @@ import { ScrollTopComponent } from '../../../shared/components/scroll-top/scroll
     LucideAngularModule, 
     NgxPaginationModule, 
     ReactiveFormsModule,
-    ScrollTopComponent
+    ScrollTopComponent,
+    TranslateModule
   ],
   templateUrl: './list.component.html',
   styleUrl: '../../../shared/styles/pagination.css'
@@ -44,8 +46,14 @@ export class ListUsersComponent implements OnInit {
   constructor(
     private userService: UserService, 
     private fb: FormBuilder, 
-    private router: Router
+    private router: Router,
+    private translateService: TranslateService
   ) {
+    const userLang = navigator.language || 'es';
+    const languageCode = userLang.split('-')[0];
+    this.translateService.setDefaultLang(languageCode);
+    this.translateService.use(languageCode);
+
     this.filterForm = this.fb.group({
       nit: ['']
     });    

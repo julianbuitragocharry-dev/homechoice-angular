@@ -7,7 +7,7 @@
         <input 
           type="text" 
           formControlName="name" 
-          placeholder="Nombre" 
+          [placeholder]="'property.pages.form.name.placeholder' | translate" 
           class="w-full px-4 py-3 border border-blue-900 rounded-md text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200"
         />
       </div>
@@ -18,7 +18,7 @@
           formControlName="status" 
           class="w-full px-4 py-3 border border-blue-900 rounded-md text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200"
         >
-          <option value="" selected>Disponibilidad</option>
+          <option value="" selected>{{ 'property.pages.list.form.status' | translate }}</option>
           <option *ngFor="let item of statusList" [value]="item.value">{{item.label}}</option>
         </select>
       </div>
@@ -29,7 +29,7 @@
           formControlName="concept" 
           class="w-full px-4 py-3 border border-blue-900 rounded-md text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200"
         >
-          <option value="" selected>Concepto</option>
+          <option value="" selected>{{ 'property.pages.list.form.concept' | translate }}</option>
           <option *ngFor="let item of conceptList" [value]="item.concept">{{item.concept}}</option>
         </select>
       </div>
@@ -40,7 +40,7 @@
           formControlName="type" 
           class="w-full px-4 py-3 border border-blue-900 rounded-md text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200"
         >
-          <option value="" selected>Tipo</option>
+          <option value="" selected>{{ 'property.pages.list.form.type' | translate }}</option>
           <option *ngFor="let item of typeList" [value]="item.type">{{item.type}}</option>
         </select>
       </div>
@@ -50,7 +50,7 @@
         <input 
           type="number" 
           formControlName="minPrice" 
-          placeholder="Desde" 
+          [placeholder]="'property.pages.list.form.price' | translate" 
           class="w-full px-4 py-3 border border-blue-900 rounded-md text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200" 
           min="0"
         />
@@ -61,7 +61,7 @@
         <input 
           type="number" 
           formControlName="minArea" 
-          placeholder="Área" 
+          [placeholder]="'property.pages.form.area.placeholder' | translate"
           min="0" 
           class="w-full px-4 py-3 border border-blue-900 rounded-md text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200"
         />
@@ -72,7 +72,7 @@
         type="submit" 
         class="bg-blue-200 hover:bg-blue-300 rounded-md font-bold px-4 py-3 text-sm md:text-base"
       >
-        Buscar
+        {{ 'property.pages.list.form.button' | translate }}
       </button>
     </div>
 </form>
@@ -84,13 +84,13 @@
             <table class="w-full table-auto">
                 <thead class="bg-blue-800 text-blue-50">
                     <tr>
-                        <th class="p-3 md:p-4" scope="col">ID</th>
-                        <th class="p-3 md:p-4" scope="col">NOMBRE</th>
-                        <th class="p-3 md:p-4" scope="col">DIRECCION</th>
-                        <th class="p-3 md:p-4" scope="col">ESTADO</th>
-                        <th class="p-3 md:p-4" scope="col">CONCEPTO</th>
-                        <th class="p-3 md:p-4" scope="col">TIPO</th>
-                        <th class="p-3 md:p-4" scope="col">ACCIONES</th>
+                        <th class="p-3 md:p-4" scope="col">{{ 'property.pages.list.table.th.id' | translate }}</th>
+                        <th class="p-3 md:p-4" scope="col">{{ 'property.pages.list.table.th.name' | translate }}</th>
+                        <th class="p-3 md:p-4" scope="col">{{ 'property.pages.list.table.th.address' | translate }}</th>
+                        <th class="p-3 md:p-4" scope="col">{{ 'property.pages.list.table.th.status' | translate }}</th>
+                        <th class="p-3 md:p-4" scope="col">{{ 'property.pages.list.table.th.concept' | translate }}</th>
+                        <th class="p-3 md:p-4" scope="col">{{ 'property.pages.list.table.th.type' | translate }}</th>
+                        <th class="p-3 md:p-4" scope="col">{{ 'property.pages.list.table.th.actions' | translate }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -102,7 +102,7 @@
                             <span class="font-semibold" [ngClass]="property.status ? 
                                 'bg-blue-100 text-blue-700 px-3 py-1 rounded-md' : 
                                 'bg-red-100 text-red-700 px-3 py-1 rounded-md'">
-                                {{ property.status ? 'Disponible' : 'No disponible' }}
+                                {{ property.status ? ('property.components.card.status.true' | translate) : ('property.components.card.status.false' | translate) }}
                             </span>
                         </td>
                         <td class="p-3 md:p-4">{{ property.concept }}</td>
@@ -133,9 +133,9 @@
 <!-- properties not found -->
 <div class="mx-auto my-6 md:my-12 text-center" *ngIf="totalData === 0">
     <h2 class="text-2xl font-bold text-gray-500">
-        ¡Ninguna propiedad fue encontrada!
+      {{ 'property.pages.list.notfound.title' | translate }}
     </h2>
-    <p class="text-gray-400">Intenta modificar los filtros de búsqueda.</p>
+    <p class="text-gray-400">{{ 'property.pages.list.notfound.description' | translate }}</p>
 </div>
 
 <!-- delete confirmation modal -->
@@ -150,14 +150,14 @@
         <!-- header -->
         <div class="p-4 border-b border-blue-200">
             <h3 class="text-lg font-medium text-blue-900">
-                Confirmar eliminación
+              {{ 'property.pages.list.modal.title' | translate }}
             </h3>
         </div>
 
         <!-- body -->
         <div class="p-4">
             <p class="text-blue-800">
-                ¿Estás seguro de que deseas eliminar esta propiedad con <b>ID: {{propertyToDelete}}</b> Esta acción no se puede deshacer.
+              {{ 'property.pages.list.modal.description1' | translate }} <b>{{ 'property.pages.list.modal.description2' | translate }} {{propertyToDelete}}.</b> {{ 'property.pages.list.modal.description3' | translate }}
             </p>
         </div>
 
@@ -166,12 +166,12 @@
             <button 
                 class="px-4 py-2 bg-blue-50 text-blue-700 rounded-md hover:bg-blue-100"
                 (click)="closeModal()">
-                Cancelar
+                {{ 'property.pages.list.modal.back' | translate }}
             </button>
             <button 
                 class="px-4 py-2 bg-red-600 text-blue-50 rounded-md hover:bg-red-700"
                 (click)="deleteProperty()">
-                Eliminar
+                {{ 'property.pages.list.modal.next' | translate }}
             </button>
         </div>
     </div>

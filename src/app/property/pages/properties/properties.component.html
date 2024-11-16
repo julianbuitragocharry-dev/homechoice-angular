@@ -2,10 +2,10 @@
 
 <section class="font-roboto text-center my-12">
     <h1 class="text-4xl md:text-5xl font-bold">
-        HomeChoice
+        {{ 'property.pages.public.title' | translate }}
     </h1>
     <p class="text-sm md:text-base">
-        Encuentra la casa de tus sueños y hazlo realidad
+        {{ 'property.pages.public.quote' | translate }}
     </p>
 </section>
 
@@ -18,7 +18,7 @@
       <input 
         type="text" 
         formControlName="name" 
-        placeholder="Nombre" 
+        [placeholder]="'property.pages.form.name.placeholder' | translate" 
         class="w-full px-4 py-3 border border-blue-900 rounded-md text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200"
       />
     </div>
@@ -29,7 +29,7 @@
         formControlName="status" 
         class="w-full px-4 py-3 border border-blue-900 rounded-md text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200"
       >
-        <option value="" selected>Disponibilidad</option>
+        <option value="" selected>{{ 'property.pages.list.form.status' | translate }}</option>
         <option *ngFor="let item of statusList" [value]="item.value">{{item.label}}</option>
       </select>
     </div>
@@ -40,7 +40,7 @@
         formControlName="concept" 
         class="w-full px-4 py-3 border border-blue-900 rounded-md text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200"
       >
-        <option value="" selected>Concepto</option>
+        <option value="" selected>{{ 'property.pages.list.form.concept' | translate }}</option>
         <option *ngFor="let item of conceptList" [value]="item.concept">{{item.concept}}</option>
       </select>
     </div>
@@ -51,7 +51,7 @@
         formControlName="type" 
         class="w-full px-4 py-3 border border-blue-900 rounded-md text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200"
       >
-        <option value="" selected>Tipo</option>
+        <option value="" selected>{{ 'property.pages.list.form.type' | translate }}</option>
         <option *ngFor="let item of typeList" [value]="item.type">{{item.type}}</option>
       </select>
     </div>
@@ -61,7 +61,7 @@
       <input 
         type="number" 
         formControlName="minPrice" 
-        placeholder="Desde" 
+        [placeholder]="'property.pages.list.form.price' | translate"
         class="w-full px-4 py-3 border border-blue-900 rounded-md text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200" 
         min="0"
       />
@@ -72,7 +72,7 @@
       <input 
         type="number" 
         formControlName="minArea" 
-        placeholder="Área" 
+        [placeholder]="'property.pages.form.area.placeholder' | translate"
         min="0" 
         class="w-full px-4 py-3 border border-blue-900 rounded-md text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200" 
       />
@@ -83,7 +83,7 @@
       type="submit" 
       class="bg-blue-200 hover:bg-blue-300 rounded-md font-bold px-4 py-3 text-sm md:text-base"
     >
-      Buscar
+      {{ 'property.pages.list.form.button' | translate }}
     </button>
   </div>
 </form>
@@ -91,9 +91,9 @@
 <!-- properties not found -->
 <div class="mx-auto my-6 md:my-12 text-center" *ngIf="totalData === 0">
   <h2 class="text-2xl font-bold text-gray-500">
-      ¡Ninguna propiedad fue encontrada!
+    {{ 'property.pages.list.notfound.title' | translate }}
   </h2>
-  <p class="text-gray-400">Intenta modificar los filtros de búsqueda.</p>
+  <p class="text-gray-400">{{ 'property.pages.list.notfound.description' | translate }}</p>
 </div>
 
 <!-- properties -->

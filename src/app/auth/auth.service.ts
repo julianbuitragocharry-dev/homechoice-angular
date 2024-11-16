@@ -24,6 +24,7 @@ export class AuthService {
     return this.http.post<any>(`${this.apiUrl}/auth/login`, credentials, {withCredentials: true}).pipe(
       tap(userData => {
         localStorage.setItem("token", userData.token);
+        localStorage.setItem("user", userData.user);
         this.currentUserLogged.next(true);
         this.currentUserData.next(userData.token);
       }),
@@ -34,6 +35,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
     this.currentUserLogged.next(false);
   }
 

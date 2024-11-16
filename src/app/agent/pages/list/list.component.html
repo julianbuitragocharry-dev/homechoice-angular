@@ -5,9 +5,9 @@
       <!-- nit -->
       <div>
         <input 
-          type="text" 
+          type="number" 
           formControlName="nit" 
-          placeholder="Nit" 
+          [placeholder]="'user.pages.list.form.nit' | translate"
           class="w-full px-4 py-2 bg-white border border-blue-900 rounded-lg text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-300"
         />
       </div>
@@ -17,7 +17,7 @@
         type="submit" 
         class="bg-blue-200 hover:bg-blue-300 rounded-md font-bold px-4 py-2 text-sm md:text-base"
       >
-        Buscar
+        {{ 'user.pages.list.form.button' | translate }}
       </button>
     </div>
 </form>
@@ -29,13 +29,13 @@
             <table class="w-full table-auto">
                 <thead class="bg-blue-800 text-blue-50">
                     <tr>
-                        <th class="p-3 md:p-4" scope="col">ID</th>
-                        <th class="p-3 md:p-4" scope="col">NOMBRE COMPLETO</th>
-                        <th class="p-3 md:p-4" scope="col">CORREO</th>
-                        <th class="p-3 md:p-4" scope="col">TELÉFONO</th>
-                        <th class="p-3 md:p-4" scope="col">DIRECCIÓN</th>
-                        <th class="p-3 md:p-4" scope="col">NIT</th>
-                        <th class="p-3 md:p-4" scope="col">ACCIONES</th>
+                        <th class="p-3 md:p-4" scope="col">{{ 'user.pages.list.table.th.id' | translate }}</th>
+                        <th class="p-3 md:p-4" scope="col">{{ 'user.pages.list.table.th.name' | translate }}</th>
+                        <th class="p-3 md:p-4" scope="col">{{ 'user.pages.list.table.th.email' | translate }}</th>
+                        <th class="p-3 md:p-4" scope="col">{{ 'user.pages.list.table.th.phone' | translate }}</th>
+                        <th class="p-3 md:p-4" scope="col">{{ 'user.pages.list.table.th.address' | translate }}</th>
+                        <th class="p-3 md:p-4" scope="col">{{ 'user.pages.list.table.th.nit' | translate }}</th>
+                        <th class="p-3 md:p-4" scope="col">{{ 'user.pages.list.table.th.actions' | translate }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -68,9 +68,9 @@
 <!-- agents not found -->
 <div class="mx-auto my-6 md:my-12 text-center" *ngIf="totalData === 0">
     <h2 class="text-2xl font-bold text-gray-500">
-        ¡Ningún agente fue encontrado!
+        {{ 'user.pages.list.notfound.agent' | translate }}
     </h2>
-    <p class="text-gray-400">Intenta modificar los filtros de búsqueda.</p>
+    <p class="text-gray-400">{{ 'user.pages.list.notfound.description' | translate }}</p>
 </div>
 
 <!-- modal -->
@@ -83,13 +83,13 @@
         
         <div class="p-4 border-b border-blue-200">
             <h3 class="text-lg font-medium text-blue-900">
-                Confirmar eliminación
+                {{ 'user.pages.list.modal.title' | translate}}
             </h3>
         </div>
 
         <div class="p-4">
             <p class="text-blue-800">
-                ¿Estás seguro de que deseas eliminar este agente con <b>ID: {{agentToDelete}}</b>? Esta acción no se puede deshacer.
+                {{ 'user.pages.list.modal.description0' | translate }} <b>{{ 'user.pages.list.modal.description2' | translate }} {{agentToDelete}}.</b> {{ 'user.pages.list.modal.description3' | translate }}
             </p>
         </div>
 
@@ -97,12 +97,12 @@
             <button 
                 class="px-4 py-2 bg-blue-50 text-blue-700 rounded-md hover:bg-blue-100"
                 (click)="closeModal()">
-                Cancelar
+                {{ 'user.pages.list.modal.back' | translate }}
             </button>
             <button 
                 class="px-4 py-2 bg-red-600 text-blue-50 rounded-md hover:bg-red-700"
                 (click)="deleteAgent()">
-                Eliminar
+                {{ 'user.pages.list.modal.next' | translate }}
             </button>
         </div>
     </div>

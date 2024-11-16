@@ -1,7 +1,7 @@
 <div class="mt-5 font-roboto">
     <div class="text-center py-6">
-        <h1 class="text-3xl md:text-5xl font-bold">Crear Nueva Propiedad</h1>
-        <p class="text-sm md:text-base">Ingresa los datos de la nueva propiedad</p>
+        <h1 class="text-3xl md:text-5xl font-bold">{{ "property.pages.create.title" | translate }}</h1>
+        <p class="text-sm md:text-base">{{ "property.pages.create.description" | translate }}</p>
     </div>
   
     <form [formGroup]="propertyForm" (ngSubmit)="onSubmit()" class="w-[90%] mx-auto mb-8 font-roboto">
@@ -11,12 +11,12 @@
             <div class="flex flex-col gap-1">
                 <input type="text" 
                        formControlName="name" 
-                       placeholder="Nombre" 
+                       [placeholder]="'property.pages.form.name.placeholder' | translate" 
                        class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" />
                 <span *ngIf="propertyForm.get('name')?.invalid && (propertyForm.get('name')?.dirty || propertyForm.get('name')?.touched)" 
                       class="text-red-500 text-sm">
                     <span *ngIf="propertyForm.get('name')?.errors?.['required']">
-                        El nombre es requerido.
+                        {{ "property.pages.form.name.required" | translate }}
                     </span>
                 </span>
             </div>
@@ -25,13 +25,13 @@
             <div class="flex flex-col gap-1">
                 <input type="number" 
                        formControlName="area" 
-                       placeholder="Área" 
+                       [placeholder]="'property.pages.form.area.placeholder' | translate" 
                        class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
                        min="0"/>
                 <span *ngIf="propertyForm.get('area')?.invalid && (propertyForm.get('area')?.dirty || propertyForm.get('area')?.touched)" 
                       class="text-red-500 text-sm">
                     <span *ngIf="propertyForm.get('area')?.errors?.['required']">
-                        El área es requerida.
+                        {{ 'property.pages.form.area.required' | translate }}
                     </span>
                 </span>
             </div>
@@ -40,13 +40,13 @@
             <div class="flex flex-col gap-1">
                 <input type="number" 
                        formControlName="price" 
-                       placeholder="Precio" 
+                       [placeholder]="'property.pages.form.price.placeholder' | translate"
                        class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" 
                        min="0"/>
                 <span *ngIf="propertyForm.get('price')?.invalid && (propertyForm.get('price')?.dirty || propertyForm.get('price')?.touched)" 
                       class="text-red-500 text-sm">
                     <span *ngIf="propertyForm.get('price')?.errors?.['required']">
-                        El precio es requerido.
+                        {{ 'property.pages.form.price.required' | translate}}
                     </span>
                 </span>
             </div>
@@ -55,12 +55,12 @@
             <div class="flex flex-col gap-1">
                 <input type="text" 
                        formControlName="address" 
-                       placeholder="Dirección" 
+                       [placeholder]="'property.pages.form.address.placeholder' | translate" 
                        class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" />
                 <span *ngIf="propertyForm.get('address')?.invalid && (propertyForm.get('address')?.dirty || propertyForm.get('address')?.touched)" 
                       class="text-red-500 text-sm">
                     <span *ngIf="propertyForm.get('address')?.errors?.['required']">
-                        La dirección es requerida.
+                        {{ 'property.pages.form.address.required' | translate }}
                     </span>
                 </span>
             </div>
@@ -69,15 +69,15 @@
             <div class="flex flex-col gap-1">
                 <input type="number" 
                        formControlName="latitude" 
-                       placeholder="Latitud" 
+                       [placeholder]="'property.pages.form.latitude.placeholder' | translate"
                        class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" />
                 <span *ngIf="propertyForm.get('latitude')?.invalid && (propertyForm.get('latitude')?.dirty || propertyForm.get('latitude')?.touched)" 
                       class="text-red-500 text-sm">
                     <span *ngIf="propertyForm.get('latitude')?.errors?.['required']">
-                        La latitud es requerida.
+                        {{ 'property.pages.form.latitude.required' | translate }}
                     </span>
                     <span *ngIf="propertyForm.get('latitude')?.errors?.['pattern']">
-                        Formato de latitud inválido.
+                        {{ 'property.pages.form.latitude.invalid' | translate }}
                     </span>
                 </span>
             </div>
@@ -86,15 +86,15 @@
             <div class="flex flex-col gap-1">
                 <input type="number" 
                        formControlName="longitude" 
-                       placeholder="Longitud" 
+                       [placeholder]="'property.pages.form.longitude.placeholder' | translate" 
                        class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base outline-none" />
                 <span *ngIf="propertyForm.get('longitude')?.invalid && (propertyForm.get('longitude')?.dirty || propertyForm.get('longitude')?.touched)" 
                       class="text-red-500 text-sm">
                     <span *ngIf="propertyForm.get('longitude')?.errors?.['required']">
-                        La longitud es requerida.
+                        {{ 'property.pages.form.longitude.required' | translate}}
                     </span>
                     <span *ngIf="propertyForm.get('longitude')?.errors?.['pattern']">
-                        Formato de longitud inválido.
+                        {{ 'property.pages.form.longitude.invalid' | translate}}
                     </span>
                 </span>
             </div>
@@ -111,13 +111,13 @@
             <div class="flex flex-col gap-1">
                 <select formControlName="concept" 
                         class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base">
-                    <option value="">Seleccione un concepto</option>
+                    <option value="">{{ 'property.pages.form.concept.select' | translate }}</option>
                     <option *ngFor="let item of conceptList" [value]="item.concept">{{ item.concept }}</option>
                 </select>
                 <span *ngIf="propertyForm.get('concept')?.invalid && (propertyForm.get('concept')?.dirty || propertyForm.get('concept')?.touched)" 
                       class="text-red-500 text-sm">
                     <span *ngIf="propertyForm.get('concept')?.errors?.['required']">
-                        El concepto es requerido.
+                        {{ 'property.pages.form.concept.required' | translate }}
                     </span>
                 </span>
             </div>
@@ -126,13 +126,13 @@
             <div class="flex flex-col gap-1">
                 <select formControlName="type" 
                         class="w-full px-3 py-2 border border-blue-900 rounded-lg text-sm md:text-base">
-                    <option value="">Seleccione un tipo</option>
+                    <option value="">{{ 'property.pages.form.type.select' | translate }}</option>
                     <option *ngFor="let item of typeList" [value]="item.type">{{ item.type }}</option>
                 </select>
                 <span *ngIf="propertyForm.get('type')?.invalid && (propertyForm.get('type')?.dirty || propertyForm.get('type')?.touched)" 
                       class="text-red-500 text-sm">
                     <span *ngIf="propertyForm.get('type')?.errors?.['required']">
-                        El tipo es requerido.
+                        {{ 'property.pages.form.type.required' | translate }}
                     </span>
                 </span>
             </div>
@@ -141,7 +141,7 @@
             <div class="md:col-span-3 flex flex-col gap-1">
                 <textarea 
                     formControlName="description" 
-                    placeholder="Descripción"
+                    [placeholder]="'property.pages.form.description.placeholder' | translate"
                     minlength="200"
                     maxlength="250"
                     rows="4"
@@ -150,20 +150,20 @@
                 <span *ngIf="propertyForm.get('description')?.invalid && (propertyForm.get('description')?.dirty || propertyForm.get('description')?.touched)" 
                       class="text-red-500 text-sm">
                     <span *ngIf="propertyForm.get('description')?.errors?.['required']">
-                        La descripción es requerida.
+                        {{ 'property.pages.form.description.required' | translate }}
                     </span>
                     <span *ngIf="propertyForm.get('description')?.errors?.['minlength']">
-                        La descripción debe tener al menos 200 caracteres.
+                        {{ 'property.pages.form.description.min' | translate }}
                     </span>
                     <span *ngIf="propertyForm.get('description')?.errors?.['maxlength']">
-                        La descripción no debe exceder los 250 caracteres.
+                        {{ 'property.pages.form.description.max' | translate }}
                     </span>
                 </span>
             </div>
   
             <!-- amenities -->
             <div class="md:col-span-3">
-                <h2 class="mb-4 font-bold">Comodidades</h2>
+                <h2 class="mb-4 font-bold">{{ 'property.pages.form.amenity.label' | translate }}</h2>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
                     <div class="form-check" *ngFor="let item of amenitiesList">
                         <input class="form-check-input" 
@@ -179,8 +179,8 @@
   
             <!-- images -->
             <div class="md:col-span-3 mb-4">
-                <h2 class="mb-4 font-bold">Imágenes</h2>
-                <p class="text-red-500 text-sm mb-2">Nota: Una vez subidas las imágenes, no se podrán editar.</p>
+                <h2 class="mb-4 font-bold">{{ 'property.pages.form.images.label' | translate }}</h2>
+                <p class="text-red-500 text-sm mb-2">{{ 'property.pages.form.images.note' | translate }}</p>
                 <div class="flex flex-col items-center w-full p-4 rounded-3 text-center border-2 border-dashed">
                     <input
                         type="file"
@@ -193,8 +193,8 @@
                     <i-lucide [img]="CloudUpload" class="my-icon mb-3" [strokeWidth]="2.5"></i-lucide>
                     
                     <label for="images" class="d-block cursor-pointer">
-                        <p><span>Click para subir</span> o arrastrar y soltar</p>
-                        <p>PNG, JPG, GIF hasta 10MB</p>
+                        <p><span>{{ 'property.pages.form.images.info1' | translate }}</span>{{ 'property.pages.form.images.info2' | translate }}</p>
+                        <p>{{ 'property.pages.form.images.format' | translate }}</p>
                     </label>
                 </div>
             </div>
@@ -204,7 +204,7 @@
                 <button type="submit" 
                         class="bg-blue-200 hover:bg-blue-300 rounded-md font-bold px-3 py-2 focus:outline-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" 
                         [disabled]="propertyForm.invalid">
-                    Guardar Propiedad
+                    {{ 'property.pages.create.button' | translate }}
                 </button>
             </div>
         </div>

@@ -5,11 +5,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AgentService } from '../../../service/agent.service';
 import { DtoAgent } from '../../../interfaces/agent/dto-agent';
 import { UserService } from '../../../service/user.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-edit',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslateModule],
   templateUrl: './edit.component.html'
 })
 export class EditAgentComponent {
@@ -33,8 +34,14 @@ export class EditAgentComponent {
     private router: Router,
     private agentService: AgentService,
     private userService: UserService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private translateService: TranslateService
   ) {
+    const userLang = navigator.language || 'es';
+    const languageCode = userLang.split('-')[0];
+    this.translateService.setDefaultLang(languageCode);
+    this.translateService.use(languageCode);
+
     this.agentForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
