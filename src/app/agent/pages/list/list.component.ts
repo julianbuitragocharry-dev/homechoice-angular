@@ -7,7 +7,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ScrollTopComponent } from '../../../shared/components/scroll-top/scroll-top.component';
 import { AgentService } from '../../../service/agent.service';
 import { DtoUserResponse } from '../../../interfaces/user/dto-user-response';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { LanguageService } from '../../../service/language.service';
 
 @Component({
   selector: 'app-list',
@@ -47,12 +48,10 @@ export class ListAgentsComponent implements OnInit {
     private agentService: AgentService, 
     private fb: FormBuilder, 
     private router: Router,
-    private translateService: TranslateService
+    private languageService: LanguageService
   ) {
-    const userLang = navigator.language || 'es';
-    const languageCode = userLang.split('-')[0];
-    this.translateService.setDefaultLang(languageCode);
-    this.translateService.use(languageCode);
+    const lang = this.languageService.getCurrentLanguage(); 
+    this.languageService.setLanguage(lang);
 
     this.filterForm = this.fb.group({
       nit: ['']

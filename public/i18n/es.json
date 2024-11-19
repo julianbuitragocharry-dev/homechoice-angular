@@ -50,6 +50,7 @@
             "required": "Por favor ingrese su contraseña.",
             "invalid": "La contraseña debe tener al menos 8 caracteres."
         },
+        "error": "Correo o contraseña incorrectos, verifique sus credenciales.",
         "next": "Ingresar",
         "back": "Inicio"
     },

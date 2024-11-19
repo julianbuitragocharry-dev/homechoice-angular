@@ -7,7 +7,7 @@
 
             <div class="flex items-center">
                 <div class="hidden md:block">
-                    <ul class="flex items-baseline space-x-4">
+                    <ul class="flex items-center space-x-4">
                         <li *hasRole="['AGENT']" >
                             <a routerLink="my-properties" 
                                 routerLinkActive="bg-blue-700"
@@ -74,6 +74,38 @@
                 </div>
             </div>
             
+            <div class="relative font-semibold">
+                <button 
+                  class="flex items-center gap-2 hover:bg-blue-600 rounded-md px-4 py-0.5 h-9 md:h-10" 
+                  (click)="toggleDropdown()"
+                >
+                  <img 
+                        [src]="'flags/' + currentLanguage + '.svg'" 
+                        alt="{{ currentLanguage.toUpperCase() }}" 
+                        class="w-6 h-6 hidden md:inline"
+                  />
+                  <span>{{ currentLanguage.toUpperCase() }}</span>
+                </button>
+            
+                <div
+                  *ngIf="isDropwdownOpen" 
+                  class="absolute right-0 mt-2 w-32 border z-50 bg-blue-800"
+                >
+                    <button 
+                        *ngFor="let lang of languages" 
+                        (click)="changeLenguage(lang)" 
+                        class="flex items-center gap-2 px-3 py-2 hover:bg-blue-900 w-full text-left"
+                    >
+                        <img 
+                        [src]="'flags/' + lang + '.svg'" 
+                        alt="{{ lang.toUpperCase() }}" 
+                        class="w-6 h-6"
+                        />
+                        <span>{{ lang.toUpperCase() }}</span>
+                    </button>
+                </div>
+            </div>
+
             <div class="md:hidden">
                 <button
                     (click)="isOpen = !isOpen"
@@ -87,6 +119,7 @@
                     </svg>
                 </button>
             </div>
+
         </div>
     </nav>
 
@@ -122,7 +155,7 @@
                 routerLink="frozen-properties"
                 routerLinkActive="bg-blue-700"
                 class="hover:bg-blue-600 block px-3 py-2 rounded-md font-medium">
-                    {{ "navbar.fronzen-properties" | translate }}
+                    {{ "navbar.frozen-properties" | translate }}
                 </a>
             </li>
             <li *hasRole="['SUPER_ADMIN']">

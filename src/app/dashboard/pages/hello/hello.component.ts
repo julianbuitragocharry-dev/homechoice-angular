@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { LanguageService } from '../../../service/language.service';
 
 @Component({
   selector: 'app-hello',
@@ -10,11 +11,9 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 export class HelloComponent {
   nombre: string;
 
-  constructor(private translateService: TranslateService) {
-    const userLang = navigator.language || 'es';
-    const languageCode = userLang.split('-')[0];
-    this.translateService.setDefaultLang(languageCode);
-    this.translateService.use(languageCode);
+  constructor(private languageService: LanguageService) {
+    const lang = this.languageService.getCurrentLanguage(); 
+    this.languageService.setLanguage(lang);
 
     this.nombre = localStorage.getItem('user') || 'Hello World';
   }

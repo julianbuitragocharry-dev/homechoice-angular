@@ -4,7 +4,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ActivatedRoute, Router } from '@angular/router';
 import { PropertyService } from '../../../service/property.service';
 import { DtoProperty } from '../../../interfaces/property/dto-property';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { LanguageService } from '../../../service/language.service';
 
 @Component({
   selector: 'app-edit',
@@ -34,12 +35,10 @@ export class EditPropertyComponent {
     private router: Router,
     private propertyService: PropertyService,
     private formBuilder: FormBuilder,
-    private translateService: TranslateService
+    private languageService: LanguageService
   ) {
-    const userLang = navigator.language || 'es';
-    const languageCode = userLang.split('-')[0];
-    this.translateService.setDefaultLang(languageCode);
-    this.translateService.use(languageCode);
+    const lang = this.languageService.getCurrentLanguage(); 
+    this.languageService.setLanguage(lang);
 
     this.propertyForm = this.formBuilder.group({
       name: ['', Validators.required],

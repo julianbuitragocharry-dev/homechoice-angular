@@ -50,6 +50,7 @@
             "required": "Please enter your password.",
             "invalid": "The password must be at least 8 characters long."
         },
+        "error": "Incorrect email or password, please check your credentials.",
         "next": "Login",
         "back": "Home"
     },

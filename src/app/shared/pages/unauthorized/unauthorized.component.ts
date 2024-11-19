@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { LanguageService } from '../../../service/language.service';
 
 @Component({
   selector: 'app-unauthorized',
@@ -9,10 +10,8 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   templateUrl: './unauthorized.component.html'
 })
 export class UnauthorizedComponent {
-  constructor(private translateService: TranslateService) {
-    const userLang = navigator.language || 'es';
-    const languageCode = userLang.split('-')[0];
-    this.translateService.setDefaultLang(languageCode);
-    this.translateService.use(languageCode);
+  constructor(private languageService: LanguageService) {
+    const lang = this.languageService.getCurrentLanguage(); 
+    this.languageService.setLanguage(lang);
   }
 }

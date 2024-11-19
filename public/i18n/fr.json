@@ -50,6 +50,7 @@
             "required": "Veuillez saisir votre mot de passe.",
             "invalid": "Le mot de passe doit comporter au moins 8 caractères."
         },
+        "error": "E-mail ou mot de passe incorrect, veuillez vérifier vos identifiants.",
         "next": "Se connecter",
         "back": "Accueil"
     },
