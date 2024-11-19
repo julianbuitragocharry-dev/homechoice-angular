@@ -8,7 +8,8 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from "../../../shared/components/header/header.component";
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { CarouselComponent } from "../../components/carousel/carousel.component";
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { LanguageService } from '../../../service/language.service';
 
 @Component({
   selector: 'app-details',
@@ -35,12 +36,10 @@ export class DetailsComponent implements OnInit {
     private propertyService: PropertyService,
     private agentService: AgentService,
     private sanitizer: DomSanitizer,
-    private translateService: TranslateService
+    private languageService: LanguageService
   ) {
-    const userLang = navigator.language || 'es';
-    const languageCode = userLang.split('-')[0];
-    this.translateService.setDefaultLang(languageCode);
-    this.translateService.use(languageCode);
+    const lang = this.languageService.getCurrentLanguage(); 
+    this.languageService.setLanguage(lang);
   }
 
   ngOnInit(): void {

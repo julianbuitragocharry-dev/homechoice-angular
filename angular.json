@@ -35,7 +35,8 @@
         "sourceLocale": "es",
         "locales": {
           "fr": "public/i18n/fr.json",
-          "en": "public/i18n/en.json"
+          "en": "public/i18n/en.json",
+          "jp": "public/i18n/jp.json"
         }
       },
       "root": "",

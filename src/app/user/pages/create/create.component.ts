@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { UserService } from '../../../service/user.service';
 import { CommonModule } from '@angular/common';
 import { DtoUser } from '../../../interfaces/user/dto-user';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { LanguageService } from '../../../service/language.service';
 
 @Component({
   selector: 'app-create',
@@ -24,12 +25,10 @@ export class CreateUserComponent {
     private router: Router,
     private userService: UserService,
     private formBuilder: FormBuilder,
-    private translateService: TranslateService
+    private languageService: LanguageService
   ) {
-    const userLang = navigator.language || 'es';
-    const languageCode = userLang.split('-')[0];
-    this.translateService.setDefaultLang(languageCode);
-    this.translateService.use(languageCode);
+    const lang = this.languageService.getCurrentLanguage(); 
+    this.languageService.setLanguage(lang);
 
     this.userForm = this.formBuilder.group({
       firstName: ['', Validators.required],

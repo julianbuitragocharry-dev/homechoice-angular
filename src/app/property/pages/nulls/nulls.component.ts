@@ -9,7 +9,8 @@ import { DtoProperty } from '../../../interfaces/property/dto-property';
 import { PropertyService } from '../../../service/property.service';
 import { DtoUserResponse } from '../../../interfaces/user/dto-user-response';
 import { AgentService } from '../../../service/agent.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { LanguageService } from '../../../service/language.service';
 
 @Component({
   selector: 'app-nulls',
@@ -68,12 +69,10 @@ export class NullsComponent {
     private agentService: AgentService,
     private fb: FormBuilder, 
     private router: Router,
-    private translateService: TranslateService
+    private languageService: LanguageService
   ) {
-    const userLang = navigator.language || 'es';
-    const languageCode = userLang.split('-')[0];
-    this.translateService.setDefaultLang(languageCode);
-    this.translateService.use(languageCode);
+    const lang = this.languageService.getCurrentLanguage(); 
+    this.languageService.setLanguage(lang);
 
     this.filterForm = this.fb.group({
       name: [''],

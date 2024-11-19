@@ -5,7 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { LoginRequest } from '../../../auth/jwt';
 import { AuthService } from '../../../auth/auth.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { LanguageService } from '../../../service/language.service';
 
 @Component({
   selector: 'app-login',
@@ -21,12 +22,10 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private translateService: TranslateService
+    private languageService: LanguageService
   ) {
-    const userLang = navigator.language || 'es';
-    const languageCode = userLang.split('-')[0];
-    this.translateService.setDefaultLang(languageCode);
-    this.translateService.use(languageCode);
+    const lang = this.languageService.getCurrentLanguage(); 
+    this.languageService.setLanguage(lang);
   }
 
   ngOnInit() {
@@ -60,7 +59,7 @@ export class LoginComponent implements OnInit {
         this.loginForm.reset();
       },
       error: () => {
-        this.loginError = 'Clave inválida. Por favor, verifique sus credenciales.';
+        this.loginError = 'login.error';
       }
     });
   }
