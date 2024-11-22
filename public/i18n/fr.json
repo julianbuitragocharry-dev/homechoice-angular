@@ -141,7 +141,13 @@
                     "description2": "ID :",
                     "description3": "Cette action est irréversible.",
                     "next": "Supprimer",
-                    "back": "Annuler"
+                    "back": "Annuler",
+                    "freeze": {
+                        "title": "Geler la Propriété",
+                        "message": "Êtes-vous sûr de vouloir geler cette propriété avec",
+                        "description": "En gelant la propriété, elle ne sera pas visible par les utilisateurs jusqu'à ce qu'elle soit dégélée.",
+                        "confirm": "Geler"
+                    }
                 }
             },
             "nulls": {

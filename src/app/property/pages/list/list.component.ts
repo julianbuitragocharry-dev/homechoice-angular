@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { DtoProperty } from '../../../interfaces/property/dto-property';
-import { Eye, LucideAngularModule, Pencil, Search, Trash2 } from 'lucide-angular';
+import { Eye, LucideAngularModule, Pencil, Search, Snowflake, Trash2 } from 'lucide-angular';
 import { PropertyService } from '../../../service/property.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -30,6 +30,7 @@ export class ListPropertiesComponent implements OnInit {
   readonly Trash2 = Trash2;
   readonly Search = Search;
   readonly Eye = Eye;
+  readonly Snowflake = Snowflake;
 
   properties: DtoProperty[] = [];
   statusList: {label: string, value: boolean}[] = [
@@ -54,6 +55,7 @@ export class ListPropertiesComponent implements OnInit {
   filterForm: FormGroup;
 
   showDeleteModal: boolean = false;
+  showFreezeModal: boolean = false;
   propertyToDelete: number | null = null;
   //#endregion
 
@@ -121,6 +123,32 @@ export class ListPropertiesComponent implements OnInit {
     this.propertyToDelete = null;
   }
   
+  onFreezeConfirm(): void {
+    if (this.propertyToDelete) {
+      this.propertyService.freezeProperty(this.propertyToDelete).subscribe({
+        next: () => {
+          this.loadProperties();
+          this.closeFreezeModal();
+        },
+        error: (error) => {
+          console.error('Error freezing property:', error);
+          this.closeFreezeModal();
+          this.router.navigate(['/crash']);
+        }
+      });
+    }
+  }
+  
+  confirmFreeze(property: DtoProperty): void {
+    this.propertyToDelete = property.id;
+    this.showFreezeModal = true;
+  }
+  
+  closeFreezeModal(): void {
+    this.showFreezeModal = false;
+    this.propertyToDelete = null;
+  }
+
   deleteProperty(): void {
     if (this.propertyToDelete) {
       this.propertyService.deleteProperty(this.propertyToDelete).subscribe({

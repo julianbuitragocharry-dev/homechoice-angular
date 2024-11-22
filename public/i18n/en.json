@@ -141,7 +141,13 @@
                     "description2": "ID:",
                     "description3": "This action cannot be undone.",
                     "next": "Delete",
-                    "back": "Cancel"
+                    "back": "Cancel",
+                    "freeze": {
+                        "title": "Freeze Property",
+                        "message": "Are you sure you want to freeze this property with",
+                        "description": "By freezing the property, it will not be visible to users until it is unfrozen.",
+                        "confirm": "Freeze"
+                    }
                 }
             },
             "nulls": {

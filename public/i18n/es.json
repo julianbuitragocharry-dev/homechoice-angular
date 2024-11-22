@@ -142,7 +142,13 @@
                     "description2": "ID:",
                     "description3": "Esta acción no se puede deshacer.",
                     "next": "Eliminar",
-                    "back": "Cancelar"
+                    "back": "Cancelar",
+                    "freeze": {
+                        "title": "Congelar Propiedad",
+                        "message": "¿Estás seguro de que deseas congelar esta propiedad con",
+                        "description": "Al congelar la propiedad, esta no sera visible para los usuarios hasta que sea descongelada.",
+                        "confirm": "Congelar"
+                    }
                 }
             },
             "nulls": {

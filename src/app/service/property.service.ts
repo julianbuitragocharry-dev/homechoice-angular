@@ -96,6 +96,10 @@ export class PropertyService {
     return this.http.put(`${this.apiUrl}/${id}`, request);
   }
 
+  freezeProperty(id: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}/frozen`, null);
+  }
+
   deleteProperty(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }

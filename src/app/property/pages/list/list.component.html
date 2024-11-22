@@ -1,5 +1,5 @@
 <!-- search -->
-<form [formGroup]="filterForm" (ngSubmit)="onSubmit()" class="w-[90%] mx-auto my-8 font-roboto p-6 shadow-md rounded-lg">
+<form [formGroup]="filterForm" (ngSubmit)="onSubmit()" class="w-[90%] mx-auto my-8 font-roboto p-6 shadow-md rounded-md">
     <div class="grid grid-cols-1 md:grid-cols-7 gap-4 items-center">
       
       <!-- name -->
@@ -8,7 +8,7 @@
           type="text" 
           formControlName="name" 
           [placeholder]="'property.pages.form.name.placeholder' | translate"
-          class="w-full px-4 py-3 border border-blue-900 rounded-lg text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200"
+          class="w-full px-4 py-3 border border-blue-900 rounded-md text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200"
         />
       </div>
       
@@ -16,7 +16,7 @@
       <div>
         <select 
           formControlName="status" 
-          class="w-full px-4 py-3 border border-blue-900 rounded-lg text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200"
+          class="w-full px-4 py-3 border border-blue-900 rounded-md text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200"
         >
           <option value="" selected>{{ 'property.pages.list.form.status' | translate }}</option>
           <option *ngFor="let item of statusList" [value]="item.value">{{item.label}}</option>
@@ -27,7 +27,7 @@
       <div>
         <select 
           formControlName="concept" 
-          class="w-full px-4 py-3 border border-blue-900 rounded-lg text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200"
+          class="w-full px-4 py-3 border border-blue-900 rounded-md text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200"
         >
           <option value="" selected>{{ 'property.pages.list.form.concept' | translate }}</option>
           <option *ngFor="let item of conceptList" [value]="item.concept">{{item.concept}}</option>
@@ -38,7 +38,7 @@
       <div>
         <select 
           formControlName="type" 
-          class="w-full px-4 py-3 border border-blue-900 rounded-lg text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200"
+          class="w-full px-4 py-3 border border-blue-900 rounded-md text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200"
         >
           <option value="" selected>{{ 'property.pages.list.form.type' | translate }}</option>
           <option *ngFor="let item of typeList" [value]="item.type">{{item.type}}</option>
@@ -51,7 +51,7 @@
           type="number"
           formControlName="minPrice" 
           [placeholder]="'property.pages.list.form.price' | translate"
-          class="w-full px-4 py-3 border border-blue-900 rounded-lg text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200" 
+          class="w-full px-4 py-3 border border-blue-900 rounded-md text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200" 
           min="0"
         />
       </div>
@@ -63,7 +63,7 @@
           formControlName="minArea" 
           [placeholder]="'property.pages.form.area.placeholder' | translate"
           min="0" 
-          class="w-full px-4 py-3 border border-blue-900 rounded-lg text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200"
+          class="w-full px-4 py-3 border border-blue-900 rounded-md text-sm md:text-base outline-none focus:ring-2 focus:ring-blue-200"
         />
       </div>
 
@@ -116,7 +116,11 @@
                                 <button class="p-3 bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-full" 
                                         (click)="onEdit(property)">
                                     <i-lucide [img]="Pencil" class="w-5 h-5" [strokeWidth]="2.5"></i-lucide>
-                                </button>
+                                  </button>
+                                  <button class="p-3 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-full" 
+                                          (click)="confirmFreeze(property)">
+                                    <i-lucide [img]="Snowflake" class="w-5 h-5" [strokeWidth]="2.5"></i-lucide>
+                                  </button>
                                 <button class="p-3 bg-red-50 hover:bg-red-100 text-red-600 rounded-full" 
                                         (click)="confirmDelete(property)">
                                     <i-lucide [img]="Trash2" class="w-5 h-5" [strokeWidth]="2.5"></i-lucide>
@@ -138,7 +142,8 @@
     <p class="text-gray-400">{{ 'property.pages.list.notfound.description' | translate }}</p>
 </div>
 
-<!-- modal -->
+<!-- modals -->
+<!-- delete -->
 <div *ngIf="showDeleteModal" 
      class="fixed inset-0 bg-blue-950/50 flex items-center justify-center z-50"
      (click)="closeModal()">
@@ -172,6 +177,47 @@
                 class="px-4 py-2 bg-red-600 text-blue-50 rounded-md hover:bg-red-700"
                 (click)="deleteProperty()">
                 {{ 'property.pages.list.modal.next' | translate }}
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- freeze -->
+<div *ngIf="showFreezeModal" 
+     class="fixed inset-0 bg-blue-950/50 flex items-center justify-center z-50"
+     (click)="closeFreezeModal()">
+    <div class="bg-blue-50 w-11/12 max-w-md rounded-lg shadow-lg" 
+         (click)="$event.stopPropagation()">
+        
+        <!-- header -->
+        <div class="p-4 border-b border-blue-200">
+            <h3 class="text-lg font-medium text-blue-900">
+                {{ 'property.pages.list.modal.freeze.title' | translate }}
+            </h3>
+        </div>
+
+        <!-- body -->
+        <div class="p-4">
+            <div class="flex items-center gap-4 text-blue-800">
+                <p>
+                    {{ 'property.pages.list.modal.freeze.message' | translate }}
+                    <b>ID: {{ propertyToDelete }}</b>
+                </p>
+            </div>
+            <p class="mt-2 text-sm text-blue-600">
+                {{ 'property.pages.list.modal.freeze.description' | translate }}
+            </p>
+        </div>
+
+        <!-- footer -->
+        <div class="p-4 border-t border-blue-200 flex justify-end space-x-3">
+            <button class="px-4 py-2 bg-blue-50 text-blue-700 rounded-md hover:bg-blue-100"
+                    (click)="closeFreezeModal()">
+                {{ 'property.pages.list.modal.back' | translate }}
+            </button>
+            <button class="px-4 py-2 bg-blue-600 text-blue-50 rounded-md hover:bg-blue-700"
+                    (click)="onFreezeConfirm()">
+                {{ 'property.pages.list.modal.freeze.confirm' | translate }}
             </button>
         </div>
     </div>

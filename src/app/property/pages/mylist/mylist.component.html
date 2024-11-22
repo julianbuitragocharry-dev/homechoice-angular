@@ -1,5 +1,5 @@
 <!-- search -->
-<form [formGroup]="filterForm" (ngSubmit)="onSubmit()" class="w-[90%] mx-auto my-8 font-roboto p-6 shadow-md rounded-lg">
+<form [formGroup]="filterForm" (ngSubmit)="onSubmit()" class="w-[90%] mx-auto my-8 font-roboto p-6 shadow-md rounded-md">
     <div class="grid grid-cols-1 md:grid-cols-7 gap-4 items-center">
       
       <!-- name -->
@@ -144,7 +144,7 @@
      (click)="closeModal()">
     
     <!-- content -->
-    <div class="bg-blue-50 w-11/12 max-w-md rounded-lg shadow-lg" 
+    <div class="bg-blue-50 w-11/12 max-wrounded-md shadow-lg" 
          (click)="$event.stopPropagation()">
         
         <!-- header -->
