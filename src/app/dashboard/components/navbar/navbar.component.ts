@@ -16,7 +16,7 @@ export class NavbarComponent {
   isOpen = false;
   isDropwdownOpen = false;
   currentLanguage = 'es';
-  languages = ['es', 'en', 'fr', 'jp'];
+  languages = ['es', 'en', 'fr'];
 
   constructor(
     private authService: AuthService, 
