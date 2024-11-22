@@ -1,4 +1,4 @@
-# HomeChoice Frontend
+# HomeChoice UI
 The frontend for the HomeChoice real estate management system, built with Angular.
 
 ## Development Server
@@ -9,6 +9,12 @@ The frontend for the HomeChoice real estate management system, built with Angula
 - **Angular**: Framework for building the frontend application.
 - **JWT (JSON Web Tokens)**: For secure token-based authentication.
 - **Tailwind CSS**: A utility-first CSS framework for designing user interfaces.
+- **Bootstrap**: A popular CSS framework for building responsive, mobile-first websites.
+
+## Folder Structure
+The folder structure is based on **domains and functionality**, designed to make the codebase modular and maintainable. This organization allows each feature or domain to be self-contained and easier to work on independently.
+
+You can check the [Angular Folder Structure Reference](https://angular.dev/reference/configs/file-structure) for more details on Angular's recommended file organization.
 
 ## Contribution
 Contributions are welcome! Follow these steps:

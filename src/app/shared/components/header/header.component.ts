@@ -15,7 +15,7 @@ export class HeaderComponent {
   readonly LogIn = LogIn;
   isDropwdownOpen = false;
   currentLanguage = 'es';
-  languages = ['es', 'en', 'fr', 'jp'];
+  languages = ['es', 'en', 'fr'];
 
   constructor(private languageService: LanguageService) {
     this.currentLanguage = this.languageService.getCurrentLanguage();
