@@ -179,10 +179,9 @@
      class="fixed inset-0 bg-blue-950/50 flex items-center justify-center z-50"
      (click)="closeChangeAgentModal()">
     
-    <!-- content -->
     <div class="bg-blue-50 w-11/12 max-w-md rounded-lg shadow-lg" 
          (click)="$event.stopPropagation()">
-        
+
         <!-- header -->
         <div class="p-4 border-b border-blue-200">
             <h3 class="text-lg font-medium text-blue-900">
@@ -195,6 +194,8 @@
             <p class="text-blue-800 mb-4">
                 {{ 'property.pages.nulls.modal.description1' | translate }} <b>{{ 'property.pages.nulls.modal.description2' | translate }} {{selectedPropertyId}}</b>
             </p>
+            
+            <!-- select dropdown -->
             <select 
                 [(ngModel)]="selectedAgentId"
                 class="w-full px-4 py-2.5 border border-blue-900 rounded-lg text-sm focus:border-blue-600 focus:outline-none">
@@ -203,9 +204,28 @@
                     {{agent.firstName}} {{agent.lastName}}
                 </option>
             </select>
+
+            <!-- pagination controls -->
+            <div class="mt-4 flex justify-between items-center">
+                <button 
+                    class="px-3 py-1 bg-blue-50 text-blue-700 rounded-md hover:bg-blue-100"
+                    [disabled]="modalAgentPage === 1"
+                    (click)="onModalAgentPageChange(modalAgentPage - 1)">
+                    {{ 'property.pages.nulls.modal.previouspage' | translate }}
+                </button>
+                <span class="text-sm text-blue-600">
+                    {{modalAgentPage}} / {{ceil(modalAgentTotal / modalAgentSize)}}
+                </span>
+                <button 
+                    class="px-3 py-1 bg-blue-50 text-blue-700 rounded-md hover:bg-blue-100"
+                    [disabled]="modalAgentPage >= ceil(modalAgentTotal / modalAgentSize)"
+                    (click)="onModalAgentPageChange(modalAgentPage + 1)">
+                    {{ 'property.pages.nulls.modal.nextpage' | translate }}
+                </button>
+            </div>
         </div>
 
-        <!-- footer -->
+        <!-- Footer -->
         <div class="p-4 border-t border-blue-200 flex justify-end space-x-3">
             <button 
                 class="px-4 py-2 bg-blue-50 text-blue-700 rounded-md hover:bg-blue-100"
@@ -221,6 +241,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- pagination controls -->
 <div class="grid place-items-center py-2 mt-8 font-roboto">

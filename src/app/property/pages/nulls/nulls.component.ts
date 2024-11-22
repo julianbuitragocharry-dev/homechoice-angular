@@ -46,6 +46,10 @@ export class NullsComponent {
   sizeValue: number = 20;
   totalData: number = 0;
 
+  modalAgentPage: number = 1;
+  modalAgentSize: number = 20;
+  modalAgentTotal: number = 0;
+
   filters = {
     name: '',
     status: null,
@@ -104,22 +108,31 @@ export class NullsComponent {
     }
     this.loadProperties();
   }
-
+  
+  ceil(value: number): number {
+    return Math.ceil(value);
+  }
+  
   onPageChange(page: number): void {
     this.pageValue = page;
     this.loadProperties();
   }
-
+  
   openChangeAgentModal(propertyId: number): void {
     this.selectedPropertyId = propertyId;
     this.selectedAgentId = null;
     this.showChangeAgentModal = true;
   }
-
+  
   closeChangeAgentModal(): void {
     this.showChangeAgentModal = false;
     this.selectedPropertyId = null;
     this.selectedAgentId = null;
+  }
+  
+  onModalAgentPageChange(page: number): void {
+    this.modalAgentPage = page;
+    this.loadAgents(page, this.modalAgentSize);
   }
 
   confirmAgentChange(): void {
@@ -155,7 +168,7 @@ export class NullsComponent {
           this.closeModal();
           this.loadProperties();
         },
-        error: (error) => {
+        error: () => {
           this.closeModal();
         }
       });
@@ -210,13 +223,11 @@ export class NullsComponent {
     });
   }
 
-  // TODO: Pageable system
-  loadAgents(): void {
-    this.agentService.getAllAgents('', 0, 1000).subscribe({
+  loadAgents(page: number = this.modalAgentPage, size: number = this.modalAgentSize): void {
+    this.agentService.getAllAgents('', page - 1, size).subscribe({
       next: (data) => {
-        console.log(data);
         this.agentList = data.content;
-        console.log(this.agentList);
+        this.modalAgentTotal = data.totalElements;
       },
       error: (error) => {
         console.error('Error fetching agents list:', error);

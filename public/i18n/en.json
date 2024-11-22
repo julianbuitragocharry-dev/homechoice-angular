@@ -150,6 +150,8 @@
                     "description1": "Select the new agent for the property with",
                     "description2": "ID:",
                     "option": "Select Agent",
+                    "previouspage": "Back",
+                    "nextpage": "Next",
                     "next": "Save Changes",
                     "back": "Cancel"
                 }

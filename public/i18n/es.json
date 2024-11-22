@@ -151,6 +151,8 @@
                     "description1": "Seleccione el nuevo agente para la propiedad con",
                     "description2": "ID:",
                     "option": "Seleccionar agente",
+                    "previouspage": "Anterior",
+                    "nextpage": "Siguiente",
                     "next": "Guardar Cambios",
                     "back": "Cancelar"
                 }
