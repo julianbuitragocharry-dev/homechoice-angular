@@ -1,56 +1,58 @@
-<div class="flex flex-col mx-auto justify-center h-screen font-roboto w-72 md:w-[420px]">
-  <h1 class="text-2xl md:text-4xl font-bold text-center mb-6">{{ "login.title" | translate }}</h1>
-
-  <form
-    [formGroup]="loginForm"
-    (ngSubmit)="onSubmit()"
-    class="flex flex-col gap-4 text-sm md:text-base"
-  >
-    <!-- email -->
-    <label class="text-sm md:text-base font-semibold" for="email">{{ "login.email.label" | translate }}</label>
-    <input
-      class="text-sm md:text-base border rounded-md h-9 md:h-10 px-2"
-      type="email"
-      id="email"
-      formControlName="email"
-    />
-    <span *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-red-500">
-      <span *ngIf="email?.errors?.['required']">{{ "login.email.required" | translate}}</span>
-      <span *ngIf="email?.errors?.['email']">{{ "login.email.invalid" | translate }}</span>
-    </span>
-
-    <!-- password -->
-    <label class="text-sm md:text-base font-semibold" for="password">{{ "login.password.label" | translate }}</label>
-    <input
-      class="text-sm md:text-base border rounded-md h-9 md:h-10 px-2"
-      type="password"
-      id="password"
-      formControlName="password"
-    />
-    <span *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-red-500">
-      <span *ngIf="password?.errors?.['required']">{{ "login.password.required" | translate }}</span>
-      <span *ngIf="password?.errors?.['minlength']">{{ "login.password.invalid" | translate }}</span>
-    </span>
-
-    <!-- login error message -->
-    <span *ngIf="loginError" class="text-red-500">{{ loginError | translate }}</span>
-
-    <!-- buttons -->
-    <div class="flex flex-col gap-3">
-      <button
-        type="submit"
-        class="text-sm md:text-base bg-blue-200 hover:bg-blue-300 font-semibold rounded-md h-9 md:h-10"
-      >
-        {{ "login.next" | translate }}
-      </button>
+<div class="grid place-items-center h-screen bg-[url('/img/bg.vif')] bg-cover bg-center">
+  <div class="flex flex-col mx-auto justify-center font-roboto w-72 md:w-[420px] border px-4 py-8 rounded-lg bg-opacity-30 backdrop-blur-lg">
+    <h1 class="text-2xl md:text-4xl font-bold text-center mb-6">{{ "login.title" | translate }}</h1>
   
-      <button
-        type="button"
-        routerLink="/"
-        class="text-sm md:text-base hover:bg-blue-100 font-semibold rounded-md h-9 md:h-10"
-      >
-        {{ "login.back" | translate }}
-      </button>
-    </div>
-  </form>
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()"
+      class="flex flex-col gap-4 text-sm md:text-base"
+    >
+      <!-- email -->
+      <label class="text-sm md:text-base font-semibold" for="email">{{ "login.email.label" | translate }}</label>
+      <input
+        class="text-sm md:text-base border rounded-md h-9 md:h-10 px-2 focus:outline-none"
+        type="email"
+        id="email"
+        formControlName="email"
+      />
+      <span *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-red-500">
+        <span *ngIf="email?.errors?.['required']">{{ "login.email.required" | translate}}</span>
+        <span *ngIf="email?.errors?.['email']">{{ "login.email.invalid" | translate }}</span>
+      </span>
+  
+      <!-- password -->
+      <label class="text-sm md:text-base font-semibold" for="password">{{ "login.password.label" | translate }}</label>
+      <input
+        class="text-sm md:text-base border rounded-md h-9 md:h-10 px-2 focus:outline-none"
+        type="password"
+        id="password"
+        formControlName="password"
+      />
+      <span *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-red-500">
+        <span *ngIf="password?.errors?.['required']">{{ "login.password.required" | translate }}</span>
+        <span *ngIf="password?.errors?.['minlength']">{{ "login.password.invalid" | translate }}</span>
+      </span>
+  
+      <!-- login error message -->
+      <span *ngIf="loginError" class="text-red-500">{{ loginError | translate }}</span>
+  
+      <!-- buttons -->
+      <div class="flex flex-col gap-3">
+        <button
+          type="submit"
+          class="text-sm md:text-base bg-blue-200 hover:bg-blue-300 font-semibold rounded-md h-9 md:h-10"
+        >
+          {{ "login.next" | translate }}
+        </button>
+    
+        <button
+          type="button"
+          routerLink="/"
+          class="text-sm md:text-base hover:bg-blue-100 font-semibold rounded-md h-9 md:h-10"
+        >
+          {{ "login.back" | translate }}
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
