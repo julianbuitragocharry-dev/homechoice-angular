@@ -85,9 +85,9 @@ export class DetailsComponent implements OnInit {
 
     Agradezco de antemano su atención y quedo a la espera de su respuesta.
 
-    Saludos cordiales,  
+    Saludos cordiales,
     [Su Nombre]`;
-    const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/57${phone}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   }
 
