@@ -57,6 +57,9 @@ export class DetailsComponent implements OnInit {
   loadProperty(id: number): void {
     this.propertyService.getPropertyById(id).subscribe({
       next: (data: DtoProperty) => {
+        if (data.agent == null) {
+          this.router.navigate(['/404']);
+        }
         this.property = data;
         this.initializeMap();
         this.loadAgent(this.property.agent);
